@@ -29,45 +29,54 @@
 }
 
 .label {
-  position: relative;
   width: 100%;
   margin-bottom: 16px;
   display: block;
 }
-
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  max-width: 100%;
+  width: calc(100% - 32px);
+  margin: 0 auto;
+  border: 1px solid #3b5d63;
+  border-radius: 8px;
+  background-color: transparent;
+  height: 44px;
+}
 .icon {
-  position: absolute;
-  top: 50%;
-  left: 16px;
-  transform: translateY(-50%);
   width: 24px;
   height: 24px;
-  pointer-events: none;
-  color: #081222;
+  margin-left: 16px;
+  flex-shrink: 0;
+  fill: #3b5d63;
+  flex-shrink: 0;
 }
 
 .field {
-  width: 100%;
-  height: 44px;
-  padding-left: 50px; /* чтобы не налазило на иконку */
-  border-radius: 8px;
-  background-color: transparent;
-  border: 1px solid #081222;
+  flex: 1;
+  height: 100%;
+  padding: 0 16px;
   font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 18px;
-  color: #081222;
-  box-sizing: border-box;
+  color: #3b5d63;
+  background: transparent;
+  border: none;
+  outline: none;
 }
 
 .field::placeholder {
-  color: #081222;
+  color: #3b5d63;
 }
 
 .buttonRegisrer {
   border-radius: 8px;
   padding: 11px 79px;
-  width: 100%;
+  max-width: 100%;
+  width: calc(100% - 32px);
+  margin: 0 auto;
   height: 44px;
   background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
   color: white;
@@ -82,7 +91,9 @@
   border: 1px solid #081222;
   border-radius: 8px;
   padding: 11px 68px;
-  width: 100%;
+  max-width: 100%;
+  width: calc(100% - 32px);
+  margin: 0 auto;
   height: 44px;
   background-color: transparent;
   color: #081222;
@@ -94,15 +105,11 @@
   display: none;
 }
 
-@media (min-width: 768px) {
-  /* .backdrop {
-    position: relative;
-    background-image: url("/src/images/background-picture/ChatGPT Image Apr 23, 2025 at 04_18_25 PM 1.png");
-    background-repeat: no-repeat;
-    background-size: 320px 239px;
-    background-position: 700px 800px;
-  } */
+.error {
+  color: #b20202;
+}
 
+@media (min-width: 768px) {
   .container {
     overflow: visible;
     width: 533px;
@@ -127,12 +134,21 @@
   .logo {
     margin-bottom: 32px;
   }
+
   .label {
+    width: 100%;
     margin-bottom: 24px;
   }
+  .inputWrapper {
+    width: 100%;
+  }
   .buttonRegisrer {
+    width: 100%;
     margin-top: 32px;
     margin-bottom: 24px;
+  }
+  .buttonLogin {
+    width: 100%;
   }
 
   @media (min-width: 1280px) {
@@ -157,7 +173,9 @@
 .field:-webkit-autofill:hover,
 .field:-webkit-autofill:focus,
 .field:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px #508f8c inset !important; /* Цвет фона поля */
-  -webkit-text-fill-color: #081222 !important; /* Цвет текста */
+  width: 100%;
+  -webkit-box-shadow: 0 0 0 10000px #508f8c inset !important;
+  -webkit-text-fill-color: #081222 !important;
   transition: background-color 9999s ease-in-out 0s;
 }
+/* color: #0b6016    green */
