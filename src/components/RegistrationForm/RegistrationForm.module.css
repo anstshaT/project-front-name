@@ -4,7 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #081222;
+  background: var(--bg-dark);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -215,14 +215,4 @@
       pointer-events: none;
     }
   }
-}
-
-.field:-webkit-autofill,
-.field:-webkit-autofill:hover,
-.field:-webkit-autofill:focus,
-.field:-webkit-autofill:active {
-  width: 100%;
-  -webkit-box-shadow: 0 0 0 10000px #508f8c inset !important;
-  -webkit-text-fill-color: #081222 !important;
-  transition: background-color 9999s ease-in-out 0s;
 }
