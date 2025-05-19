@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { api, setAuthHeader } from ".";
+import { api, setAuthHeader } from "./index.js";
 
 export const refreshUser = createAsyncThunk("auth/refresh-session", async (__, thunkAPI) => {
   try {
