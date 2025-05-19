@@ -4,8 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
 import s from './LoginForm.module.css'
-import { loginThunk } from '../../redux/auth/operations';
-import SvgIcon from '../SvgIcon';
+import { loginThunk } from '../../redux/auth/authOperations';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().max(64).email('Invalid email').required('Email is required'),
@@ -32,10 +31,7 @@ const LoginForm = () => {
     return (
         <div className={s.container}>
             <div className={s.wrap}>
-                <span>
-                    <SvgIcon iconId="icon-Wallet" className={s.iconWallet} />
-                </span>
-                <h1 className={s.logo}>Spendy</h1>
+                <img src="/src/images/logo.svg" className={s.logo} />
                 <Formik
                     initialValues={{ email: '', password: '' }}
                     validationSchema={validationSchema}
@@ -49,7 +45,9 @@ const LoginForm = () => {
                                     type="email"
                                     placeholder="E-mail"
                                     className={s.input} />
-                                <SvgIcon iconId="icon-Email" className={s.icon} />
+                                <svg width="24" height="24" className={s.icon}>
+                                    <use href="/icons.svg#icon-email"></use>
+                                </svg>
                             </div>
                             <ErrorMessage name="email" component="span" className={s.error} />
                         </div>
@@ -61,7 +59,9 @@ const LoginForm = () => {
                                     type="password"
                                     placeholder="Password"
                                     className={s.input} />
-                                <SvgIcon iconId="icon-Lock" className={s.icon} />
+                                <svg width="24" height="24" className={s.icon}>
+                                    <use href="/icons.svg#icon-lock"></use>
+                                </svg>
                             </div>
                             <ErrorMessage name="password" component="div" className={s.error} />
                         </div>
@@ -74,7 +74,7 @@ const LoginForm = () => {
                         </div>
                     </Form>
                 </Formik>
-                <img src="/public/images/wallet.png" alt="Wallet" className={s.walletImage} />
+                <img src="/src/images/background-picture/img-bg-log.png" alt="Wallet" className={s.walletImage} />
             </div>
         </div>
     );
