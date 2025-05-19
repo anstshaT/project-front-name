@@ -4,8 +4,11 @@ import { registerThunk } from "../../redux/auth/authOperations";
 import s from "./RegistrationForm.module.css";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import clsx from "clsx";
+import { useState } from "react";
 
 export const RegistrationForm = () => {
+  const [hasError, setHasError] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -45,6 +48,14 @@ export const RegistrationForm = () => {
     dispatch(registerThunk(values));
     options.resetForm();
   };
+
+  const handleBlur = (e) => {
+    if (e.target.value.trim() === "") {
+      setHasError(true);
+    } else {
+      setHasError(false);
+    }
+  };
   return (
     <div className={s.backdrop}>
       <div className={s.container}>
@@ -55,14 +66,23 @@ export const RegistrationForm = () => {
           onSubmit={handleSubmit}
           validationSchema={RegistrationSchema}
         >
-          {({ values }) => (
+          {({ values, errors, touched }) => (
             <Form>
               <label className={s.label}>
-                <div className={s.inputWrapper}>
+                <div
+                  className={clsx(s.inputWrapper, {
+                    [s.error]: errors.name && touched.name,
+                  })}
+                >
                   <svg width="24" height="24" className={s.icon}>
                     <use href="/icons.svg#icon-user"></use>
                   </svg>
-                  <Field name="name" placeholder="Name" className={s.field} />
+                  <Field
+                    name="name"
+                    placeholder="Name"
+                    className={s.field}
+                    onBlur={handleBlur}
+                  />
                 </div>
                 <ErrorMessage
                   name="name"
@@ -70,8 +90,13 @@ export const RegistrationForm = () => {
                   className={s.error}
                 />
               </label>
+
               <label className={s.label}>
-                <div className={s.inputWrapper}>
+                <div
+                  className={clsx(s.inputWrapper, {
+                    [s.error]: errors.name && touched.name,
+                  })}
+                >
                   <svg width="24" height="24" className={s.icon}>
                     <use href="/icons.svg#icon-email"></use>
                   </svg>
@@ -80,6 +105,7 @@ export const RegistrationForm = () => {
                     name="email"
                     placeholder="E-mail"
                     className={s.field}
+                    onBlur={handleBlur}
                   />
                 </div>
                 <ErrorMessage
@@ -88,8 +114,13 @@ export const RegistrationForm = () => {
                   className={s.error}
                 />
               </label>
+
               <label className={s.label}>
-                <div className={s.inputWrapper}>
+                <div
+                  className={clsx(s.inputWrapper, {
+                    [s.error]: errors.name && touched.name,
+                  })}
+                >
                   <svg width="24" height="24" className={s.icon}>
                     <use href="/icons.svg#icon-lock"></use>
                   </svg>
@@ -98,6 +129,7 @@ export const RegistrationForm = () => {
                     type="password"
                     placeholder="Password"
                     className={s.field}
+                    onBlur={handleBlur}
                   />
                 </div>
                 <ErrorMessage
@@ -106,8 +138,13 @@ export const RegistrationForm = () => {
                   className={s.error}
                 />
               </label>
+
               <label className={s.label}>
-                <div className={s.inputWrapper}>
+                <div
+                  className={clsx(s.inputWrapper, {
+                    [s.error]: errors.name && touched.name,
+                  })}
+                >
                   <svg width="24" height="24" className={s.icon}>
                     <use href="/icons.svg#icon-lock"></use>
                   </svg>
@@ -116,6 +153,7 @@ export const RegistrationForm = () => {
                     type="password"
                     placeholder="Confirm Password"
                     className={s.field}
+                    onBlur={handleBlur}
                   />
                 </div>
                 <ErrorMessage
@@ -123,6 +161,7 @@ export const RegistrationForm = () => {
                   component="span"
                   className={s.error}
                 />
+
                 {values.confirmPassword.length > 0 && (
                   <div
                     style={{

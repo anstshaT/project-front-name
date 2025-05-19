@@ -45,6 +45,7 @@
   background-color: transparent;
   height: 44px;
 }
+
 .icon {
   width: 24px;
   height: 24px;
@@ -71,6 +72,44 @@
   color: #3b5d63;
 }
 
+.inputWrapper.error {
+  border-color: #b20202;
+}
+.inputWrapper.error .icon {
+  fill: #b20202;
+}
+.inputWrapper.error .field {
+  color: #b20202;
+}
+.inputWrapper.error .field::placeholder {
+  color: #b20202;
+}
+
+.inputWrapper:not(.error):hover {
+  border-color: #0b6016;
+}
+.inputWrapper:has(.field:focus) {
+  border-color: #081222;
+}
+.inputWrapper:not(.error):hover .icon {
+  fill: #0b6016;
+}
+.inputWrapper:has(.field:focus) .icon {
+  fill: #081222;
+}
+.inputWrapper:not(.error):hover input {
+  color: #0b6016;
+}
+.inputWrapper:has(.field:focus) input {
+  color: #081222;
+}
+.inputWrapper:not(.error):hover .field::placeholder {
+  color: #0b6016;
+}
+.inputWrapper:has(.field:focus) .field::placeholder {
+  color: #081222;
+}
+
 .buttonRegisrer {
   border-radius: 8px;
   padding: 11px 79px;
@@ -78,13 +117,16 @@
   width: calc(100% - 32px);
   margin: 0 auto;
   height: 44px;
-  background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+  background: #3b5d63;
   color: white;
   font-weight: 600;
   font-size: 16px;
   border: none;
   cursor: pointer;
   margin-bottom: 16px;
+}
+.buttonRegisrer:hover {
+  background-color: #0b6016;
 }
 
 .buttonLogin {
@@ -101,6 +143,12 @@
   font-size: 16px;
   cursor: pointer;
 }
+.buttonLogin:hover,
+.buttonLogin:focus {
+  color: #0b6016;
+  border-color: #0b6016;
+}
+
 .picture {
   display: none;
 }
@@ -123,7 +171,7 @@
     position: absolute;
     top: 520px;
     left: 230px;
-    background-image: url("/src/images/background-picture/ChatGPT Image Apr 23, 2025 at 04_18_25 PM 1.png");
+    background-image: url("/background-picture/picture1.png");
     background-repeat: no-repeat;
     background-size: 320px 239px;
     background-position: 100px 100px;
@@ -159,7 +207,7 @@
       position: absolute;
       top: 280px;
       left: 430px;
-      background-image: url("/src/images/background-picture/ChatGPT\ Image\ Apr\ 23\,\ 2025\ at\ 04_21_29\ PM\ 2.png");
+      background-image: url("/background-picture/picture2.png");
       background-repeat: no-repeat;
       background-size: 320px 239px;
       background-position: 100px 100px;
@@ -178,4 +226,3 @@
   -webkit-text-fill-color: #081222 !important;
   transition: background-color 9999s ease-in-out 0s;
 }
-/* color: #0b6016    green */
