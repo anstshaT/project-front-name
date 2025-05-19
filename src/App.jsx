@@ -9,14 +9,13 @@ function App() {
     <>
       <Suspense fallback={<p>Loading...</p>}>
         <Routes>
-          {/* <Route path="/login" element={<Login />} /> */}
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          {/* <Route element={<PrivateRoute />}>
+          <Route element={<PrivateRoute />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/statistic" element={<Statistic />} />
             <Route path="/currency" element={<Currency />} />
-          </Route> */}
-          <Route path="/" element={<HomePage />} />
+          </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Suspense>
