@@ -1,4 +1,4 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
@@ -7,8 +7,14 @@ import s from './LoginForm.module.css'
 import { loginThunk } from '../../redux/auth/authOperations';
 
 const validationSchema = Yup.object().shape({
-    email: Yup.string().max(64).email('Invalid email').required('Email is required'),
-    password: Yup.string().min(8).max(64).required('Password is required'),
+    email: Yup.string()
+        .max(64, 'Max 64 characters')
+        .email('Invalid email')
+        .required('Email is required'),
+    password: Yup.string()
+        .min(8, 'Min 8 characters')
+        .max(64, 'Max 64 characters')
+        .required('Password is required'),
 });
 
 const LoginForm = () => {
@@ -39,38 +45,58 @@ const LoginForm = () => {
                 >
                     <Form className={s.form}>
                         <div className={s.inputContainer}>
-                            <div className={s.inputWrap}>
-                                <Field
-                                    name="email"
-                                    type="email"
-                                    placeholder="E-mail"
-                                    className={s.input} />
-                                <svg width="24" height="24" className={s.icon}>
-                                    <use href="/icons.svg#icon-email"></use>
-                                </svg>
-                            </div>
-                            <ErrorMessage name="email" component="span" className={s.error} />
+                            <Field name="email">
+                                {({ field, meta }) => (
+                                    <div className={s.inputWrap}>
+                                        <input
+                                            {...field}
+                                            type="email"
+                                            placeholder="E-mail"
+                                            className={
+                                                meta.touched && meta.error
+                                                    ? `${s.input} ${s.errorInput}`
+                                                    : s.input
+                                            }
+                                        />
+                                        <svg width="24" height="24" className={s.icon}>
+                                            <use href="/icons.svg#icon-email"></use>
+                                        </svg>
+                                        {meta.touched && meta.error && (
+                                            <span className={s.error}>{meta.error}</span>
+                                        )}
+                                    </div>
+                                )}
+                            </Field>
                         </div>
 
                         <div className={s.inputContainer}>
-                            <div className={s.inputWrap}>
-                                <Field
-                                    name="password"
-                                    type="password"
-                                    placeholder="Password"
-                                    className={s.input} />
-                                <svg width="24" height="24" className={s.icon}>
-                                    <use href="/icons.svg#icon-lock"></use>
-                                </svg>
-                            </div>
-                            <ErrorMessage name="password" component="div" className={s.error} />
+                            <Field name="password">
+                                {({ field, meta }) => (
+                                    <div className={s.inputWrap}>
+                                        <input
+                                            {...field}
+                                            type="password"
+                                            placeholder="Password"
+                                            className={
+                                                meta.touched && meta.error
+                                                    ? `${s.input} ${s.errorInput}`
+                                                    : s.input
+                                            }
+                                        />
+                                        <svg width="24" height="24" className={s.icon}>
+                                            <use href="/icons.svg#icon-lock"></use>
+                                        </svg>
+                                        {meta.touched && meta.error && (
+                                            <span className={s.error}>{meta.error}</span>
+                                        )}
+                                    </div>
+                                )}
+                            </Field>
                         </div>
 
                         <div className={s.button}>
                             <button type="submit" className={s.buttonLog}>Log in</button>
-                            <Link to="/register" className={s.registerBtn}>
-                                Register
-                            </Link>
+                            <Link to="/register" className={s.registerBtn}>Register</Link>
                         </div>
                     </Form>
                 </Formik>
