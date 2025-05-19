@@ -24,23 +24,22 @@ export const RegistrationForm = () => {
   const RegistrationSchema = Yup.object().shape({
     name: Yup.string()
       .required("Обов'язкове поле")
-      .min(3, "Мінімум 3 символи")
-      .max(20, "Максимум 20 символи")
+      .min(2, "Мінімум 2 символи")
+      .max(32, "Максимум 32 символи")
       .matches(onlyLetters, "Тільки літери"),
 
     email: Yup.string()
       .required("Обов'язкове поле")
-      .min(3, "Мінімум 3 символи")
-      .max(20, "Максимум 20 символи"),
+      .max(64, "Максимум 64 символи"),
     password: Yup.string()
       .required("Обов'язкове поле")
-      .min(5, "Мінімум 5 символи")
-      .max(20, "Максимум 20 символи"),
+      .min(8, "Мінімум 8 символи")
+      .max(64, "Максимум 64 символи"),
 
     confirmPassword: Yup.string()
-      .required("Обов'язкове поле")
-      .min(5, "Мінімум 5 символи")
-      .max(20, "Максимум 20 символи")
+      // .required("Обов'язкове поле")
+      // .min(5, "Мінімум 5 символи")
+      // .max(20, "Максимум 20 символи")
       .oneOf([Yup.ref("password")], "Паролі не співпадають"),
   });
 
@@ -84,11 +83,7 @@ export const RegistrationForm = () => {
                     onBlur={handleBlur}
                   />
                 </div>
-                <ErrorMessage
-                  name="name"
-                  component="span"
-                  className={s.error}
-                />
+                <ErrorMessage name="name" component="div" className={s.error} />
               </label>
 
               <label className={s.label}>
@@ -110,7 +105,7 @@ export const RegistrationForm = () => {
                 </div>
                 <ErrorMessage
                   name="email"
-                  component="span"
+                  component="div"
                   className={s.error}
                 />
               </label>
@@ -134,7 +129,7 @@ export const RegistrationForm = () => {
                 </div>
                 <ErrorMessage
                   name="password"
-                  component="span"
+                  component="div"
                   className={s.error}
                 />
               </label>
@@ -158,7 +153,7 @@ export const RegistrationForm = () => {
                 </div>
                 <ErrorMessage
                   name="confirmPassword"
-                  component="span"
+                  component="div"
                   className={s.error}
                 />
 
@@ -166,6 +161,7 @@ export const RegistrationForm = () => {
                   <div
                     style={{
                       marginTop: "5px",
+                      textAlign: "center",
                       color:
                         values.password === values.confirmPassword
                           ? "green"

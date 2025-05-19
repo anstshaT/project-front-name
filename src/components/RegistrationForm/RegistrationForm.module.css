@@ -17,7 +17,7 @@
   padding: 16px;
   background: #508f8c;
   border-radius: 8px;
-  box-sizing: border-box;
+  box-sizing: content-box;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -111,6 +111,7 @@
 }
 
 .buttonRegisrer {
+  display: block;
   border-radius: 8px;
   padding: 11px 79px;
   max-width: 100%;
@@ -130,6 +131,7 @@
 }
 
 .buttonLogin {
+  display: block;
   border: 1px solid #081222;
   border-radius: 8px;
   padding: 11px 68px;
@@ -155,11 +157,13 @@
 
 .error {
   color: #b20202;
+  text-align: center;
 }
 
 @media (min-width: 768px) {
   .container {
     overflow: visible;
+    box-sizing: border-box;
     width: 533px;
     padding: 32px 69px 50px 55px;
     position: relative;
@@ -191,11 +195,14 @@
     width: 100%;
   }
   .buttonRegisrer {
-    width: 100%;
+    width: 409px;
+    max-width: 100%;
+    margin: 0 auto;
     margin-top: 32px;
     margin-bottom: 24px;
   }
   .buttonLogin {
+    max-width: 100%;
     width: 100%;
   }
 
@@ -215,4 +222,14 @@
       pointer-events: none;
     }
   }
+}
+
+.field:-webkit-autofill,
+.field:-webkit-autofill:hover,
+.field:-webkit-autofill:focus,
+.field:-webkit-autofill:active {
+  width: 100%;
+  -webkit-box-shadow: 0 0 0 10000px #508f8c inset !important;
+  -webkit-text-fill-color: #081222 !important;
+  transition: background-color 9999s ease-in-out 0s;
 }

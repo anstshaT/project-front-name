@@ -1,8 +1,11 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+// export const api = axios.create({
+//   baseURL: "https://task-manager-api.goit.global",
+// });
 export const api = axios.create({
-  baseURL: "https://task-manager-api.goit.global",
+  baseURL: "https://moneyguard-app.onrender.com/",
 });
 
 const setAuthHeader = (token) => {

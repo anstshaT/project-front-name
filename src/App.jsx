@@ -1,8 +1,10 @@
 import "./App.css";
-import { Register } from "./pages/Register";
+
+import { Register } from "./pages/RegisterPage/Register";
 
 function App() {
   return (
+    // <Register />
     <>
       <Suspense fallback={<p>Loading...</p>}>
         <Routes>
