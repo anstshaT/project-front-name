@@ -4,7 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #081222;
+  background: var(--bg-dark);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,7 +123,7 @@
     position: absolute;
     top: 520px;
     left: 230px;
-    background-image: url("/src/images/background-picture/ChatGPT Image Apr 23, 2025 at 04_18_25 PM 1.png");
+    background-image: url("/src/images/background-picture/img-bg-reg.png");
     background-repeat: no-repeat;
     background-size: 320px 239px;
     background-position: 100px 100px;

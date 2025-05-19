@@ -6,9 +6,17 @@
   --color-darkgreen: #0b6016;
   --light-green: #508f8c;
   --white: #fcfcfc;
-  --bg-dark: #1e2f33 #294045;
+  --bg-dark: linear-gradient(
+    0deg,
+    rgba(30, 47, 51, 1) 0%,
+    rgba(41, 64, 69, 1) 100%
+  );
   --yellow: #dfad3f;
-  --bg-lighter: #355359 #3b5d63;
+  --bg-lighter: linear-gradient(
+    180deg,
+    rgba(53, 83, 89, 1) 0%,
+    rgba(59, 93, 99, 1) 100%
+  );
   --red: #b20202;
   --light-red: #f23a3a;
 }
