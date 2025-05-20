@@ -5,6 +5,8 @@ import HomePage from "./pages/HomePage/HomePage";
 import { Register } from "./pages/RegisterPage/Register";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import { Toaster } from "react-hot-toast";
+import StatisticsPage from "./pages/StatisticsPage/StatisticsPage";
+import CurrencyPage from "./pages/CurrencyPage/CurrencyPage";
 
 function App() {
   return (
@@ -15,8 +17,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<HomePage />} />
-            <Route path="/statistic" element={<Statistic />} />
-            <Route path="/currency" element={<Currency />} />
+            <Route path="/statistic" element={<StatisticsPage />} />
+            <Route path="/currency" element={<CurrencyPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

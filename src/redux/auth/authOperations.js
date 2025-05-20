@@ -49,7 +49,7 @@ export const loginThunk = createAsyncThunk(
   "auth/login",
   async (body, thunkAPI) => {
     try {
-      const { data } = await api.post("/users/login", body);
+      const { data } = await api.post("auth/login", body);
       setAuthHeader(data.token);
       return data;
     } catch (e) {
