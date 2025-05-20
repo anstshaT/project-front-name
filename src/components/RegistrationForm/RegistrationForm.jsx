@@ -45,21 +45,19 @@ export const RegistrationForm = () => {
 
   const RegistrationSchema = Yup.object().shape({
     name: Yup.string()
-      .required("Обов'язкове поле")
-      .min(2, "Мінімум 2 символи")
-      .max(32, "Максимум 32 символи")
-      .matches(onlyLetters, "Тільки літери"),
+      .required("Required field")
+      .min(2, "Min 2 characters")
+      .max(32, "Max 32 characters")
+      .matches(onlyLetters, "Only letters"),
 
-    email: Yup.string()
-      .required("Обов'язкове поле")
-      .max(64, "Максимум 64 символи"),
+    email: Yup.string().required("Required field").max(64, "Max 64 characters"),
     password: Yup.string()
-      .required("Обов'язкове поле")
-      .min(8, "Мінімум 8 символи")
-      .max(64, "Максимум 64 символи"),
+      .required("Required field")
+      .min(8, "Min 8 characters")
+      .max(64, "Max 64 characters"),
 
     confirmPassword: Yup.string()
-      .required("Обов'язкове поле")
+      .required("Required field")
       .oneOf([Yup.ref("password")]),
   });
 
@@ -180,8 +178,8 @@ export const RegistrationForm = () => {
                     }}
                   >
                     {values.password === values.confirmPassword
-                      ? "Паролі співпадають"
-                      : "Паролі не співпадають"}
+                      ? "Passwords match"
+                      : "Passwords do not match"}
                   </div>
                 )}
               </label>

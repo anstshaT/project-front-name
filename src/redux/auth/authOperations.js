@@ -32,7 +32,7 @@ export const registerThunk = createAsyncThunk(
         } else if (status === 404) {
           return thunkAPI.rejectWithValue("Resource not found.");
         } else if (status === 409) {
-          return thunkAPI.rejectWithValue("User with this email already exis.");
+          return thunkAPI.rejectWithValue("Email already in use.");
         } else if (status >= 500) {
           return thunkAPI.rejectWithValue("Server error. Try again later.");
         }
