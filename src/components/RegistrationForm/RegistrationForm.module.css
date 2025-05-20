@@ -101,7 +101,7 @@
   color: #081222;
 }
 .inputWrapper:has(.field:focus) input {
-  color: #0b6016;
+  color: #081222;
 }
 .inputWrapper:not(.error):hover .field::placeholder {
   color: #38585e;
