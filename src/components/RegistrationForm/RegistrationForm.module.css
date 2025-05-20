@@ -86,14 +86,13 @@
 }
 
 .inputWrapper:not(.error):hover {
-  border: 2px solid #081222;
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+  border-color: #38585e;
 }
 .inputWrapper:has(.field:focus) {
   border-color: #0b6016;
 }
 .inputWrapper:not(.error):hover .icon {
-  fill: #081222;
+  fill: #38585e;
 }
 .inputWrapper:has(.field:focus) .icon {
   fill: #0b6016;
@@ -105,8 +104,7 @@
   color: #0b6016;
 }
 .inputWrapper:not(.error):hover .field::placeholder {
-  color: #081222;
-  font-weight: 600;
+  color: #38585e;
 }
 .inputWrapper:has(.field:focus) .field::placeholder {
   color: #0b6016;
@@ -172,7 +170,7 @@
 
 .error {
   color: #b20202;
-  text-align: center;
+  text-align: start;
 }
 
 @media (min-width: 768px) {
