@@ -4,6 +4,7 @@ import LoginPage from "./pages/loginPage/LoginPage";
 
 
 function App() {
+   return ( 
     <>
       <Suspense fallback={<p>Loading...</p>}>
         <Routes>
