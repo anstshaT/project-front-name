@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerThunk } from "../../redux/auth/authOperations";
 import s from "./RegistrationForm.module.css";
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import { useEffect } from "react";
 import {
@@ -23,8 +23,7 @@ export const RegistrationForm = () => {
   useEffect(() => {
     if (isLoggedIn) {
       toast.success("User registered successfully");
-
-      //  navigate("/dashboard")
+      navigate("/dashboard");
     }
   }, [isLoggedIn, navigate]);
 
@@ -186,12 +185,16 @@ export const RegistrationForm = () => {
               <button type="submit" className={s.buttonRegisrer}>
                 Register
               </button>
-              <button
+              {/* <button
                 className={s.buttonLogin}
                 onClick={() => navigate("/login")}
               >
                 Login
-              </button>
+              </button> */}
+
+              <Link to="/login" className={s.buttonLogin}>
+                Login
+              </Link>
             </Form>
           )}
         </Formik>

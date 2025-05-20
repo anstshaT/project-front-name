@@ -137,7 +137,11 @@
 }
 
 .buttonLogin {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
   border: 1px solid #081222;
   border-radius: 8px;
   padding: 11px 68px;
