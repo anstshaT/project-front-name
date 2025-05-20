@@ -1,14 +1,13 @@
 import "./App.css";
+import { Register } from "./pages/Register";
+import LoginPage from "./pages/loginPage/LoginPage";
 
-import { Register } from "./pages/RegisterPage/Register";
 
 function App() {
-  return (
-    // <Register />
     <>
       <Suspense fallback={<p>Loading...</p>}>
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<Register />} />
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<Home />} />
