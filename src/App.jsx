@@ -3,7 +3,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
 import { Register } from "./pages/Register";
-import LoginPage from "./pages/loginPage/LoginPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
 import { Toaster } from "react-hot-toast";
 
 function App() {
