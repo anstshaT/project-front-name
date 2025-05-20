@@ -2,7 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const api = axios.create({
-  baseURL: "https://task-manager-api.goit.global",
+  baseURL: "https://moneyguard-app.onrender.com",
 });
 
 const setAuthHeader = (token) => {
@@ -26,16 +26,16 @@ export const registerThunk = createAsyncThunk(
 );
 
 export const loginThunk = createAsyncThunk(
-    'auth/login',
-    async (body, thunkAPI) => {
-        try {
-            const { data } = await axios.post('/users/login', body);
-            setAuthHeader(data.token);
-            return data;
-        } catch (e) {
-            return thunkAPI.rejectWithValue(e.message)
-        }
+  "auth/login",
+  async (body, thunkAPI) => {
+    try {
+      const { data } = await axios.post("/users/login", body);
+      setAuthHeader(data.token);
+      return data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
     }
+  }
 );
 
 export const logoutThunk = createAsyncThunk(
