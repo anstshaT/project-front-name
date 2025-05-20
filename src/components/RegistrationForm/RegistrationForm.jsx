@@ -168,7 +168,7 @@ export const RegistrationForm = () => {
                   <div
                     style={{
                       marginTop: "5px",
-                      textAlign: "center",
+                      textAlign: "start",
                       color:
                         values.password === values.confirmPassword
                           ? "green"
