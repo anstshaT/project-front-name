@@ -2,15 +2,24 @@ import s from "./Header.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import LogoutModal from "../LogoutModal/LogoutModal";
+import { logoutThunk } from "../../redux/auth/authOperations";
 
 const Header = () => {
   const dispatch = useDispatch();
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
 
-  const handleLogout = () => {
-    // dispatch(logout());
-    console.log("Logged out");
-    setIsLogoutOpen(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleLogout = async () => {
+    setIsLoading(true);
+    try {
+      await dispatch(logoutThunk()).unwrap();
+      setIsLogoutOpen(false);
+    } catch (err) {
+      console.error("Logout failed:", err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -37,7 +46,9 @@ const Header = () => {
             >
               <use href="/icons.svg#icon-Exit" />
             </svg>
-            <span className={s.exitText}>Exit</span>
+            <span className={s.exitText}>
+              {isLoading ? "Logging out..." : "Exit"}
+            </span>
           </button>
         </div>
       </div>
