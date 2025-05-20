@@ -1,4 +1,7 @@
+import { Suspense } from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
+import HomePage from "./pages/HomePage/HomePage";
 import { Register } from "./pages/Register";
 import LoginPage from "./pages/loginPage/LoginPage";
 
@@ -10,11 +13,10 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<Register />} />
           <Route element={<PrivateRoute />}>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/statistic" element={<Statistic />} />
             <Route path="/currency" element={<Currency />} />
           </Route>
-
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Suspense>
