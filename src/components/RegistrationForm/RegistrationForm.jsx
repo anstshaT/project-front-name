@@ -1,16 +1,38 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerThunk } from "../../redux/auth/authOperations";
 import s from "./RegistrationForm.module.css";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
-import { useState } from "react";
+import { useEffect } from "react";
+import {
+  selectError,
+  selectIsLoading,
+  selectIsLoggin,
+} from "../../redux/auth/selectors";
+import { toast } from "react-hot-toast";
 
 export const RegistrationForm = () => {
-  const [hasError, setHasError] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const error = useSelector(selectError);
+  const isLoading = useSelector(selectIsLoading);
+  const isLoggedIn = useSelector(selectIsLoggin);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      toast.success("User registered successfully");
+
+      //  navigate("/dashboard")
+    }
+  }, [isLoggedIn, navigate]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+  }, [error]);
 
   const initialValues = {
     name: "",
@@ -37,29 +59,25 @@ export const RegistrationForm = () => {
       .max(64, "Максимум 64 символи"),
 
     confirmPassword: Yup.string()
-      // .required("Обов'язкове поле")
-      // .min(5, "Мінімум 5 символи")
-      // .max(20, "Максимум 20 символи")
-      .oneOf([Yup.ref("password")], "Паролі не співпадають"),
+      .required("Обов'язкове поле")
+      .oneOf([Yup.ref("password")]),
   });
 
-  const handleSubmit = (values, options) => {
-    dispatch(registerThunk(values));
+  const handleSubmit = async (values, options) => {
+    const userData = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    };
+    dispatch(registerThunk(userData));
     options.resetForm();
   };
 
-  const handleBlur = (e) => {
-    if (e.target.value.trim() === "") {
-      setHasError(true);
-    } else {
-      setHasError(false);
-    }
-  };
   return (
     <div className={s.backdrop}>
       <div className={s.container}>
         <img src="/src/images/logo.svg" className={s.logo} />
-
+        {isLoading && <h2>Loading...</h2>}
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
@@ -76,12 +94,7 @@ export const RegistrationForm = () => {
                   <svg width="24" height="24" className={s.icon}>
                     <use href="/icons.svg#icon-user"></use>
                   </svg>
-                  <Field
-                    name="name"
-                    placeholder="Name"
-                    className={s.field}
-                    onBlur={handleBlur}
-                  />
+                  <Field name="name" placeholder="Name" className={s.field} />
                 </div>
                 <ErrorMessage name="name" component="div" className={s.error} />
               </label>
@@ -100,7 +113,6 @@ export const RegistrationForm = () => {
                     name="email"
                     placeholder="E-mail"
                     className={s.field}
-                    onBlur={handleBlur}
                   />
                 </div>
                 <ErrorMessage
@@ -124,7 +136,6 @@ export const RegistrationForm = () => {
                     type="password"
                     placeholder="Password"
                     className={s.field}
-                    onBlur={handleBlur}
                   />
                 </div>
                 <ErrorMessage
@@ -148,7 +159,6 @@ export const RegistrationForm = () => {
                     type="password"
                     placeholder="Confirm Password"
                     className={s.field}
-                    onBlur={handleBlur}
                   />
                 </div>
                 <ErrorMessage
