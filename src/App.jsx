@@ -4,6 +4,7 @@ import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
 import { Register } from "./pages/Register";
 import LoginPage from "./pages/loginPage/LoginPage";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Suspense>
+      <Toaster position="top-center" reverseOrder={false} />
     </>
   );
 }
