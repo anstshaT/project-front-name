@@ -23,9 +23,9 @@ const LoginForm = () => {
     
     const handleSubmit = async (values, { resetForm }) => {
         try {
-            const result = await dispatch(loginThunk(values)).unwrap();
-            toast.success(`Welcome, ${result.user.userName}`);
-            navigate('/dashboard');
+            await dispatch(loginThunk(values)).unwrap();
+            toast.success('Login successful');
+            navigate('/');
         } catch (error) {
             const message = error?.response?.data?.message || error.message || 'Login failed';
             toast.error(message);
