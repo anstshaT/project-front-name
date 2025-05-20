@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import { Toaster } from "react-hot-toast";
 import StatisticsPage from "./pages/StatisticsPage/StatisticsPage";
 import CurrencyPage from "./pages/CurrencyPage/CurrencyPage";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   return (
