@@ -18,7 +18,10 @@ export const registerThunk = createAsyncThunk(
   async (body, thunkAPI) => {
     try {
       const { data } = await api.post("/auth/register", body);
-      setAuthHeader(data.token);
+      console.log("Data in register", data);
+      console.log("Token in register", data.accessToken);
+
+      setAuthHeader(data.accessToken);
       return data;
     } catch (error) {
       const res = error.response;
