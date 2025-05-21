@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ModalAddTransaction from '../MdlAddTransaction/ModalAddTransaction.jsx';
+import ModalAddTransaction from '../modalAddTransaction/ModalAddTransaction.jsx';
 import styles from './ButtonAddTransaction.module.css';
 
 const ButtonAddTransaction = () => {
