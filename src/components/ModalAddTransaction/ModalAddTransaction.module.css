@@ -1,47 +1,206 @@
 .backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #508F8C;
+  border-radius: 8px;
+  padding: 40px 8px 24px;
+  width: 287px;
+  min-height: 492px;
+  position: relative;
+}
+
+/* Title */
+.title {
+  color: #FCFCFC;
+  font-family: Inter;
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Close Button */
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.closeIcon {
+  width: 16px;
+  height: 16px;
+  stroke: #081222;
+}
+
+/* Transaction Type Toggle */
+.transactionType {
+  width: 248px;
+  height: 44px;
+  margin: 0 auto 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid #FCFCFC;
+  border-radius: 30px;
+  padding: 0 20px;
+}
+
+.label {
+  font-family: Inter;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  color: #081221;
+}
+
+.toggle {
+  width: 80px;
+  height: 40px;
+  border-radius: 30px;
+  background-color: #FCFCFC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.toggleIcon {
+  width: 44px;
+  height: 44px;
+}
+
+/* Inputs */
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.inputField {
+  height: 44px;
+  border-radius: 8px;
+  border: 1px solid #081221;
+  padding: 10px 14px;
+  background-color: transparent;
+  color: #FCFCFC;
+  font-size: 16px;
+  line-height: 100%;
+}
+
+.textarea {
+  height: 44px;
+  border-radius: 8px;
+  border: 1px solid #081221;
+  padding: 10px 14px;
+  background-color: transparent;
+  color: #FCFCFC;
+  font-size: 16px;
+  line-height: 100%;
+  margin-bottom: 24px;
+}
+
+/* Buttons */
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.addBtn {
+  background: linear-gradient(90deg, #658C4A 0%, #8BAA36 100%);
+  border-radius: 8px;
+  border: none;
+  color: #FCFCFC;
+  font-size: 16px;
+  font-weight: 600;
+  height: 44px;
+  cursor: pointer;
+  padding: 11px 79px;
+  transition: background 0.3s ease;
+}
+
+.addBtn:hover {
+  filter: brightness(0.95);
+}
+
+.cancelBtn {
+  background-color: transparent;
+  color: #FCFCFC;
+  border: 1px solid #081221;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  height: 44px;
+  cursor: pointer;
+  padding: 11px 68px;
+  transition: background-color 0.3s ease;
+}
+
+.cancelBtn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* TABLET */
+@media (min-width: 768px) {
   .modal {
-    background-color: #508F8C;
-    border-radius: 8px;
-    padding: 40px 8px 24px;
-    width: 287px;
-    min-height: 492px;
+    width: 540px;
+    min-height: 511px;
+    padding: 40px;
   }
-  
-  @media (min-width: 768px) {
-    .modal {
-      width: 540px;
-      min-height: 511px;
-      padding: 40px;
-    }
+
+  .transactionType {
+    margin-bottom: 40px;
   }
-  
-  @media (min-width: 1280px) {
-    .modal {
-      top: 106px;
-      left: 371px;
-      position: absolute;
-    }
+
+  .inputGroup {
+    flex-direction: row;
+    gap: 24px;
+    margin-bottom: 24px;
   }
-  
-  .closeBtn {
+
+  .inputField {
+    width: 193px;
+  }
+
+  .textarea {
+    width: 409px;
+    margin-bottom: 24px;
+  }
+
+  .buttonGroup {
+    width: 410px;
+    gap: 21px;
+  }
+
+  .addBtn,
+  .cancelBtn {
+    width: 100%;
+  }
+}
+
+/* DESKTOP */
+@media (min-width: 1280px) {
+  .modal {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 20px;
-    height: 20px;
-    border: 2.5px solid #081222;
-    background: transparent;
-    cursor: pointer;
+    top: 106px;
+    left: 371px;
   }
+}

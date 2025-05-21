@@ -18,7 +18,11 @@ const ModalAddTransaction = ({ onClose }) => {
   return (
     <div className={styles.backdrop} onClick={handleBackdropClick}>
       <div className={styles.modal}>
-        <button className={styles.closeBtn} onClick={onClose}>×</button>
+       <button className={styles.closeBtn} onClick={onClose} aria-label="Close modal">
+          <svg className={styles.closeIcon} width="16" height="16">
+           <use href="/icons.svg#icon-Exit" />
+          </svg>
+       </button>
         <AddTransactionForm onCancel={onClose} />
       </div>
     </div>
