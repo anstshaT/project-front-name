@@ -1,8 +1,9 @@
 import s from "./Header.module.css";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LogoutModal from "../LogoutModal/LogoutModal";
 import { logoutThunk } from "../../redux/auth/authOperations";
+import { selectUser } from "../../redux/auth/selectors";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,8 @@ const Header = () => {
     }
   };
 
+  const user = useSelector(selectUser);
+
   return (
     <div className={s.container}>
       <div className={s.headerWrapper}>
@@ -32,7 +35,7 @@ const Header = () => {
           <p className={s.logoText}>Spendy</p>
         </div>
         <div className={s.infoWrapper}>
-          <div className={s.nameText}>Name</div>
+          <div className={s.nameText}>{user.name || "Name"}</div>
           <div className={s.verticalLine}></div>
           <button
             className={s.logoutWrapper}
