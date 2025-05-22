@@ -1,15 +1,14 @@
 import clsx from "clsx";
-import { useState } from "react";
+/* import { useState } from "react"; */
 import s from "./TransactionType.module.css";
 
 import IconIncome from "../../images/income.svg";
 import IconExpense from "../../images/expense.svg";
 
-const TransactionType = () => {
-  const [transactionType, setTransactionType] = useState("income");
-
+const TransactionType = ({ transactionType, setTransactionType }) => {
   const handleTypeChange = (evt) => {
     setTransactionType(evt.target.value);
+    console.log(evt.target.value);
   };
 
   return (
