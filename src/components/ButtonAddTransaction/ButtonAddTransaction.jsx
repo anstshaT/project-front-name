@@ -12,7 +12,7 @@ const ButtonAddTransaction = () => {
     <>
       <button className={styles.floatingButton} onClick={openModal} aria-label="Add transaction">
        <svg className={styles.plusIcon}>
-         <use href="/icons.svg#icon-plus" />
+         <use href="/icons.svg#icon-email" />
        </svg>
       </button>
       {isModalOpen && <ModalAddTransaction onClose={closeModal} />}
