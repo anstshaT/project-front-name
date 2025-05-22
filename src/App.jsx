@@ -36,6 +36,7 @@ function App() {
         </Routes>
       </Suspense>
       <Toaster position="top-center" reverseOrder={false} />
+      <HashLoader color="#fafafa" size={60} />
     </>
   );
 }
