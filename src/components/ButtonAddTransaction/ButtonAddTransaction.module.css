@@ -8,8 +8,6 @@
   background-color: #508F8C;
   color: #081222;
   border: none;
-  /* border: 2.55px solid #081222; */
-  /* box-shadow: 0 4px 10px rgba(11, 96, 22, 0.5); */
   cursor: pointer;
   z-index: 1000;
   transition: background-color 0.3s ease;
@@ -21,11 +19,13 @@
 
 .floatingButton:hover {
   background-color: #084d13;
+  border: 2px;
 }
 
 .floatingButton:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 2px;
+  border: 2px;
 }
 
 .plusIcon {
