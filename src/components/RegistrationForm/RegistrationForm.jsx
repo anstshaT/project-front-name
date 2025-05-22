@@ -74,7 +74,7 @@ export const RegistrationForm = () => {
     <div className={s.backdrop}>
       <div className={s.container}>
         <img src="/src/images/logo.svg" className={s.logo} />
-        {isLoading && <h2>Loading...</h2>}
+        {/* {isLoading && <h2>Loading...</h2>} */}
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
