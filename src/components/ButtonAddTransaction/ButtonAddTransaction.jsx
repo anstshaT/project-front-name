@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ModalAddTransaction from '../MdlAddTransaction/ModalAddTransaction.jsx';
+import ModalAddTransaction from '../ModalAddTransaction/ModalAddTransaction.jsx';
 import styles from './ButtonAddTransaction.module.css';
 
 const ButtonAddTransaction = () => {
@@ -10,8 +10,10 @@ const ButtonAddTransaction = () => {
 
   return (
     <>
-      <button className={styles.floatingButton} onClick={openModal}>
-        +
+      <button className={styles.floatingButton} onClick={openModal} aria-label="Add transaction">
+       <svg className={styles.plusIcon}>
+         <use href="/icons.svg#icon-plus-bold" />
+       </svg>
       </button>
       {isModalOpen && <ModalAddTransaction onClose={closeModal} />}
     </>

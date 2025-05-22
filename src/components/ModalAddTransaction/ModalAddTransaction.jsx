@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from './ModalAddTransaction.module.css';
-import AddTransactionForm from './AddTransactionForm';
+import AddTransactionForm from '../AddTransactionForm/AddTransactionForm.jsx';
 
 const ModalAddTransaction = ({ onClose }) => {
   useEffect(() => {
@@ -18,7 +18,11 @@ const ModalAddTransaction = ({ onClose }) => {
   return (
     <div className={styles.backdrop} onClick={handleBackdropClick}>
       <div className={styles.modal}>
-        <button className={styles.closeBtn} onClick={onClose}>×</button>
+       <button className={styles.closeBtn} onClick={onClose} aria-label="Close modal">
+          <svg className={styles.closeIcon} width="16" height="16">
+           <use href="/icons.svg#icon-close" />
+          </svg>
+       </button>
         <AddTransactionForm onCancel={onClose} />
       </div>
     </div>
