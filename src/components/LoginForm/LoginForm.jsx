@@ -37,7 +37,10 @@ const LoginForm = () => {
     return (
         <div className={s.container}>
             <div className={s.wrap}>
-                <img src="/src/images/logo.svg" className={s.logo} />
+                <svg width="54" height="54" className={s.logoIcon}>
+                    <use href="/icons.svg#icon-wallet"></use>
+                </svg>
+                <p className={s.logoText}>Spendy</p>
                 <Formik
                     initialValues={{ email: '', password: '' }}
                     validationSchema={validationSchema}
@@ -100,7 +103,7 @@ const LoginForm = () => {
                         </div>
                     </Form>
                 </Formik>
-                <img src="/src/images/background-picture/img-bg-log.png" alt="Wallet" className={s.walletImage} />
+                <img src="/background-picture/picture1.png" alt="Wallet" className={s.walletImage} />
             </div>
         </div>
     );
