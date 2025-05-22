@@ -1,0 +1,276 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(180deg, #294045 0%, #1e2f33 100%);
+    margin: 0 auto;
+}
+
+.wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    border-radius: 16px;
+    padding: 16px;
+    width: 280px;
+    height: 528px;
+    background: #508f8c;
+    box-sizing: border-box;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.logoText {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    text-align: center;
+    color: #081222;
+    margin-bottom: 16px;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    min-width: 248px;
+}
+
+.inputWrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.inputWrap input {
+    width: 100%;
+    height: 44px;
+    padding-left: 50px;
+    border-radius: 8px;
+    border: 1px solid #000;
+    font-weight: 500;
+    font-size: 18px;
+    color: #081222;
+    background: transparent;
+    outline: none;
+}
+
+.inputWrap input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    -webkit-text-fill-color: #081222 !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.inputWrap input::placeholder {
+    color: #081222;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.icon {
+    position: absolute;
+    left: 14px;
+    width: 24px;
+    height: 24px;
+    fill: #081222;
+}
+
+.button {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 248px;
+    margin-top: 0px;
+    cursor: pointer;
+}
+
+.buttonLog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 8px;
+    border-radius: 8px;
+    padding: 11px 79px;
+    width: 248px;
+    height: 44px;
+    background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+    color: #fcfcfc;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.2s ease-in-out;
+}
+
+.buttonLog:hover,
+.buttonLog:focus {
+    background: linear-gradient(180deg, #3b5d63 0%, #476c73 100%);
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+    outline: none;
+}
+
+.registerBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 8px;
+    border: 1px solid #081222;
+    background: transparent;
+    border-radius: 8px;
+    width: 248px;
+    height: 44px;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+    color: #081222;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.2s ease-in-out;
+}
+
+.registerBtn:hover,
+.registerBtn:focus {
+    background: #4a837f;
+    border-color: #294045;
+    color: #000;
+    box-shadow: 0 0 6px rgba(8, 18, 34, 0.3);
+    outline: none;
+}
+
+.walletImage {
+    width: 159px;
+    height: auto;
+    position: absolute;
+    bottom: 23px;
+    left: 200px;
+    transform: translateX(-50%);
+}
+
+.error {
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    color: #b20202;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.inputWrap:hover input {
+    border-color: #38585e;
+}
+
+.inputWrap:hover .icon {
+    fill: #38585e;
+}
+
+.inputWrap:hover input::placeholder {
+    color: #38585e;
+}
+
+
+.inputWrap input:focus {
+    border-color: #0b6016;
+}
+
+.inputWrap input:focus~.icon {
+    fill: #0b6016;
+}
+
+.inputWrap input:focus::placeholder {
+    color: #0b6016;
+}
+
+.inputWrap input.errorInput {
+    border-color: #b20202;
+}
+
+.inputWrap input.errorInput~.icon {
+    fill: #b20202;
+}
+
+.inputWrap input.errorInput::placeholder {
+    color: #b20202;
+}
+
+@media only screen and (min-width: 768px) {
+    .container {
+        min-width: 768px;
+    }
+
+    .wrap {
+        width: 533px;
+        height: 519px;
+        margin-top: 176px;
+        padding: 0;
+    }
+
+    .logoIcon {
+        margin-top: 53px;
+    }
+
+    .logoText {
+        margin-bottom: 37px;
+    }
+
+    .inputContainer {
+        min-width: 410px;
+    }
+
+    .inputWrap {
+        margin-bottom: 24px;
+    }
+
+    .button {
+        gap: 21px;
+        width: 410px;
+    }
+
+    .buttonLog {
+        width: 410px;
+    }
+
+    .registerBtn {
+        width: 410px;
+    }
+
+    .walletImage {
+        position: absolute;
+        bottom: -292px;
+        left: 490px;
+        transform: translateX(-50%);
+        width: 320px;
+        height: auto;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    .container {
+        min-width: 1280px;
+    }
+
+    .wrap {
+        padding: 0;
+        margin-top: 75px;
+    }
+
+    .iconWallet {
+        margin-top: 53px;
+    }
+
+    .walletImage {
+        bottom: -91px;
+        left: 730px;
+    }
+
+}

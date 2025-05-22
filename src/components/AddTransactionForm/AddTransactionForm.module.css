@@ -1,0 +1,49 @@
+.div {
+  background-color: var(--light-green);
+  width: 287px;
+  padding: 0px 8px;
+  padding-top: 40px;
+  padding-bottom: 24px;
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.title {
+  font-size: 30px;
+  text-align: center;
+  font-weight: 700;
+  color: #081222;
+  margin-bottom: 30px;
+  font-family: var(--font-primary);
+}
+
+/* Toggle */
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+}
+
+.toggleText {
+  font-weight: 500;
+  font-size: 16px;
+  color: #081222;
+  font-family: var(--font-primary);
+}
+
+@media (min-width: 768px) {
+  .div {
+    width: 540px;
+    padding: 0px 65px;
+    padding-bottom: 46px;
+    padding-top: 40px;
+  }
+
+  .title {
+    margin-bottom: 40px;
+  }
+}

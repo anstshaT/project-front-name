@@ -80,7 +80,7 @@ export const RegistrationForm = () => {
           <use href="/icons.svg#icon-wallet"></use>
         </svg>
         <p className={s.logoText}>Spendy</p>
-        {isLoading && <h2>Loading...</h2>}
+        {/* {isLoading && <h2>Loading...</h2>} */}
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
@@ -174,7 +174,7 @@ export const RegistrationForm = () => {
                   <div
                     style={{
                       marginTop: "5px",
-                      textAlign: "center",
+                      textAlign: "start",
                       color:
                         values.password === values.confirmPassword
                           ? "green"
