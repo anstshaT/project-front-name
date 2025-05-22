@@ -24,8 +24,12 @@
     position: relative;
 }
 
-.logo {
-    width: 182px;
+.logoText {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    text-align: center;
+    color: #081222;
     margin-bottom: 16px;
 }
 
@@ -208,11 +212,15 @@
         width: 533px;
         height: 519px;
         margin-top: 176px;
+        padding: 0;
     }
 
-    .logo {
-        margin-bottom: 37px;
+    .logoIcon {
         margin-top: 53px;
+    }
+
+    .logoText {
+        margin-bottom: 37px;
     }
 
     .inputContainer {
@@ -236,14 +244,14 @@
         width: 410px;
     }
 
-        .walletImage {
-            position: absolute;
-            bottom: -292px;
-            left: 490px;
-            transform: translateX(-50%);
-            width: 320px;
-            height: auto;
-        }
+    .walletImage {
+        position: absolute;
+        bottom: -292px;
+        left: 490px;
+        transform: translateX(-50%);
+        width: 320px;
+        height: auto;
+    }
 }
 
 @media only screen and (min-width: 1280px) {
@@ -260,9 +268,9 @@
         margin-top: 53px;
     }
 
-        .walletImage {
-            bottom: -91px;
-            left: 730px;
-        }
+    .walletImage {
+        bottom: -91px;
+        left: 730px;
+    }
 
 }
