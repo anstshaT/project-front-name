@@ -22,8 +22,6 @@ const AddTransactionForm = () => {
       </div>
 
       {transactionType === "expense" ? <AddExpenseForm /> : <AddIncomeForm />}
-      {/* <AddIncomeForm />
-      <AddExpenseForm /> */}
     </div>
   );
 };

@@ -4,37 +4,26 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import clsx from "clsx";
 import { SelectStyles } from "../../utils/SelectStyles";
+import Select from "react-select";
 
 const AddExpenseForm = () => {
   const [startDate, setStartDate] = useState(new Date());
-  const [selectedCategory, setSelectedCategory] = useState();
 
-  const handleSelectCategorie = (e) => {
-    setSelectedCategory(e.target.value);
-    console.log("Select categorie", e.target.value);
-  };
+  const options = [
+    { value: "main expenses", label: "Main expenses" },
+    { value: "products", label: "Products" },
+    { value: "car", label: "Car" },
+    { value: "self care", label: "Self care" },
+    { value: "child care", label: "Child care" },
+    { value: "household products", label: "Household products" },
+    { value: "education", label: "Education" },
+    { value: "leisure", label: "Leisure" },
+  ];
 
   return (
     <div>
       <form className={s.form}>
-        <div>
-          <label htmlFor="dropdown">Category</label>
-          <select
-            id="dropdown"
-            value={selectedCategory}
-            onChange={handleSelectCategorie}
-            style={SelectStyles}
-          >
-            <option>Main expenses</option>
-            <option>Products</option>
-            <option>Car</option>
-            <option>Self care</option>
-            <option>Child care</option>
-            <option>Household products</option>
-            <option>Education</option>
-            <option>Leisure</option>
-          </select>
-        </div>
+        <Select options={options} styles={SelectStyles} />
         <div className={s.infoFormDiv}>
           <input className={s.input} placeholder="0.00" />
           <DatePicker
