@@ -5,10 +5,10 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background-color: #24CCA7;
-  color: #fff;
-  border: none;
-  box-shadow: 0 4px 10px rgba(36, 204, 167, 0.5);
+  background-color: #508F8C;
+  color: #081222;
+  border: 2.55px solid #081222;
+  box-shadow: 0 4px 10px rgba(11, 96, 22, 0.5);
   cursor: pointer;
   z-index: 1000;
   transition: background-color 0.3s ease;
@@ -19,7 +19,7 @@
 }
 
 .floatingButton:hover {
-  background-color: #1da88a;
+  background-color: #084d13;
 }
 
 .floatingButton:focus-visible {
@@ -28,7 +28,33 @@
 }
 
 .plusIcon {
-  width: 24px;
-  height: 24px;
-  fill: #fff;
+  width: 25px;
+  height: 25px;
+  fill: #081222;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .floatingButton {
+    width: 64px;
+    height: 64px;
+  }
+
+  .plusIcon {
+    width: 29px;
+    height: 29px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .floatingButton {
+    width: 56px;
+    height: 56px;
+    bottom: 32px;
+    right: 32px;
+  }
+
+  .plusIcon {
+    width: 25px;
+    height: 25px;
+  }
 }
