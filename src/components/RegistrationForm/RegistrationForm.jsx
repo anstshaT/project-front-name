@@ -49,7 +49,10 @@ export const RegistrationForm = () => {
       .max(32, "Max 32 characters")
       .matches(onlyLetters, "Only letters"),
 
-    email: Yup.string().required("Required field").max(64, "Max 64 characters"),
+    email: Yup.string()
+      .required("Required field")
+      .max(64, "Max 64 characters")
+      .email("Invalid email"),
     password: Yup.string()
       .required("Required field")
       .min(8, "Min 8 characters")
@@ -73,7 +76,10 @@ export const RegistrationForm = () => {
   return (
     <div className={s.backdrop}>
       <div className={s.container}>
-        <img src="/src/images/logo.svg" className={s.logo} />
+        <svg width="54" height="54" className={s.logoIcon}>
+          <use href="/icons.svg#icon-wallet"></use>
+        </svg>
+        <p className={s.logoText}>Spendy</p>
         {/* {isLoading && <h2>Loading...</h2>} */}
         <Formik
           initialValues={initialValues}
