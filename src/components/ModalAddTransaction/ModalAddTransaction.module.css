@@ -17,9 +17,22 @@
   padding: 40px 8px 24px;
   width: 287px;
   min-height: 492px;
+  height: auto;
+  position: relative;
+  overflow-y: auto;
+  max-height: 90vh;
+  box-sizing: border-box;
+}
+
+/* .modal {
+  background-color: #508f8c;
+  border-radius: 8px;
+  padding: 40px 8px 24px 8px;
+  width: 287px;
+  min-height: 548px;
   position: relative;
   overflow: visible;
-}
+} */
 
 .closeBtn {
   position: absolute;
@@ -28,8 +41,6 @@
   width: 20px;
   height: 20px;
   padding: 0;
-  background: transparent;
-  /* border: 2.5px solid #081222; */
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -43,23 +54,38 @@
   stroke: #081222;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1279px) {
   .modal {
     width: 540px;
     min-height: 511px;
     padding: 40px;
+    position: absolute;
+    top: 256px;
+    left: 114px;
   }
 
   .closeBtn {
     width: 16px;
     height: 16px;
+    top: 20px;
+    right: 20px;
   }
 }
 
 @media (min-width: 1280px) {
   .modal {
+    width: 540px;
+    min-height: 511px;
+    padding: 40px;
     position: absolute;
     top: 106px;
     left: 371px;
+  }
+
+  .closeBtn {
+    width: 16px;
+    height: 16px;
+    top: 20px;
+    right: 20px;
   }
 }
