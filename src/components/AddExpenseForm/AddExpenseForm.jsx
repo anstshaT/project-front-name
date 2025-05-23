@@ -23,7 +23,11 @@ const AddExpenseForm = () => {
   return (
     <div>
       <form className={s.form}>
-        <Select options={options} styles={SelectStyles} />
+        <Select
+          options={options}
+          styles={SelectStyles}
+          placeholder="Category"
+        />
         <div className={s.infoFormDiv}>
           <input className={s.input} placeholder="0.00" />
           <DatePicker

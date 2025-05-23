@@ -1,5 +1,4 @@
 import clsx from "clsx";
-/* import { useState } from "react"; */
 import s from "./TransactionType.module.css";
 
 import IconIncome from "../../images/income.svg";
@@ -13,19 +12,13 @@ const TransactionType = ({ transactionType, setTransactionType }) => {
 
   return (
     <div className={s.transactionTypeWrapper}>
-      <label
-        className={clsx(s.typeLabel, { active: transactionType === "income" })}
-      >
-        Income
-      </label>
-
       <div className={s.typeToggle}>
         <div className={s.radioButton}>
           <input
             type="radio"
             name="transactionType"
-            value="income"
-            checked={transactionType === "income"}
+            value="expense"
+            checked={transactionType === "expense"}
             onChange={handleTypeChange}
             className={s.input}
           />
@@ -34,8 +27,8 @@ const TransactionType = ({ transactionType, setTransactionType }) => {
           <input
             type="radio"
             name="transactionType"
-            value="expense"
-            checked={transactionType === "expense"}
+            value="income"
+            checked={transactionType === "income"}
             onChange={handleTypeChange}
             className={s.input}
           />
@@ -54,11 +47,6 @@ const TransactionType = ({ transactionType, setTransactionType }) => {
           <img src={IconExpense} alt="Expense" className={s.sliderIcon} />
         )}
       </div>
-      <label
-        className={clsx(s.typeLabel, { active: transactionType === "income" })}
-      >
-        Expense
-      </label>
     </div>
   );
 };
