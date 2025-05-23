@@ -12,7 +12,7 @@
 }
 
 .modal {
-  background-color: #508F8C;
+  background-color: #508f8c;
   border-radius: 8px;
   padding: 40px 8px 24px;
   width: 287px;
@@ -60,8 +60,8 @@
     min-height: 511px;
     padding: 40px;
     position: absolute;
-    top: 256px;
-    left: 114px;
+    /* top: 256px;
+    left: 114px; */
   }
 
   .closeBtn {
@@ -78,8 +78,8 @@
     min-height: 511px;
     padding: 40px;
     position: absolute;
-    top: 106px;
-    left: 371px;
+    /* top: 106px;
+    left: 371px; */
   }
 
   .closeBtn {
