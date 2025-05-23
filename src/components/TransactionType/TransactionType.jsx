@@ -3,10 +3,8 @@ import s from "./TransactionType.module.css";
 
 import IconIncome from "../../images/income.svg";
 import IconExpense from "../../images/expense.svg";
-import { useState } from "react";
 
-const TransactionType = () => {
-  const [transactionType, setTransactionType] = useState("expense");
+const TransactionType = ({ transactionType, setTransactionType }) => {
   const handleTypeChange = (evt) => {
     setTransactionType(evt.target.value);
     console.log(evt.target.value);
@@ -14,7 +12,6 @@ const TransactionType = () => {
 
   return (
     <div className={s.transactionTypeWrapper}>
-
       <div className={s.typeToggle}>
         <div className={s.radioButton}>
           <input

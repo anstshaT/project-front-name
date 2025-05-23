@@ -12,18 +12,16 @@ const AddTransactionForm = () => {
     <div className={s.div}>
       <h1 className={s.title}>Add transaction</h1>
       <div className={s.toggle}>
-        {/* <p className={s.toggleText}>Income</p> */}
+        <p className={s.toggleText}>Income</p>
         <TransactionType
           className={s.toggle}
           transactionType={transactionType}
           setTransactionType={setTransactionType}
         />
-        {/*  <p className={s.toggleText}>Expense</p> */}
+        <p className={s.toggleText}>Expense</p>
       </div>
 
       {transactionType === "expense" ? <AddExpenseForm /> : <AddIncomeForm />}
-      {/* <AddIncomeForm />
-      <AddExpenseForm /> */}
     </div>
   );
 };
