@@ -9,8 +9,11 @@ import StatisticsPage from "./pages/StatisticsPage/StatisticsPage";
 import CurrencyPage from "./pages/CurrencyPage/CurrencyPage";
 import PrivateRoute from "./PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsRefreshing } from "./redux/auth/selectors";
-import { refreshUser } from "./redux/auth/authOperations";
+/* import { selectIsRefreshing } from "./redux/auth/selectors";
+import { refreshUser } from "./redux/auth/authOperations"; */
+import { HashLoader } from "react-spinners";
+import { setIsLoading } from "./redux/loaderSlice";
+import { store } from "./redux/store";
 
 function App() {
   // const isRefreshing = useSelector(selectIsRefreshing);
@@ -21,6 +24,28 @@ function App() {
   // }, [dispatch]);
 
   // if (isRefreshing) return null;
+
+  const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.loader);
+
+  useEffect(() => {
+    const foo = async () => {
+      dispatch(setIsLoading(true));
+      console.log(store.getState().loader);
+
+      try {
+        await Promise.resolve("RESULT");
+        console.log("isLoading state:", isLoading);
+      } catch (error) {
+        console.log(error.message);
+      } finally {
+        dispatch(setIsLoading(false));
+      }
+    };
+
+    foo();
+  }, []);
+
   return (
     <>
       <Suspense fallback={<p>Loading...</p>}>
@@ -36,6 +61,11 @@ function App() {
         </Routes>
       </Suspense>
       <Toaster position="top-center" reverseOrder={false} />
+      {isLoading && (
+        <div className="loaderWrap">
+          <HashLoader color="#24CCA7" size={60} />
+        </div>
+      )}
     </>
   );
 }
