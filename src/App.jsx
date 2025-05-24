@@ -15,6 +15,7 @@ import { HashLoader } from "react-spinners";
 import { setIsLoading } from "./redux/loaderSlice";
 import { store } from "./redux/store";
 import UserLayout from "./pages/UserLayout/UserLayout";
+import RestrictedRoute from "./RectrictedRoute";
 
 function App() {
   // const isRefreshing = useSelector(selectIsRefreshing);
@@ -51,8 +52,22 @@ function App() {
     <>
       <Suspense fallback={<p>Loading...</p>}>
         <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<Register />} />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute>
+                <LoginPage />
+              </RestrictedRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute>
+                <Register />
+              </RestrictedRoute>
+            }
+          />
           <Route
             path="/"
             element={
