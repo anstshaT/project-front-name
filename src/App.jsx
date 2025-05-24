@@ -46,7 +46,7 @@ function App() {
     };
 
     foo();
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
