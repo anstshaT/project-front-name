@@ -5,7 +5,7 @@ import AddIncomeForm from "../AddIncomeForm/AddIncomeForm";
 import AddExpenseForm from "../AddExpenseForm/AddExpenseForm";
 import { useState } from "react";
 
-const AddTransactionForm = () => {
+const AddTransactionForm = ({ onCancel }) => {
   const [transactionType, setTransactionType] = useState("expense");
 
   return (
@@ -21,7 +21,11 @@ const AddTransactionForm = () => {
         <p className={s.toggleText}>Expense</p>
       </div>
 
-      {transactionType === "expense" ? <AddExpenseForm /> : <AddIncomeForm />}
+      {transactionType === "expense" ? (
+        <AddExpenseForm onCancel={onCancel} />
+      ) : (
+        <AddIncomeForm onCancel={onCancel} />
+      )}
     </div>
   );
 };
