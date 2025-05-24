@@ -2,6 +2,8 @@ import { Suspense } from "react";
 import SideBar from "../../components/SideBar/SideBar";
 import { Outlet } from "react-router-dom";
 import Header from "../../components/Header/Header";
+import LogoutModal from "../../components/LogoutModal/LogoutModal";
+import ModalAddTransaction from "../../components/ModalAddTransaction/ModalAddTransaction";
 
 const UserLayout = () => {
   return (
@@ -12,6 +14,9 @@ const UserLayout = () => {
         <Suspense fallback={<p>Loading...</p>}>
           <Outlet />
         </Suspense>
+        <LogoutModal />
+        <ModalAddTransaction />
+        {/* <ModalEditTransaction /> */}
       </body>
     </>
   );
