@@ -14,8 +14,8 @@ const UserLayout = () => {
         <Suspense fallback={<p>Loading...</p>}>
           <Outlet />
         </Suspense>
-        <LogoutModal />
-        <ModalAddTransaction />
+        {/* <LogoutModal />
+        <ModalAddTransaction /> */}
         {/* <ModalEditTransaction /> */}
       </body>
     </>
