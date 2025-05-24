@@ -1,4 +1,4 @@
-import ButtonAddTransaction from "../../components/ButtonAddTransaction/ButtonAddTransaction.jsx";
+import ButtonAddTransaction from "../../components/ButtonAddTransaction/ButtonAddTransaction.jsx"; 
 
 const HomePage = () => {
   return (
@@ -8,4 +8,5 @@ const HomePage = () => {
     </div>
   );
 };
+
 export default HomePage;
