@@ -1,0 +1,69 @@
+.exchange{
+  height: 390px;
+  margin-top: 92px;
+  margin-bottom: 16px;
+  margin-right: 16px;
+  margin-left: 16px;
+  border-radius: 16px;
+  padding: 16px;
+  gap: 32px;
+  background: linear-gradient(to bottom, #355359, #3B5D63);
+}
+
+@media only screen and (min-width: 768px) {
+  .exchange {
+    height: 310px;
+    max-width: 336px;
+    margin: 32px;
+    gap: 9px;
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  gap: 10px;
+  padding: 16px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(to bottom,#294045, #1E2F33);
+  border-radius: 12px;
+}
+
+.titleRow {
+  font-family: Inter;
+  font-weight: 600;
+  line-height: 100%;
+}
+
+.currencies {
+  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  align-items: center;
+  padding-top: 16px;
+  padding-bottom: 15px;
+}
+
+.titleCurrency {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+}
+
+.walletImage {
+  height: 174px;
+  display: block;
+  margin: 0 auto;
+  padding-top: 16px;
+}
+
+@media only screen and (min-width: 768px) {
+  .walletImage {
+    height: 135px;
+    padding-top: 9px;
+    padding-bottom: 16px;
+}
+}

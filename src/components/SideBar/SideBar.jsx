@@ -4,10 +4,9 @@ import CurrencyPage from "../../pages/CurrencyPage/CurrencyPage";
 const SideBar = () => {
   return (
     <div>
-      Sidebar
       {/* <Navigation />
-      <Ballance />
-      <CurrencyPage /> */}
+      <Ballance />*/
+      <CurrencyPage />}
     </div>
   );
 };
