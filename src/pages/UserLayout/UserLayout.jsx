@@ -9,15 +9,15 @@ const UserLayout = () => {
   return (
     <>
       <Header />
-      <body>
+      <main>
         <SideBar />
         <Suspense fallback={<p>Loading...</p>}>
           <Outlet />
         </Suspense>
-        <LogoutModal />
-        <ModalAddTransaction />
+        {/* <LogoutModal />
+        <ModalAddTransaction /> */}
         {/* <ModalEditTransaction /> */}
-      </body>
+      </main>
     </>
   );
 };
