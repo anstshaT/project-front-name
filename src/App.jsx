@@ -9,8 +9,8 @@ import StatisticsPage from "./pages/StatisticsPage/StatisticsPage";
 import CurrencyPage from "./pages/CurrencyPage/CurrencyPage";
 import PrivateRoute from "./PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
-/* import { selectIsRefreshing } from "./redux/auth/selectors";
-import { refreshUser } from "./redux/auth/authOperations"; */
+import { selectIsRefreshing } from "./redux/auth/selectors";
+import { refreshUser } from "./redux/auth/authOperations";
 import { HashLoader } from "react-spinners";
 import { setIsLoading } from "./redux/loaderSlice";
 import { store } from "./redux/store";
@@ -18,19 +18,12 @@ import UserLayout from "./pages/UserLayout/UserLayout";
 import RestrictedRoute from "./RectrictedRoute";
 
 function App() {
-  // const isRefreshing = useSelector(selectIsRefreshing);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(refreshUser());
-  // }, [dispatch]);
-
-  // if (isRefreshing) return null;
-
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.loader);
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
+    dispatch(refreshUser());
     const foo = async () => {
       dispatch(setIsLoading(true));
       console.log(store.getState().loader);
@@ -48,7 +41,7 @@ function App() {
     foo();
   }, [dispatch]);
 
-  return (
+  return isRefreshing ? null : (
     <>
       <Suspense fallback={<p>Loading...</p>}>
         <Routes>
