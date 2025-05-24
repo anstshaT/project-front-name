@@ -1,53 +1,78 @@
 import s from "./AddExpenseForm.module.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { SelectStyles } from "../../utils/SelectStyles";
 import Select from "react-select";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategories } from "../../redux/categories/categoriesOperation";
+import { Field, Form, Formik } from "formik";
 
 const AddExpenseForm = () => {
   const [startDate, setStartDate] = useState(new Date());
+  const dispatch = useDispatch();
+  const { categories } = useSelector((state) => state.categories);
 
-  const options = [
-    { value: "main expenses", label: "Main expenses" },
-    { value: "products", label: "Products" },
-    { value: "car", label: "Car" },
-    { value: "self care", label: "Self care" },
-    { value: "child care", label: "Child care" },
-    { value: "household products", label: "Household products" },
-    { value: "education", label: "Education" },
-    { value: "leisure", label: "Leisure" },
-  ];
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
+
+  const options = (categories.expenses || []).map((expense) => ({
+    value: expense,
+    label: expense,
+  }));
+
+  const initialValues = {
+    category: null,
+    summ: "",
+    date: null,
+    comment: "",
+  };
 
   return (
-    <div>
-      <form className={s.form}>
-        <Select
-          options={options}
-          styles={SelectStyles}
-          placeholder="Category"
-        />
-        <div className={s.infoFormDiv}>
-          <input className={s.input} placeholder="0.00" />
-          <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            className={s.input}
-            calendarClassName={s.calendar}
+    <Formik initialValues={initialValues}>
+      {({ setFieldValue, values }) => (
+        <Form className={s.form}>
+          <Select
+            id="category"
+            name="category"
+            options={options}
+            styles={SelectStyles}
+            placeholder="Category"
+            value={values.categories}
+            onChange={(option) => setFieldValue("category", option)}
           />
-        </div>
-        <input
-          className={clsx(s.input, s.commentInput)}
-          placeholder="Comment"
-        />
-
-        <button type="submit" className={s.addBtn}>
-          Add
-        </button>
-        <button className={s.cancelBtn}>Cancel</button>
-      </form>
-    </div>
+          <div className={s.infoFormDiv}>
+            <Field
+              type="text"
+              name="summ"
+              className={s.input}
+              placeholder="0.00"
+            />
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => {
+                setStartDate(date);
+                setFieldValue("date", date);
+              }}
+              className={s.input}
+              calendarClassName={s.calendar}
+            />
+          </div>
+          <Field
+            type="text"
+            name="comment"
+            className={clsx(s.input, s.commentInput)}
+            placeholder="Comment"
+          />
+          <button type="submit" className={s.addBtn}>
+            Add
+          </button>
+          <button className={s.cancelBtn}>Cancel</button>
+        </Form>
+      )}
+    </Formik>
   );
 };
 
