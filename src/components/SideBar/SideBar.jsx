@@ -1,7 +1,8 @@
 import React from "react";
 import CurrencyPage from "../../pages/CurrencyPage/CurrencyPage";
 import { Navigation } from "../Navigation/Navigation";
-import css from './SideBar.module.css';
+import css from "./SideBar.module.css";
+import Balance from "../Balance/Balance";
 
 const SideBar = () => {
   return (
@@ -12,9 +13,11 @@ const SideBar = () => {
       </div>
 
       {/* Balance Container */}
-      <div className={css.balanceContainer}>
+      {/* <div className={css.balanceContainer}>
         <p style={{ color: '#fff' }}>Balance Block</p>
-      </div>
+      </div> */}
+
+      <Balance />
 
       {/* Card 1 */}
       <div className={css.card1}>
