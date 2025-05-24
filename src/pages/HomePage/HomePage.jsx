@@ -1,5 +1,4 @@
 import ButtonAddTransaction from "../../components/ButtonAddTransaction/ButtonAddTransaction.jsx"; 
-// import { Navigation } from "../../components/Navigation/Navigation.jsx";
 
 const HomePage = () => {
   return (
