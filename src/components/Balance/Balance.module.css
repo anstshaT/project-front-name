@@ -1,0 +1,38 @@
+.container {
+    padding: 24px 16px;
+    border-radius: 16px;
+    margin-top: 24px;
+    background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+}
+
+.title {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--white);
+    opacity: 0.4;
+    margin-bottom: 18px;
+}
+
+.balance {
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--white);
+}
+
+@media only screen and (min-width: 768px) {
+    .container {
+        padding: 38px 16px;
+
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    
+
+    .title {
+        margin-bottom: 12px;
+    }
+}
