@@ -14,6 +14,7 @@ import { refreshUser } from "./redux/auth/authOperations"; */
 import { HashLoader } from "react-spinners";
 import { setIsLoading } from "./redux/loaderSlice";
 import { store } from "./redux/store";
+import UserLayout from "./pages/UserLayout/UserLayout";
 
 function App() {
   // const isRefreshing = useSelector(selectIsRefreshing);
@@ -52,7 +53,14 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<Register />} />
-          <Route element={<PrivateRoute />}>
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <UserLayout />
+              </PrivateRoute>
+            }
+          >
             <Route path="/" element={<HomePage />} />
             <Route path="/statistic" element={<StatisticsPage />} />
             <Route path="/currency" element={<CurrencyPage />} />

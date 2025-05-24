@@ -1,10 +1,9 @@
-import Header from "../../components/Header/Header.jsx";
 import ButtonAddTransaction from "../../components/ButtonAddTransaction/ButtonAddTransaction.jsx";
 
 const HomePage = () => {
   return (
     <div>
-      <Header />
+      {/* <TransactionList /> */}
       <ButtonAddTransaction />
     </div>
   );
