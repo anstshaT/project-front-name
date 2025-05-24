@@ -1,4 +1,5 @@
 import css from "./TransactionsItem.module.css"
+import { MdOutlineEdit } from "react-icons/md";
 
 
 const TransactionsItem = ({ transaction, onEdit, onDelete }) => {
@@ -31,20 +32,25 @@ const TransactionsItem = ({ transaction, onEdit, onDelete }) => {
                 <span className={css.label}>Sum</span>
                 <span className={`${css.value} ${transaction.type === 'income' ? css.income : css.expense}`}>{transaction.amount.toFixed(2)}</span>
           </div>
-          
-        <div className={css.actions}>
+          <div className={css.actions}>
         {onDelete && (
           <button className={css.deleteBtn} onClick={() => onDelete(transaction.id)}>Delete</button>
         )}
             {onEdit && (
-          <button className={css.editBtn} onClick={() => onEdit(transaction.id)}>Edit</button>
+          <button className={css.editBtn} onClick={() => onEdit(transaction.id)}><MdOutlineEdit style={{ marginRight: '4px' }}/><span className={css.editText}>Edit</span></button>
         )}
         
             
         </div>
 
-        </li>
+          
+         </li>
+         
+
+         
     )
+
+    
     
 }
 
