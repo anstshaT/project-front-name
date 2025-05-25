@@ -15,7 +15,9 @@ const Navigation = () => {
         >
           <span className={css.iconWrapper}>
             <svg className={css.icon}>
-              <use href="/icons.svg#baseline-home-24px" />
+              <use
+                href={`/icons.svg#${isMobile ? 'icon-home1' : 'baseline-home-24px'}`}
+              />
             </svg>
           </span>
           <span className={css.label}>Home</span>
@@ -27,7 +29,9 @@ const Navigation = () => {
         >
           <span className={css.iconWrapper}>
             <svg className={css.icon}>
-              <use href="/icons.svg#icon-statistics" />
+              <use
+                href={`/icons.svg#${isMobile ? 'icon-statistics' : 'baseline-timeline-24px'}`}
+              />
             </svg>
           </span>
           <span className={css.label}>Statistics</span>
