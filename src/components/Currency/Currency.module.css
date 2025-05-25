@@ -13,7 +13,7 @@
 @media only screen and (min-width: 768px) {
   .exchange {
     height: 310px;
-    max-width: 336px;
+    width: 336px;
     margin: 32px;
     gap: 9px;
   }
