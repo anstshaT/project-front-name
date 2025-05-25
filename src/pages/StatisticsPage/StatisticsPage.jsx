@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 const StatisticsPage = () => {
+  const [transactionType, setTransactionType] = useState("expense");
   return (
     <div>
-      <h1>Statistic</h1>
+      <TransactionType 
+        transactionType={transactionType}
+        setTransactionType={setTransactionType}/>
+      <Chart transactionType={transactionType}/>
     </div>
   );
 };
