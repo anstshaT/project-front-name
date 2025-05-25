@@ -1,0 +1,79 @@
+.exchange {
+  margin: 0 16px auto;
+  padding: 16px;
+  border-radius: 16px;
+  background: linear-gradient(to bottom, #355359, #3b5d63);
+  box-sizing: border-box;
+  /* overflow-x: auto; */
+}
+
+@media only screen and (min-width: 768px) {
+  .exchange {
+    height: 310px;
+    width: 336px;
+    margin: 0;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .exchange {
+    width: 448px;
+    background: none;
+    padding: 0 24px 41px 24px;
+    border-radius: 0;
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  gap: 10px;
+  padding: 16px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(to bottom, #294045, #1e2f33);
+  border-radius: 12px;
+}
+
+.titleRow {
+  font-family: Inter;
+  font-weight: 600;
+  line-height: 100%;
+}
+
+.currencies {
+  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  align-items: center;
+  padding-top: 16px;
+  padding-bottom: 15px;
+}
+
+.titleCurrency {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+}
+
+.walletImage {
+  height: 174px;
+  display: block;
+  margin: 0 auto;
+  padding-top: 16px;
+}
+
+@media only screen and (min-width: 768px) {
+  .walletImage {
+    height: 135px;
+    padding-top: 9px;
+    padding-bottom: 16px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .walletImage {
+    height: 166px;
+  }
+}

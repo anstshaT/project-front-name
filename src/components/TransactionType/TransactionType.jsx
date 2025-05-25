@@ -12,7 +12,6 @@ const TransactionType = ({ transactionType, setTransactionType }) => {
 
   return (
     <div className={s.transactionTypeWrapper}>
-
       <div className={s.typeToggle}>
         <div className={s.radioButton}>
           <input

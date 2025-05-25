@@ -1,0 +1,142 @@
+.container {
+  background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+  border-radius: 16px;
+  padding: 16px 32px;
+  width: 451px;
+  height: 92px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ==== Планшет ==== */
+@media (max-width: 1279px) and (min-width: 768px) {
+  .container {
+    width: 338px;
+    height: 143px;
+    padding: 16px;
+    justify-content: center;
+  }
+
+  .nav {
+    gap: 24px;
+  }
+}
+
+/* ==== Мобільна ==== */
+@media (max-width: 767px) {
+  .container {
+    width: 192px;
+    height: 44px;
+    padding: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .nav {
+    flex-direction: row;
+    gap: 30px;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+  }
+}
+
+/* ==== Лінки ==== */
+.linkContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+  height: 24px;
+}
+
+.linkActive .label {
+  font-weight: 700;
+}
+
+/* ==== Іконки ==== */
+.iconWrapper {
+  width: 24px;
+  height: 24px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #294045 0%, #1e2f33 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  fill: #fcfcfc;
+}
+
+/* ==== Текст ==== */
+.label {
+  font-size: 18px;
+  color: #fcfcfc;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  line-height: 1;
+  margin-top: 1px;
+}
+
+/* ==== Мобільна адаптація ==== */
+@media (max-width: 767px) {
+  .linkContainer {
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+    background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+    justify-content: center;
+  }
+
+  .linkActive {
+    background: #fcfcfc;
+  }
+
+  .iconWrapper {
+    width: 38px;
+    height: 38px;
+    border-radius: 6px;
+    background: #4a56e2;
+  }
+
+  .linkActive .iconWrapper {
+    background: linear-gradient(180deg, #294045 0%, #1e2f33 100%);
+  }
+
+  .icon {
+    fill: #fcfcfc;
+  }
+
+  .linkActive .icon {
+    fill: #000000;
+  }
+
+  .label {
+    display: none;
+  }
+
+  /* Спецкейс Currency */
+  .currency .iconWrapper {
+    background: #4a56e2;
+  }
+
+  .currency.linkActive .iconWrapper {
+    background: #4a56e2;
+  }
+
+  .currency.linkActive .icon {
+    fill: #fcfcfc;
+  }
+}
