@@ -23,7 +23,7 @@ const slice = createSlice({
   initialState,
   extraReducers: (builder) =>
     builder
-      .addCase(registerThunk.pending, (state, action) => {
+      .addCase(registerThunk.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })

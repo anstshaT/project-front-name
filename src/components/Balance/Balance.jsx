@@ -1,19 +1,19 @@
-// import { useSelector } from "react-redux"
-// import { selectTransactions } from "../../redux/auth/selectors";
+import { useSelector } from "react-redux";
 import s from "./Balance.module.css";
+import { selectUser } from "../../redux/user/userSelector";
+
 
 const Balance = () => {
-    // const transactions = useSelector(selectTransactions);
-    // const balance = transactions.reduce((acc, t) => {
-        // return t.type === 'income' ? acc + t.amount : acc - t.amount;
-    // }, 0);
+  const balance = useSelector(selectUser);
 
-    return (
-        <div className={s.container}>
-            <h1 className={s.title}>Your balance</h1>
-            <p className={s.balance}>{/*balance.toFixed(2)*/} UAH</p>
-        </div>
-    );
+  console.log("Balance", balance);
+
+  return (
+    <div className={s.container}>
+      <h1 className={s.title}>Your balance</h1>
+      <p className={s.balance}>{balance ? balance : 0} UAH</p>
+    </div>
+  );
 };
 
 export default Balance;
