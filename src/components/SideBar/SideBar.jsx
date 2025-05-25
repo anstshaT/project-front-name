@@ -11,7 +11,7 @@ const SideBar = () => {
   const isDesktop = useMediaQuery({ minWidth: 1280 });
 
     return (
-      <div {/* className={css.sidebarDesktop} */}>
+      <div>
           <Navigation />
           <Balance />
           <CurrencyPage />
