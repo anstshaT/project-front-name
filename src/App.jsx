@@ -11,23 +11,64 @@ import PrivateRoute from "./PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsRefreshing } from "./redux/auth/selectors";
 import { refreshUser } from "./redux/auth/authOperations";
+import { HashLoader } from "react-spinners";
+import { setIsLoading } from "./redux/loaderSlice";
+import { store } from "./redux/store";
+import UserLayout from "./pages/UserLayout/UserLayout";
+import RestrictedRoute from "./RectrictedRoute";
 
 function App() {
-  // const isRefreshing = useSelector(selectIsRefreshing);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.loader);
+  const isRefreshing = useSelector(selectIsRefreshing);
 
-  // useEffect(() => {
-  //   dispatch(refreshUser());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(refreshUser());
+    const foo = async () => {
+      dispatch(setIsLoading(true));
+      console.log(store.getState().loader);
 
-  // if (isRefreshing) return null;
-  return (
+      try {
+        await Promise.resolve("RESULT");
+        console.log("isLoading state:", isLoading);
+      } catch (error) {
+        console.log(error.message);
+      } finally {
+        dispatch(setIsLoading(false));
+      }
+    };
+
+    foo();
+  }, [dispatch]);
+
+  return isRefreshing ? null : (
     <>
       <Suspense fallback={<p>Loading...</p>}>
         <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<Register />} />
-          <Route element={<PrivateRoute />}>
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute>
+                <LoginPage />
+              </RestrictedRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute>
+                <Register />
+              </RestrictedRoute>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <UserLayout />
+              </PrivateRoute>
+            }
+          >
             <Route path="/" element={<HomePage />} />
             <Route path="/statistic" element={<StatisticsPage />} />
             <Route path="/currency" element={<CurrencyPage />} />
@@ -36,6 +77,11 @@ function App() {
         </Routes>
       </Suspense>
       <Toaster position="top-center" reverseOrder={false} />
+      {isLoading && (
+        <div className="loaderWrap">
+          <HashLoader color="#24CCA7" size={60} />
+        </div>
+      )}
     </>
   );
 }

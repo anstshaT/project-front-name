@@ -1,0 +1,130 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 16px;
+  }
+  
+  /* === MOBILE === */
+  @media (max-width: 767px) {
+    .navigationContainer {
+      width: 196px;
+      height: 44px;
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
+      margin-top: 94px;
+      margin-left: 62px;
+    }
+  
+    .balanceContainer {
+      width: 288px;
+      height: 115px;
+      margin-top: 23px; /* 162px - 94px - 44px */
+      margin-left: 16px;
+      padding: 24px 16px;
+      border-radius: 16px;
+      gap: 18px;
+      background: linear-gradient(180deg, #355359 0%, #3B5D63 100%);
+    }
+  
+    .card1 {
+      width: 288px;
+      height: 293px;
+      margin-top: 23px; /* 301px - 162px - 115px */
+      margin-left: 16px;
+    }
+  }
+  
+  /* === TABLET === */
+  @media (min-width: 768px) and (max-width: 1279px) {
+    .sidebar {
+      flex-direction: row;
+      justify-content: space-between;
+      width: 706px;
+      height: 310px;
+      margin-top: 112px;
+      margin-left: 30px;
+    }
+  
+    .sidebarContent {
+      display: flex;
+      flex-direction: column;
+      width: 338px;
+      height: 310px;
+      gap: 24px;
+    }
+  
+    .sidebarContainer {
+      width: 338px;
+      height: 143px;
+      border-radius: 16px;
+      gap: 24px;
+      padding: 16px;
+      background: linear-gradient(180deg, #355359 0%, #3B5D63 100%);
+    }
+  
+    .balanceSummary {
+      width: 338px;
+      height: 143px;
+      border-radius: 16px;
+      gap: 18px;
+      padding: 16px;
+      background: linear-gradient(180deg, #355359 0%, #3B5D63 100%);
+    }
+  
+    .balanceContainer {
+      width: 336px;
+      height: 310px;
+      border-radius: 16px;
+      gap: 9px;
+      padding: 16px;
+      background: linear-gradient(180deg, #355359 0%, #3B5D63 100%);
+    }
+  
+    .table {
+      width: 698px;
+      height: 538px;
+      margin-top: 32px;
+      margin-left: 32px;
+      border-radius: 16px;
+      padding: 32px 16px;
+      gap: 16px;
+      background: linear-gradient(180deg, #355359 0%, #3B5D63 100%);
+    }
+  }
+  
+  /* === DESKTOP === */
+  @media (min-width: 1280px) {
+    .sidebarContainer {
+      width: 451px;
+      height: 92px;
+      margin-top: 112px;
+      margin-left: 24px;
+      padding: 16px 32px;
+      border-radius: 16px;
+      gap: 12px;
+      background: linear-gradient(180deg, #355359 0%, #3B5D63 100%);
+    }
+  
+    .balanceContainer {
+      width: 448px;
+      height: 469px;
+      margin-top: 24px;
+      margin-left: 27px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #355359 0%, #3B5D63 100%);
+    }
+  
+    .table {
+      width: 757px;
+      height: 585px;
+      margin-top: 112px;
+      margin-left: 499px;
+      padding: 32px 27px;
+      border-radius: 16px;
+      gap: 16px;
+      background: linear-gradient(180deg, #355359 0%, #3B5D63 100%);
+    }
+  }
