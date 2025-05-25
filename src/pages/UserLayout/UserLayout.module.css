@@ -1,0 +1,31 @@
+.main {
+  width: 100%;
+}
+
+.userLayout {
+  display: flex;
+  flex-direction: column;
+  /* padding: 24px 0; */
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar {
+  width: 100%;
+}
+
+@media only screen and (min-width: 1280px) {
+  .sidebar {
+    width: 450px;
+  }
+
+  .userLayout {
+    flex-direction: row;
+    /* padding: 32px 0 0; */
+    gap: 24px;
+    margin: 0 auto;
+    max-width: 1280px;
+    justify-content: center;
+    align-content: center;
+  }
+}

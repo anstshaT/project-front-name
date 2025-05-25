@@ -1,51 +1,47 @@
-
 .wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 32px;
-    padding: 24px 16px;
-    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  padding: 24px 16px;
+  padding-top: 0;
+  width: 100%;
 }
 .mobile {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 24px;
 }
 /*Планшет*/
 @media (min-width: 768px) {
-    .wrapper {
-        justify-content: center;
-        padding: 0 32px;
-        margin-top: 32px;
-        width: 100vw;
-        box-sizing: border-box;
-    }
-    .Tab_left {
-        display: flex;
-        flex-direction: column;
-    }
+  .wrapper {
+    justify-content: center;
+    padding: 0 32px;
+    margin-top: 32px;
+    /* width: 100vw; */
+    box-sizing: border-box;
+  }
+  .Tab_left {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 /*Десктоп*/
 @media (min-width: 1280px) {
-    .wrapper {
-        max-width: 1280px;
-        margin: 0 auto;
-        justify-content: flex-start;
-    }
-    .desc_sidebar {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        max-width: 451px;
-        margin-top: 32px;
-    }
-    .desc_bal_cur {
- padding: 0;
-    background: linear-gradient(to bottom, #355359 0%, #3B5D63 100%);
+  .wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .desc_sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 451px;
+  }
+  .desc_bal_cur {
+    padding: 0;
+    background: linear-gradient(to bottom, #355359 0%, #3b5d63 100%);
     border-radius: 16px;
-    }
+  }
 }
-
-
-
-

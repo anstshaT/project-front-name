@@ -3,16 +3,15 @@
   border-radius: 16px;
   display: flex;
   justify-content: center;
-  padding: 20px 0;
+  /* padding: 20px 0; */
 }
 
 .list {
   width: 100%;
-  max-width: 343px; 
+  max-width: 343px;
   margin: 0 auto;
- 
+
   box-sizing: border-box;
-  
 }
 
 .listHeader {
@@ -22,9 +21,7 @@
 .scrollContainer {
   max-height: none;
   overflow-y: visible;
-  
 }
-
 
 .listBody {
   display: flex;
@@ -35,11 +32,9 @@
   margin: 0 auto;
   padding: 0 16px;
   box-sizing: border-box;
-  
 }
 
 @media screen and (min-width: 768px) {
-
   .listHeader {
     display: grid;
     grid-template-columns: 100px 70px 120px 140px 100px;
@@ -65,6 +60,7 @@
     border-radius: 16px;
     padding-right: 4px;
     box-sizing: border-box;
+    height: 557px;
   }
 
   .headerItem {
@@ -73,7 +69,6 @@
     align-items: center;
   }
 
- 
   .scrollContainer {
     height: 464px;
     overflow-y: auto;
@@ -103,20 +98,16 @@
   .scrollContainer::-webkit-scrollbar-track {
     background-color: #1e2f33;
   }
+}
 
-  
+@media only screen and (min-width: 1280px) {
+  .listContainer {
+    width: 757px;
+    padding: 32px 27px;
+    min-height: 585px;
   }
 
-
-  @media only screen and (min-width: 1280px) {
-
-    .listContainer {
-      min-width: 757px;
-      padding: 32px 27px;
-      min-height: 585px;
-    }
-
-    .listBody{
-      padding: 0 27px;
-    }
+  .listBody {
+    padding: 0 27px;
   }
+}
