@@ -1,21 +1,17 @@
 .container {
-  background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
   border-radius: 16px;
   padding: 16px 32px;
   width: 451px;
   height: 92px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+  box-sizing: border-box;
 }
 
-.nav {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-/* ==== Планшет ==== */
 @media (max-width: 1279px) and (min-width: 768px) {
   .container {
     width: 338px;
@@ -23,34 +19,40 @@
     padding: 16px;
     justify-content: center;
   }
-
-  .nav {
-    gap: 24px;
-  }
 }
 
-/* ==== Мобільна ==== */
 @media (max-width: 767px) {
   .container {
-    width: 192px;
-    height: 44px;
-    padding: 0;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-  }
-
-  .nav {
-    flex-direction: row;
-    gap: 30px;
-    width: 100%;
-    height: 100%;
-    align-items: center;
+    gap: 32px;
+    width: 196px;
+    height: 44px;
+    background: none;
+    padding: 0;
   }
 }
 
-/* ==== Лінки ==== */
-.linkContainer {
+/* ========== Nav ========== */
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 767px) {
+  .nav {
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+  }
+}
+
+/* ========== Link ========== */
+.link {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -62,81 +64,58 @@
   font-weight: 700;
 }
 
-/* ==== Іконки ==== */
+@media (max-width: 767px) {
+  .link {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+    border-radius: 6px;
+    justify-content: center;
+  }
+}
+
+/* ========== Icon Wrapper ========== */
 .iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 24px;
   height: 24px;
   border-radius: 2px;
   background: linear-gradient(180deg, #294045 0%, #1e2f33 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   flex-shrink: 0;
 }
 
-.icon {
-  width: 18px;
-  height: 18px;
-  fill: #fcfcfc;
-}
-
-/* ==== Текст ==== */
-.label {
-  font-size: 18px;
-  color: #fcfcfc;
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  line-height: 1;
-  margin-top: 1px;
-}
-
-/* ==== Мобільна адаптація ==== */
 @media (max-width: 767px) {
-  .linkContainer {
-    width: 44px;
-    height: 44px;
-    border-radius: 6px;
-    background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
-    justify-content: center;
-  }
-
-  .linkActive {
-    background: #fcfcfc;
-  }
-
   .iconWrapper {
     width: 38px;
     height: 38px;
+    background: #fcfcfc;
     border-radius: 6px;
-    background: #4a56e2;
   }
+}
 
-  .linkActive .iconWrapper {
-    background: linear-gradient(180deg, #294045 0%, #1e2f33 100%);
-  }
+/* ========== Icon ========== */
+.icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  color: #fcfcfc;
+}
 
-  .icon {
-    fill: #fcfcfc;
-  }
+/* ========== Label ========== */
+.label {
+  font-size: 18px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  color: #fcfcfc;
+  line-height: 1;
+  margin: 0;
+  display: block;
+}
 
-  .linkActive .icon {
-    fill: #000000;
-  }
-
+@media (max-width: 767px) {
   .label {
     display: none;
-  }
-
-  /* Спецкейс Currency */
-  .currency .iconWrapper {
-    background: #4a56e2;
-  }
-
-  .currency.linkActive .iconWrapper {
-    background: #4a56e2;
-  }
-
-  .currency.linkActive .icon {
-    fill: #fcfcfc;
   }
 }

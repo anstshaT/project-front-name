@@ -9,33 +9,40 @@ const Navigation = () => {
   return (
     <div className={css.container}>
       <nav className={css.nav}>
-        <NavLink to="/" className={({ isActive }) => `${css.linkContainer} ${isActive ? css.linkActive : ''}`}>
-          <div className={css.iconWrapper}>
+        <NavLink
+          to="/"
+          className={({ isActive }) => isActive ? `${css.link} ${css.linkActive}` : css.link}
+        >
+          <span className={css.iconWrapper}>
             <svg className={css.icon}>
-              <use href="/icons.svg#icon-home1" />
+              <use href="/icons.svg#baseline-home-24px" />
             </svg>
-          </div>
-          {!isMobile && <span className={css.label}>Home</span>}
+          </span>
+          <span className={css.label}>Home</span>
         </NavLink>
 
-        <NavLink to="/statistics" className={({ isActive }) => `${css.linkContainer} ${isActive ? css.linkActive : ''}`}>
-          <div className={css.iconWrapper}>
+        <NavLink
+          to="/statistics"
+          className={({ isActive }) => isActive ? `${css.link} ${css.linkActive}` : css.link}
+        >
+          <span className={css.iconWrapper}>
             <svg className={css.icon}>
               <use href="/icons.svg#icon-statistics" />
             </svg>
-          </div>
-          {!isMobile && <span className={css.label}>Statistics</span>}
+          </span>
+          <span className={css.label}>Statistics</span>
         </NavLink>
 
         {isMobile && (
-          <NavLink to="/currency" className={({ isActive }) =>
-            `${css.linkContainer} ${css.currency} ${isActive ? css.linkActive : ''}`
-          }>
-            <div className={css.iconWrapper}>
+          <NavLink
+            to="/currency"
+            className={({ isActive }) => isActive ? `${css.link} ${css.linkActive}` : css.link}
+          >
+            <span className={css.iconWrapper}>
               <svg className={css.icon}>
                 <use href="/icons.svg#icon-currency" />
               </svg>
-            </div>
+            </span>
           </NavLink>
         )}
       </nav>
