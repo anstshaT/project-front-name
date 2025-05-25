@@ -2,43 +2,22 @@ import React from "react";
 import CurrencyPage from "../../pages/CurrencyPage/CurrencyPage";
 import { Navigation } from "../Navigation/Navigation";
 import css from './SideBar.module.css';
+import { useMediaQuery } from 'react-responsive';
+import Balance from "../Balance/Balance";
 
 const SideBar = () => {
-  return (
-    <div className={css.sidebar}>
-      {/* Navigation Container */}
-      <div className={css.navigationContainer}>
-        <Navigation />
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
+  const isDesktop = useMediaQuery({ minWidth: 1280 });
+  
+    return (
+      <div>
+          <Navigation />
+          <Balance />
+          <CurrencyPage />
       </div>
-
-      {/* Balance Container */}
-      <div className={css.balanceContainer}>
-        <p style={{ color: '#fff' }}>Balance Block</p>
-      </div>
-
-      {/* Card 1 */}
-      <div className={css.card1}>
-        <CurrencyPage />
-      </div>
-    </div>
-  );
+    );
 };
 
 export default SideBar;
 
-// import React from "react";
-// import CurrencyPage from "../../pages/CurrencyPage/CurrencyPage";
-// import { Navigation } from '../Navigation/Navigation';
-
-// const SideBar = () => {
-//   return (
-//     <div>
-//       <Navigation />
-//       {/* <Navigation />
-//       <Ballance />
-//       <CurrencyPage /> */}
-//     </div>
-//   );
-// };
-
-// export default SideBar;

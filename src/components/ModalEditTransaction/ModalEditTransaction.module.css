@@ -1,0 +1,57 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: var(--light-green);
+  border-radius: 8px;
+  padding: 40px 8px 24px 8px;
+  width: 287px;
+  min-height: 548px;
+  position: relative;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 20px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.closeIcon {
+  width: 20px;
+  height: 20px;
+  stroke: var(--color-black);
+}
+
+@media (min-width: 768px) {
+  .modal {
+    width: 540px;
+    min-height: 511px;
+    padding: 40px 65px 46px 65px;
+  }
+
+  .closeBtn {
+    top: 20px;
+    right: 20px;
+  }
+
+  .closeIcon {
+    width: 16px;
+    height: 16px;
+  }
+}

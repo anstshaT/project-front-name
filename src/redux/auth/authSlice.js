@@ -10,6 +10,7 @@ const initialState = {
   user: {
     name: "",
     email: "",
+    balance: "",
   },
   token: "",
   isLoggedIn: false,
@@ -23,7 +24,7 @@ const slice = createSlice({
   initialState,
   extraReducers: (builder) =>
     builder
-      .addCase(registerThunk.pending, (state, action) => {
+      .addCase(registerThunk.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
