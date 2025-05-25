@@ -1,30 +1,25 @@
 .exchange{
-  height: 390px;
-  margin-bottom: 16px;
-  margin-right: 16px;
-  margin-left: 16px;
-  border-radius: 16px;
+  margin: 0 16px auto;
   padding: 16px;
-  gap: 32px;
+  border-radius: 16px;
   background: linear-gradient(to bottom, #355359, #3B5D63);
+  box-sizing: border-box;
+  overflow-x: auto;
 }
 
 @media only screen and (min-width: 768px) {
   .exchange {
     height: 310px;
     width: 336px;
-    margin: 32px;
-    gap: 9px;
+    margin: 0;
   }
 }
  @media only screen and (min-width: 1280px) {
     .exchange {
     width: 448px;
-    height: 362px;
-    margin-left: 27px;
-    margin-right: 24px;
-    margin-bottom: 24px;
-    border-radius: 0 0 16px 16px;
+    background: none;
+    padding: 0 24px 41px 24px;
+    border-radius: 0;
   }
   }
 

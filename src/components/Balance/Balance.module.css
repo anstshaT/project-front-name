@@ -1,12 +1,11 @@
 .container {
-    padding: 24px 16px;
-    border-radius: 16px;
-    margin-top: 24px;
-    margin-bottom: 24px;
-    margin-left: 16px;
-    margin-right: 16px;
-    height: 115px;
-    background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+  width: 100%;
+  padding: 24px 16px;
+  border-radius: 16px;
+  margin-top: 24px; 
+  box-sizing: border-box;
+  overflow-x: auto;
+  background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
 }
 
 .title {
@@ -31,20 +30,20 @@
         padding: 38px 16px;
         width: 338px;
         height: 143px;
-        margin-bottom: 32px;
-        margin-left: 30px;
-        margin-right: 32px;
     }
 }
 
 @media only screen and (min-width: 1280px) {
     .container {
-    width: 451px;
-    height: 107px;
-    padding: 23px 37px;
-    border-radius: 16px 16px 0 0;
+width: 448px;
+height: 107px;
+    background: none;
+    padding: 0 24px;
+    border-radius: 0;
   }
     .title {
+        margin-top: 0;
         margin-bottom: 12px;
+        width: 100%;
     }
 }
