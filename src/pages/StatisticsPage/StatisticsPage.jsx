@@ -3,6 +3,7 @@ import TransactionType from "../../components/TransactionType/TransactionType";
 import Chart from "../../components/Chart/Chart";
 import StatisticsDashboard from "../../components/StatisticsDashboard/StatisticsDashboard";
 import s from "./StatisticsPage.module.css";
+import StatisticsTable from "../../components/StatisticsTable/StatisticsTable";
 
 const StatisticsPage = () => {
   const [transactionType, setTransactionType] = useState("expense");
@@ -37,8 +38,9 @@ const StatisticsPage = () => {
 
       <div className={s.dashboardAndList}>
         <StatisticsDashboard />
-        <div className={s.table}>Statistic Table</div>
-        {/* <StatisticsTable /> */}
+        <div className={s.table}>
+          <StatisticsTable />
+        </div>
       </div>
     </div>
   );
