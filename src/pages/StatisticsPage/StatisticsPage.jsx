@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import TransactionType from "../../components/TransactionType/TransactionType";
-import Chart from "../../components/Chart/Chart";
-import StatisticsDashboard from "../../components/StatisticsDashboard/StatisticsDashboard";
+import TransactionType from "../../components/TransactionType/TransactionType.jsx";
+import Chart from "../../components/Chart/Chart.jsx";
+import StatisticsDashboard from "../../components/StatisticsDashboard/StatisticsDashboard.jsx";
 import s from "./StatisticsPage.module.css";
 
 const StatisticsPage = () => {
