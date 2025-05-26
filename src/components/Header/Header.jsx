@@ -24,6 +24,7 @@ const Header = () => {
   };
 
   const user = useSelector(selectUser);
+  const isRefreshing = useSelector((state) => state.auth.isRefreshing);
 
   return (
     <div className={s.container}>
@@ -35,7 +36,9 @@ const Header = () => {
           <p className={s.logoText}>Spendy</p>
         </div>
         <div className={s.infoWrapper}>
-          <div className={s.nameText}>{user.name || "Name"}</div>
+          <div className={s.nameText}>
+            {isRefreshing ? "..." : user.name || "Name"}
+          </div>
           <div className={s.verticalLine}></div>
           <button
             className={s.logoutWrapper}
