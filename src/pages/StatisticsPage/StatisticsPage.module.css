@@ -1,0 +1,58 @@
+.statisticDiv {
+  width: 288px;
+  background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+  border-radius: 16px;
+  padding: 16px 12px;
+}
+
+.typeAndChart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+}
+
+.toggleText {
+  font-weight: 500;
+  font-size: 16px;
+  color: #fcfcfc;
+  font-family: var(--font-primary);
+}
+
+.dashboardAndList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.table {
+  background: linear-gradient(180deg, #294045 0%, #1e2f33 100%);
+}
+
+/* Tablet */
+
+@media (min-width: 768px) {
+  .statisticDiv {
+    border-radius: 16px;
+    padding: 16px;
+    width: 698px;
+    margin-top: 32px;
+    display: flex;
+    gap: 60px;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1280px) {
+  .statisticDiv {
+    padding: 16px 28px;
+    width: 757px;
+    min-height: 597px;
+  }
+}

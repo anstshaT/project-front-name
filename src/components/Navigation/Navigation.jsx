@@ -1,7 +1,7 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import css from './Navigation.module.css';
-import { useMediaQuery } from 'react-responsive';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import css from "./Navigation.module.css";
+import { useMediaQuery } from "react-responsive";
 
 const Navigation = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -11,12 +11,16 @@ const Navigation = () => {
       <nav className={css.nav}>
         <NavLink
           to="/"
-          className={({ isActive }) => isActive ? `${css.link} ${css.linkActive}` : css.link}
+          className={({ isActive }) =>
+            isActive ? `${css.link} ${css.linkActive}` : css.link
+          }
         >
           <span className={css.iconWrapper}>
             <svg className={css.icon}>
               <use
-                href={`/icons.svg#${isMobile ? 'icon-home1' : 'baseline-home-24px'}`}
+                href={`/icons.svg#${
+                  isMobile ? "icon-home1" : "baseline-home-24px"
+                }`}
               />
             </svg>
           </span>
@@ -24,13 +28,17 @@ const Navigation = () => {
         </NavLink>
 
         <NavLink
-          to="/statistics"
-          className={({ isActive }) => isActive ? `${css.link} ${css.linkActive}` : css.link}
+          to="/statistic"
+          className={({ isActive }) =>
+            isActive ? `${css.link} ${css.linkActive}` : css.link
+          }
         >
           <span className={css.iconWrapper}>
             <svg className={css.icon}>
               <use
-                href={`/icons.svg#${isMobile ? 'icon-statistics' : 'baseline-timeline-24px'}`}
+                href={`/icons.svg#${
+                  isMobile ? "icon-statistics" : "baseline-timeline-24px"
+                }`}
               />
             </svg>
           </span>
@@ -40,7 +48,9 @@ const Navigation = () => {
         {isMobile && (
           <NavLink
             to="/currency"
-            className={({ isActive }) => isActive ? `${css.link} ${css.linkActive}` : css.link}
+            className={({ isActive }) =>
+              isActive ? `${css.link} ${css.linkActive}` : css.link
+            }
           >
             <span className={css.iconWrapper}>
               <svg className={css.icon}>
