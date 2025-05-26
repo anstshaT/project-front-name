@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { statisticsReducer } from "./statistics/statisticsSlice";
 import { authReducer } from "./auth/authSlice";
 import loaderReducer from "./loaderSlice";
 import categoriesReducer from "./categories/categoriesSlice";
@@ -29,6 +30,7 @@ export const store = configureStore({
     categories: categoriesReducer,
     user: userReducer,
     transactions: transactionsReducer,
+    statistics: statisticsReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

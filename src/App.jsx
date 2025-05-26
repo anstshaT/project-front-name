@@ -16,11 +16,13 @@ import { setIsLoading } from "./redux/loaderSlice";
 import { store } from "./redux/store";
 import UserLayout from "./pages/UserLayout/UserLayout";
 import RestrictedRoute from "./RectrictedRoute";
+import { userInfo } from "./redux/user/userOperations";
 
 function App() {
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.loader);
   const isRefreshing = useSelector(selectIsRefreshing);
+  
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -40,6 +42,13 @@ function App() {
 
     foo();
   }, [dispatch]);
+
+  // Виклик userInfo після оновлення користувача
+useEffect(() => {
+  if (store.getState().auth.token) {
+    dispatch(userInfo());
+  }
+}, [dispatch]);
 
   return isRefreshing ? null : (
     <>
