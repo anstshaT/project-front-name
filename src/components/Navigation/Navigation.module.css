@@ -37,8 +37,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 24px;
+  height: 24px;
   border-radius: 2px;
   flex-shrink: 0;
 }
@@ -54,8 +54,8 @@
 }
 
 .icon {
-  width: 38px;
-  height: 38px;
+  width: 18px;
+  height: 19px;
   fill: currentColor;
   display: block;
 }
