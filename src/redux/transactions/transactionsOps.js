@@ -41,7 +41,12 @@ export const editeTransaction = createAsyncThunk(
     try {
       const token = thunkAPI.getState().auth.token;
 
-      const { data } = await api.patch(`/transactions/${body.id}`, body, {
+      const { _id, ...bodyWithoutId } = body;
+
+      console.log("Body id", _id);
+      console.log("Body withot id", bodyWithoutId);
+
+      const { data } = await api.patch(`/transactions/${_id}`, bodyWithoutId, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

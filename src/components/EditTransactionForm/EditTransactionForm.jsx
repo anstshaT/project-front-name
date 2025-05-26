@@ -48,6 +48,10 @@ const EditTransactionForm = ({ transaction, onCancel }) => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
+  if (!categories || !categories.expenses) {
+    return <p>Loading...</p>;
+  }
+
   const categoryOptions =
     categories.expenses?.map((cat) => ({
       value: cat.id,
@@ -56,8 +60,15 @@ const EditTransactionForm = ({ transaction, onCancel }) => {
 
   const categoryObj =
     transaction.transactionType === "expense"
-      ? categories.expenses?.find((cat) => cat.name === transaction.category)
+      ? categories.expenses?.find(
+          (cat) => cat.id === transaction.categoryId._id
+        )
       : null;
+
+  /* console.log("categoryObj", categoryObj); */
+  /*  console.log("Transaction type", transaction.transactionType);
+  console.log("Categories expenses:", categories.expenses);
+  console.log("Transaction categoryId:", transaction.categoryId); */
 
   const initialValues = {
     transactionType: transaction.transactionType,
@@ -68,6 +79,8 @@ const EditTransactionForm = ({ transaction, onCancel }) => {
     date: new Date(transaction.date),
     comment: transaction.comment || "",
   };
+
+  console.log("Initial values", initialValues);
 
   const handleSubmit = async (values, { setSubmitting }) => {
     const changedFields = {
@@ -109,20 +122,24 @@ const EditTransactionForm = ({ transaction, onCancel }) => {
       return;
     }
 
+    console.log("Transaction ID:", transaction._id);
+
     const patchData = {
-      id: transaction._id,
+      _id: transaction._id,
       ...changedFields,
     };
 
-    console.log("🚀 PATCH payload:", patchData);
+    console.log("Patch Data:", patchData);
 
     try {
       await dispatch(editeTransaction(patchData)).unwrap();
+      console.log("🚀 PATCH payload:", patchData);
       // dispatch(updateBalance());
       toast.success("Transaction updated!");
       onCancel();
     } catch (error) {
-      console.log(error.response?.data);
+      /* console.log(error.response?.data); */
+      console.log("🚀 PATCH payload:", patchData);
       console.error("Update error:", error);
       toast.error("Failed to update transaction");
     } finally {
