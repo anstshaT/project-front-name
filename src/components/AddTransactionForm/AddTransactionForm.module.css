@@ -29,9 +29,26 @@
   font-family: var(--font-primary);
 }
 
+.select {
+  width: 271px;
+}
+
+.error {
+  font-size: 12px;
+  color: #b20202;
+}
+
 @media (min-width: 768px) {
   .title {
     margin-bottom: 40px;
+  }
+
+  .selectDiv {
+    margin-bottom: 24px;
+  }
+
+  .select {
+    width: 410px;
   }
 }
 
@@ -59,13 +76,26 @@
   color: #081222;
   font-family: var(--font-primary);
   width: 271px;
+  transition: border 225ms linear;
+}
+
+.input:hover {
+  border: 1px solid #3b5d63;
+}
+
+.input:focus {
+  border: 1px solid #0b6016;
+  color: #0b6016;
+}
+
+.inputError {
+  border: 1px solid #b20202;
+  color: #b20202;
+  border-radius: 8px;
 }
 
 .input::placeholder {
   color: #355359;
-}
-
-.calendar {
 }
 
 .addBtn {

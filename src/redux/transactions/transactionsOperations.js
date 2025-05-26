@@ -7,9 +7,17 @@ export const api = axios.create({
 
 export const createTransaction = createAsyncThunk(
   "transactions/create",
-  async (transactionData, { rejectWithValue }) => {
+  async (transactionData, { rejectWithValue, getState }) => {
     try {
-      const response = await axios.post("/transactions", transactionData);
+      const token = getState().auth.token;
+
+      console.log("Sending transactionData:", transactionData);
+
+      const response = await api.post("/transactions", transactionData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       console.log("CreateTransaction data", response.data);
 

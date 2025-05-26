@@ -48,26 +48,6 @@ export const registerThunk = createAsyncThunk(
   }
 );
 
-/* export const loginThunk = createAsyncThunk(
-  "auth/login",
-  async (body, thunkAPI) => {
-    try {
-      const { data } = await api.post("auth/login", body);
-      const token = data.data.accessToken;
-      setAuthHeader(token);
-
-      const userRes = await api.get("/users/me");
-
-      return {
-        token,
-        user: userRes.data.data,
-      };
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  }
-); */
-
 export const loginThunk = createAsyncThunk(
   "auth/login",
   async (credentials, { rejectWithValue }) => {
