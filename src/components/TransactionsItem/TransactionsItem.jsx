@@ -63,3 +63,4 @@ const TransactionsItem = ({transaction}) => {
      };
 
 export default TransactionsItem;
+
