@@ -10,6 +10,7 @@ const initialState = {
   user: {
     name: "",
     email: "",
+    balance: "",
   },
   token: "",
   isLoggedIn: false,
