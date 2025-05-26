@@ -93,3 +93,35 @@
   background: rgba(255, 255, 255, 0.08);
   font-weight: 500;
 }
+
+/* Tablet */
+
+@media only screen and (min-width: 768px) {
+  .dropdownButton {
+    width: 148px;
+  }
+
+  .dropdownList {
+    width: 148px;
+  }
+
+  .wrapper {
+    padding-top: 0;
+  }
+
+  .dropdownWrapper {
+    width: 148px;
+  }
+}
+
+/* Mobile */
+
+@media only screen and (max-width: 768px) {
+  .dropdownButton {
+    width: 122px;
+  }
+
+  .dropdownList {
+    width: 122px;
+  }
+}
