@@ -8,7 +8,7 @@ const initialState ={
      };
 
 
-     const slice = createSlice({
+     const transactionsSlice = createSlice({
         name: "transactions",
         initialState,
         extraReducers: builder => {
@@ -59,7 +59,7 @@ const initialState ={
 
    
 
-      export const transactionsReducer = slice.reducer;
+    export default transactionsSlice.reducer;
 
 
       
