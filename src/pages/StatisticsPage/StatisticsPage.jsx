@@ -1,12 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+
 import TransactionType from "../../components/TransactionType/TransactionType";
 import Chart from "../../components/Chart/Chart";
 import StatisticsDashboard from "../../components/StatisticsDashboard/StatisticsDashboard";
-import s from "./StatisticsPage.module.css";
 import StatisticsTable from "../../components/StatisticsTable/StatisticsTable";
+import s from "./StatisticsPage.module.css";
+
+import { fetchStatistics } from "../../redux/statistics/statisticsOperations";
 
 const StatisticsPage = () => {
+  const dispatch = useDispatch();
+
   const [transactionType, setTransactionType] = useState("expense");
+
+  // Додай ці два стейти
+  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+
+  // Тригер на фетч
+  useEffect(() => {
+    dispatch(fetchStatistics({ month: selectedMonth, year: selectedYear }));
+  }, [dispatch, selectedMonth, selectedYear]);
 
   return (
     <div className={s.statisticDiv}>
@@ -14,9 +29,7 @@ const StatisticsPage = () => {
         <div className={s.toggle}>
           <p
             className={s.toggleText}
-            onClick={() => {
-              setTransactionType("income");
-            }}
+            onClick={() => setTransactionType("income")}
           >
             Income
           </p>
@@ -26,9 +39,7 @@ const StatisticsPage = () => {
           />
           <p
             className={s.toggleText}
-            onClick={() => {
-              setTransactionType("expense");
-            }}
+            onClick={() => setTransactionType("expense")}
           >
             Expense
           </p>
@@ -37,7 +48,12 @@ const StatisticsPage = () => {
       </div>
 
       <div className={s.dashboardAndList}>
-        <StatisticsDashboard />
+        <StatisticsDashboard
+          selectedMonth={selectedMonth}
+          selectedYear={selectedYear}
+          onMonthChange={setSelectedMonth}
+          onYearChange={setSelectedYear}
+        />
         <div className={s.table}>
           <StatisticsTable />
         </div>
