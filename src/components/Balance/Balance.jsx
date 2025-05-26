@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux";
 import s from "./Balance.module.css";
-import { selectUser } from "../../redux/user/userSelector";
+import { selectUser} from "../../redux/user/userSelector";
 
 
 const Balance = () => {
-  const balance = useSelector(selectUser);
+  const user = useSelector(selectUser);
+  const balance = user?.balance;
 
   console.log("Balance", balance);
 
