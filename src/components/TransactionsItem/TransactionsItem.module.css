@@ -29,7 +29,7 @@
 }
 
 .incomeLine::before {
-  background-color: #24CCA7;
+  background-color: var(--chart-green);
 }
 
 .expenseLine::before {
