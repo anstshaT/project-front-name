@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import css from "./TransactionsList.module.css";
-import transactions from "./transactions.json";
+import { useDispatch, useSelector } from "react-redux";
+import { selectTransactions } from "../../redux/transactions/transactionsSlice";
+import {  fetchTransactions } from "../../redux/transactions/transactionsOps";
 
-const TransactionsList = ({ onEdit, onDelete }) => {
+const TransactionsList = () => {
+  const transactions = useSelector(selectTransactions);
+  const dispatch = useDispatch();
   const [hasScroll, setHasScroll] = useState(false);
 
   useEffect(() => {
-    if (transactions.length > 5) {
-      setHasScroll(true);
-    } else {
-      setHasScroll(false);
-    }
-  }, []); 
+    dispatch(fetchTransactions())
+   }, [dispatch]); 
+
+   useEffect(() => {
+    setHasScroll(transactions.length > 5);
+  }, [transactions]);
+
+  
 
   return (
     <div className={css.listContainer}>
@@ -31,8 +37,6 @@ const TransactionsList = ({ onEdit, onDelete }) => {
               <TransactionsItem
                 key={item.id}
                 transaction={item}
-                onEdit={onEdit}
-                onDelete={onDelete}
                 
               />
             ))}
