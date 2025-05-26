@@ -4,7 +4,6 @@ import loaderReducer from "./loaderSlice";
 import categoriesReducer from "./categories/categoriesSlice";
 import userReducer from "./user/userSlice";
 import transactionsReducer from "./transactions/transactionsSlice";
-
 import {
   persistStore,
   persistReducer,

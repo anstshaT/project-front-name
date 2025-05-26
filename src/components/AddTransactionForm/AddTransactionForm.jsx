@@ -45,7 +45,9 @@ const AddTransactionForm = ({ onCancel }) => {
 
   const FeedbackSchema = Yup.object().shape({
     transactionType: Yup.string().required("Choose transaction type"),
-    categoryId: Yup.mixed().required("Category is required"),
+    ...(transactionType === "expense" && {
+      categoryId: Yup.mixed().required("Category is required"),
+    }),
     summ: Yup.number()
       .required("Amount is required")
       .min(0.01, "Amount must be at least 0.01")
@@ -61,21 +63,15 @@ const AddTransactionForm = ({ onCancel }) => {
 
     const newTransaction = {
       transactionType:
-        values.transactionType === "incomes" ? "income" : "expense",
+        values.transactionType === "income" ? "income" : "expense",
       categoryId:
-        values.transactionType === "incomes"
-          ? incomesOption.value
+        values.transactionType === "income"
+          ? incomesOption[0].value
           : values.categoryId,
       summ: parseFloat(values.summ),
       date: values.date.toISOString().split("T")[0],
       comment: values.comment.trim(),
     };
-
-    /* 
-    if (!isValidObjectId(values.categoryId)) {
-      toast.error("Невірний формат categoryId");
-      return;
-    } */
 
     try {
       await dispatch(createTransaction(newTransaction)).unwrap();
@@ -85,6 +81,8 @@ const AddTransactionForm = ({ onCancel }) => {
       toast.success("Transaction successfully added");
       onCancel();
     } catch (error) {
+      console.log("Income", incomesOption);
+
       console.log(newTransaction);
 
       console.log("Error in addTransaction", error);
@@ -104,27 +102,65 @@ const AddTransactionForm = ({ onCancel }) => {
           <Form className={s.form}>
             <div className={s.toggle}>
               <p
-                className={s.toggleText}
+                className={clsx(s.toggleText, {
+                  active: transactionType === "income",
+                })}
                 onClick={() => {
                   setTransactionType("income");
                   setFieldValue("transactionType", "income");
-                  setFieldValue("category", "Income");
+                  setFieldValue("categoryId", "Incomes");
                 }}
               >
                 Income
               </p>
-              <TransactionType
-                name="transactionType"
-                className={s.toggle}
-                transactionType={transactionType}
-                setTransactionType={setTransactionType}
-              />
+              <div className={s.switchWrapper}>
+                <label
+                  className={`${s.switchBtn} ${
+                    values.transactionType === "income" ? s.incomeActive : ""
+                  }`}
+                >
+                  <Field
+                    type="radio"
+                    name="transactionType"
+                    value="income"
+                    className={s.hiddenRadio}
+                    onClick={() => {
+                      setTransactionType("income");
+                      setFieldValue("categoryId", "Incomes");
+                    }}
+                  />
+                  <svg className={s.icon} width={20} height={20}>
+                    <use href="../../../public/icons.svg#icon-plus"></use>
+                  </svg>
+                </label>
+                <label
+                  className={`${s.switchBtn} ${
+                    values.transactionType === "expense" ? s.expenseActive : ""
+                  }`}
+                >
+                  <Field
+                    type="radio"
+                    name="transactionType"
+                    value="expense"
+                    className={s.hiddenRadio}
+                    onClick={() => {
+                      setTransactionType("expense");
+                      setFieldValue("categoryId", "");
+                    }}
+                  />
+                  <svg className={s.icon} width={20} height={20}>
+                    <use href="../../../public/icons.svg#icon-minus"></use>
+                  </svg>
+                </label>
+              </div>
               <p
-                className={s.toggleText}
+                className={clsx(s.toggleText, {
+                  active: transactionType === "expense",
+                })}
                 onClick={() => {
                   setTransactionType("expense");
                   setFieldValue("transactionType", "expense");
-                  setFieldValue("category", "");
+                  setFieldValue("categoryId", "");
                 }}
               >
                 Expense

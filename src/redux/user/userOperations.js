@@ -5,13 +5,26 @@ export const api = axios.create({
   baseURL: "https://moneyguard-app.onrender.com",
 });
 
-export const userInfo = createAsyncThunk("users/me", async (_, thunkAPI) => {
-  try {
-    const user = await api.get("/users/me");
-    console.log("User info", user);
+export const userInfo = createAsyncThunk(
+  "users/me",
+  async (_, { rejectWithValue, getState }) => {
+    try {
+      const token = getState().auth.token;
+      if (!token) {
+        return rejectWithValue("No auth token found");
+      }
 
-    return user.data.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+      const user = await api.get("/users/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log("User info", user.data.data);
+
+      return user.data.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
   }
-});
+);
