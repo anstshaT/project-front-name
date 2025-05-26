@@ -10,7 +10,7 @@ export const fetchTransactions = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.token;
-      const { data } = await api.get("/transactions",{
+      const { data } = await api.get("/transactions", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -48,7 +48,12 @@ export const editeTransaction = createAsyncThunk(
     try {
       const token = thunkAPI.getState().auth.token;
 
-      const { data } = await api.put(`/transactions/${body.id}`, body, {
+      const { _id, ...bodyWithoutId } = body;
+
+      console.log("Body id", _id);
+      console.log("Body withot id", bodyWithoutId);
+
+      const { data } = await api.patch(`/transactions/${_id}`, bodyWithoutId, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -75,8 +80,6 @@ export const createTransaction = createAsyncThunk(
         },
       });
 
-     
-
       return response.data;
     } catch (error) {
       return rejectWithValue(
@@ -85,5 +88,4 @@ export const createTransaction = createAsyncThunk(
     }
   }
 );
-
 
