@@ -27,9 +27,9 @@ const TransactionsItem = ({ transaction }) => {
       >
         <div className={css.field}>
           <span className={css.label}>Date</span>
-          <span className={css.value}>
-            {new Date(date).toISOString().split("T")[0]}
-          </span>
+
+          <span className={css.value}>{date ? new Date(date).toISOString().split("T")[0] : "N/A"}</span>
+
         </div>
 
         <div className={css.field}>
@@ -60,7 +60,10 @@ const TransactionsItem = ({ transaction }) => {
         <div className={css.actions}>
           <button
             className={css.deleteBtn}
-            onClick={() => dispatch(deleteTransaction(id))}
+            onClick={() => {
+              console.log("Deleting transaction id:", id);
+              dispatch(deleteTransaction(id));
+            }}
           >
             Delete
           </button>
@@ -73,13 +76,16 @@ const TransactionsItem = ({ transaction }) => {
       </li>
 
       {isModalOpen && (
-        <ModalEditTransaction
-          selectedTransaction={transaction}
-          closeModal={() => setIsModalOpen(false)}
-        />
-      )}
+
+  <ModalEditTransaction
+    selectedTransaction={transaction}
+    closeModal={() => setIsModalOpen(false)}
+  />
+)}
+
     </>
   );
 };
 
 export default TransactionsItem;
+

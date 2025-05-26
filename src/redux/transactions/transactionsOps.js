@@ -27,13 +27,20 @@ export const deleteTransaction = createAsyncThunk(
   "transactions/deleteTransaction",
   async (id, thunkAPI) => {
     try {
-      const { data } = await api.delete(`/transactions/${id}`);
-      return data.id;
+      const token = thunkAPI.getState().auth.token;
+      await api.delete(`/transactions/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+
 
 export const editeTransaction = createAsyncThunk(
   "transactions/editTransactions",
@@ -81,3 +88,4 @@ export const createTransaction = createAsyncThunk(
     }
   }
 );
+
