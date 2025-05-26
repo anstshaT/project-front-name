@@ -5,13 +5,14 @@ import { selectUser } from "../../redux/user/userSelector";
 const Balance = () => {
   const user = useSelector(selectUser);
   const balance = user?.balance;
+  const isRefreshing = useSelector((state) => state.auth.isRefreshing);
 
   console.log("Balance", balance);
 
   return (
     <div className={s.container}>
       <h1 className={s.title}>Your balance</h1>
-      <p className={s.balance}>{balance ? balance : 0} UAH</p>
+      <p className={s.balance}>{isRefreshing ? "..." : balance || 0} UAH</p>
     </div>
   );
 };
