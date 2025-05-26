@@ -4,8 +4,9 @@ import s from "./TransactionType.module.css";
 import IconIncome from "../../images/income.svg";
 import IconExpense from "../../images/expense.svg";
 
-const TransactionType = ({ transactionType, setTransactionType }) => {
+const TransactionType = ({ transactionType, setTransactionType, disabled }) => {
   const handleTypeChange = (evt) => {
+    if (disabled) return;
     setTransactionType(evt.target.value);
     console.log(evt.target.value);
   };
@@ -21,6 +22,7 @@ const TransactionType = ({ transactionType, setTransactionType }) => {
             checked={transactionType === "expense"}
             onChange={handleTypeChange}
             className={s.input}
+            disabled={disabled}
           />
         </div>
         <div className={s.radioButton}>
@@ -31,6 +33,7 @@ const TransactionType = ({ transactionType, setTransactionType }) => {
             checked={transactionType === "income"}
             onChange={handleTypeChange}
             className={s.input}
+            disabled={disabled}
           />
         </div>
       </div>
