@@ -130,7 +130,7 @@ const AddTransactionForm = ({ onCancel }) => {
                     }}
                   />
                   <svg className={s.icon} width={20} height={20}>
-                    <use href="../../../public/icons.svg#icon-plus"></use>
+                    <use href="../../../icons.svg#icon-plus"></use>
                   </svg>
                 </label>
                 <label
@@ -149,7 +149,7 @@ const AddTransactionForm = ({ onCancel }) => {
                     }}
                   />
                   <svg className={s.icon} width={20} height={20}>
-                    <use href="../../../public/icons.svg#icon-minus"></use>
+                    <use href="../../../icons.svg#icon-minus"></use>
                   </svg>
                 </label>
               </div>
