@@ -1,8 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import { api } from "../auth/authOperations";
 
-// базова адреса API
 const BASE_URL = "https://moneyguard-app.onrender.com";
 
 export const fetchCategories = createAsyncThunk(
@@ -20,6 +18,8 @@ export const fetchCategories = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       });
+
+      console.log(response.data.data);
 
       return response.data.data;
     } catch (error) {

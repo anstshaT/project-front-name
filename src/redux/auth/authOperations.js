@@ -52,14 +52,14 @@ export const loginThunk = createAsyncThunk(
   "auth/login",
   async (credentials, { rejectWithValue }) => {
     try {
-      const response = await api.post("/auth/login", credentials); // ✅ використовує api з baseURL
+      const response = await api.post("/auth/login", credentials);
       const { accessToken } = response.data.data;
 
-      setAuthHeader(accessToken); // ✅ зберігаємо токен в заголовках axios
+      setAuthHeader(accessToken);
 
       return {
         token: accessToken,
-        user: {}, // якщо потрібно, додай user із бекенду
+        user: {},
       };
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);

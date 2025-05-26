@@ -4,7 +4,7 @@ import { userInfo } from "./userOperations";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    user: null,
+    user: "",
     isLoading: false,
     error: null,
   },
