@@ -45,20 +45,18 @@
 
 .link[href="/"] .iconWrapper {
   background: #fcfcfc50;
-  /* background: linear-gradient(180deg, #294045 0%, #1e2f33 100%); */
 }
 
-.linkActive .link[href="/"] .iconWrapper {
-  color: #fcfcfc;
-  background: #1e2f33;
+.linkActive[href="/"] .iconWrapper {
+  background: #3b5d63; 
 }
 
-.icon {
+/* .icon {
   width: 18px;
-  height: 19px;
+  height: 18px;
   fill: currentColor;
   display: block;
-}
+} */
 
 .label {
   font-size: 18px;
@@ -149,37 +147,6 @@
     fill: currentColor;
   }
 
-  /* .iconHome {
-    width: 44px;
-    height: 44px;
-    border-radius: 6px;
-    background: #fcfcfc50;
-    width: 38px;
-    height: 38px;
-    fill: currentColor;
-    color: #3b5d63;
-  } */
-
-  /* .linkActive .iconHome {
-    color: #fcfcfc;
-    opacity: 1;
-    background: #3b5d63;
-  } */
-
-  /* .iconStatistics {
-    width: 38px;
-    height: 38px;
-    fill: currentColor;
-    color: #4a56e2;
-    opacity: 0.5;
-  } */
-
-  /* .linkActive .iconStatistics {
-    color: #fcfcfc;
-    opacity: 1;
-  } */
-
-
   .currencyIcon {
     width: 28px;
     height: 20px;
@@ -189,18 +156,6 @@
     color: #fcfcfc;
     opacity: 1;
   }
-
-  /* .iconCurrency {
-    width: 30px;
-    height: 22px;
-    fill: currentColor;
-    opacity: 0.5;
-  } */
-
-  /* .linkActive .iconCurrency {
-    color: #fcfcfc;
-    opacity: 1;
-  } */
 
   .label {
     display: none;
@@ -241,6 +196,18 @@
     text-decoration: none;
     margin-left: 16px;
   }
+
+  .icon {
+    width: 18px;
+    height: 19px;
+    fill: currentColor;
+    display: block;
+  }
+
+  .statistic {
+    width: 26px;
+    height: 26px;
+  }
 }
 
 /* ========== DESKTOP (min-width: 1280px) ========== */
@@ -257,5 +224,17 @@
   .nav {
     flex-direction: column;
     gap: 12px;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    display: block;
+  }
+
+  .statistic {
+    width: 26px;
+    height: 26px;
   }
 } 

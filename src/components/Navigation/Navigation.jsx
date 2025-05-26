@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import css from "./Navigation.module.css";
 import { useMediaQuery } from "react-responsive";
+import clsx from 'clsx';
 
 const Navigation = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -34,7 +35,7 @@ const Navigation = () => {
           }
         >
           <span className={css.iconWrapper}>
-            <svg className={css.icon}>
+            <svg className={clsx(css.icon, css.statistic)}>
               <use
                 href={`/icons.svg#${
                   isMobile ? "icon-statistics" : "baseline-timeline-24px"
