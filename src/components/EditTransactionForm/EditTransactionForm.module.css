@@ -36,6 +36,15 @@
 
 .select {
   width: 271px;
+  box-sizing: border-box;
+  height: 44px;
+}
+
+.selectDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
 }
 
 .error {
@@ -58,6 +67,8 @@
   color: #081222;
   font-family: var(--font-primary);
   width: 271px;
+  height: 44px;
+  box-sizing: border-box;
   transition: border 225ms linear;
 }
 
@@ -81,19 +92,30 @@
 }
 
 .commentInput {
-  max-width: 400px;
+  width: 271px;
+  height: 44px;
+  box-sizing: border-box;
+}
+
+.addBtn,
+.cancelBtn {
+  height: 44px;
+  width: 271px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: background 275ms linear, box-shadow 275ms linear,
+    outline 275ms linear, border-color 275ms linear, color 275ms linear;
 }
 
 .addBtn {
   background: var(--bg-lighter);
   color: var(--white);
-  font-size: 18px;
-  font-weight: 500;
-  padding: 11px 79px;
-  width: 271px;
-  border-radius: 8px;
   margin-top: 18px;
-  transition: background 275ms linear, outline 275ms linear;
 }
 
 .addBtn:hover,
@@ -104,13 +126,6 @@
 
 .cancelBtn {
   border: 1px solid #081222;
-  font-size: 18px;
-  font-weight: 500;
-  padding: 11px 79px;
-  width: 271px;
-  border-radius: 8px;
-  transition: background 275ms linear, box-shadow 275ms linear,
-    outline 275ms linear, border-color 275ms linear, color 275ms linear;
 }
 
 .cancelBtn:hover,
@@ -145,19 +160,23 @@
 
   .input {
     width: 193px;
+    height: 44px;
   }
 
   .commentInput {
-    width: 409px;
+    width: 410px;
+    height: 44px;
   }
 
   .addBtn {
     width: 410px;
+    height: 44px;
     margin-top: 26px;
     margin-bottom: 9px;
   }
 
   .cancelBtn {
     width: 410px;
+    height: 44px;
   }
 }

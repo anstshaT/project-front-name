@@ -6,7 +6,14 @@ import ModalEditTransaction from "../ModalEditTransaction/ModalEditTransaction";
 import { useState } from "react";
 
 const TransactionsItem = ({ transaction }) => {
-  const { _id: id, date, transactionType: type, categoryId, comment, summ } = transaction;
+  const {
+    _id: id,
+    date,
+    transactionType: type,
+    categoryId,
+    comment,
+    summ,
+  } = transaction;
   const dispatch = useDispatch();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,7 +27,9 @@ const TransactionsItem = ({ transaction }) => {
       >
         <div className={css.field}>
           <span className={css.label}>Date</span>
-          <span className={css.value}>{new Date(date).toISOString().split("T")[0]}</span>
+          <span className={css.value}>
+            {new Date(date).toISOString().split("T")[0]}
+          </span>
         </div>
 
         <div className={css.field}>
@@ -41,7 +50,10 @@ const TransactionsItem = ({ transaction }) => {
         <div className={css.field}>
           <span className={css.label}>Sum</span>
           <span
-            className={`${css.value} ${type === "income" ? css.income : css.expense}`}>
+            className={`${css.value} ${
+              type === "income" ? css.income : css.expense
+            }`}
+          >
             {summ}
           </span>
         </div>
@@ -62,8 +74,8 @@ const TransactionsItem = ({ transaction }) => {
 
       {isModalOpen && (
         <ModalEditTransaction
-          transaction={transaction}
-          onClose={() => setIsModalOpen(false)}
+          selectedTransaction={transaction}
+          closeModal={() => setIsModalOpen(false)}
         />
       )}
     </>
