@@ -1,6 +1,8 @@
+
 import TransactionsList from "../../components/TransactionsList/TransactionsList";
 import transactions from "../../components/TransactionsList/transactions.json"
 import ButtonAddTransaction from "../../components/ButtonAddTransaction/ButtonAddTransaction.jsx"; 
+
 
 const HomePage = () => {
 
@@ -23,3 +25,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
