@@ -1,0 +1,95 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  font-family: "Circe", sans-serif;
+}
+
+.dropdownWrapper {
+  width: 187px;
+  position: relative;
+}
+
+.dropdownButton {
+  width: 188px;
+  height: 44px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: transparent;
+
+  border: 1px solid #ffffff; /* ← Явна біла рамка */
+
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1;
+  color: #fcfcfc;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+.dropdownButton:hover,
+.dropdownButton:focus-visible {
+  border-color: #7fc8f8;
+}
+
+.arrowIcon {
+  width: 14px;
+  height: 14px;
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+  fill: currentColor;
+  transform: rotate(180deg);
+}
+
+.open {
+  transform: rotate(0deg);
+}
+
+.dropdownList {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 188px;
+  max-height: 157px;
+  background: linear-gradient(180deg, #294045 0%, #1e2f33 100%);
+  border-radius: 8px;
+  padding: 16px 0;
+  z-index: 100;
+  overflow-y: auto;
+  box-sizing: border-box;
+
+  list-style: none;
+  padding-left: 0;
+
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.dropdownList::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Edge */
+}
+
+.dropdownItem {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
+  color: #fcfcfc;
+
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background 0.2s ease, font-weight 0.2s ease;
+}
+
+.dropdownItem:hover {
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 500;
+}
