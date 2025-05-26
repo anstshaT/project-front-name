@@ -50,20 +50,19 @@ export const registerThunk = createAsyncThunk(
 
 export const loginThunk = createAsyncThunk(
   "auth/login",
-  async (body, thunkAPI) => {
+  async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await api.post("auth/login", body);
-      const token = data.data.accessToken;
-      setAuthHeader(token);
+      const response = await api.post("/auth/login", credentials); // ✅ використовує api з baseURL
+      const { accessToken } = response.data.data;
 
-      const userRes = await api.get("/users/me");
+      setAuthHeader(accessToken); // ✅ зберігаємо токен в заголовках axios
 
       return {
-        token,
-        user: userRes.data.data,
+        token: accessToken,
+        user: {}, // якщо потрібно, додай user із бекенду
       };
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
     }
   }
 );

@@ -18,10 +18,12 @@ const AddExpenseForm = () => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
-  const options = (categories.expenses || []).map((expense) => ({
-    value: expense,
-    label: expense,
-  }));
+  
+  const options =
+    categories.expenses?.map((cat) => ({
+      value: cat._id,
+      label: cat.name,
+    })) || [];
 
   const initialValues = {
     category: null,
@@ -31,18 +33,24 @@ const AddExpenseForm = () => {
   };
 
   return (
-    <Formik initialValues={initialValues}>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={(values) => console.log(values)}
+    >
       {({ setFieldValue, values }) => (
         <Form className={s.form}>
+          
           <Select
             id="category"
             name="category"
             options={options}
             styles={SelectStyles}
             placeholder="Category"
-            value={values.categories}
+            value={values.category}
             onChange={(option) => setFieldValue("category", option)}
           />
+
+         
           <div className={s.infoFormDiv}>
             <Field
               type="text"
@@ -60,16 +68,22 @@ const AddExpenseForm = () => {
               calendarClassName={s.calendar}
             />
           </div>
+
+         
           <Field
             type="text"
             name="comment"
             className={clsx(s.input, s.commentInput)}
             placeholder="Comment"
           />
+
+          
           <button type="submit" className={s.addBtn}>
             Add
           </button>
-          <button className={s.cancelBtn}>Cancel</button>
+          <button type="button" className={s.cancelBtn}>
+            Cancel
+          </button>
         </Form>
       )}
     </Formik>
