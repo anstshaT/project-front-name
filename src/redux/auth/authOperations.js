@@ -48,7 +48,7 @@ export const registerThunk = createAsyncThunk(
   }
 );
 
-export const loginThunk = createAsyncThunk(
+/* export const loginThunk = createAsyncThunk(
   "auth/login",
   async (body, thunkAPI) => {
     try {
@@ -64,6 +64,25 @@ export const loginThunk = createAsyncThunk(
       };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+); */
+
+export const loginThunk = createAsyncThunk(
+  "auth/login",
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const response = await api.post("/auth/login", credentials);
+      const { accessToken } = response.data.data;
+
+      setAuthHeader(accessToken);
+
+      return {
+        token: accessToken,
+        user: {},
+      };
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
     }
   }
 );

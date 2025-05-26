@@ -3,6 +3,7 @@ import { authReducer } from "./auth/authSlice";
 import loaderReducer from "./loaderSlice";
 import categoriesReducer from "./categories/categoriesSlice";
 import userReducer from "./user/userSlice";
+import transactionsReducer from "./transactions/transactionsSlice";
 
 import {
   persistStore,
@@ -28,6 +29,7 @@ export const store = configureStore({
     loader: loaderReducer,
     categories: categoriesReducer,
     user: userReducer,
+    transactions: transactionsReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

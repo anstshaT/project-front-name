@@ -1,0 +1,11 @@
+.pieContainer {
+  width: 100%;
+  max-width: 264px;
+  margin: 32px 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .pieContainer {
+    max-width: 288px;
+  }
+}

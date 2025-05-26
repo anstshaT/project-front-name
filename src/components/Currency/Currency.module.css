@@ -1,32 +1,27 @@
-.exchange{
-  height: 390px;
-  margin-bottom: 16px;
-  margin-right: 16px;
-  margin-left: 16px;
-  border-radius: 16px;
+.exchange {
+  margin: 0 16px auto;
   padding: 16px;
-  gap: 32px;
-  background: linear-gradient(to bottom, #355359, #3B5D63);
+  border-radius: 16px;
+  background: linear-gradient(to bottom, #355359, #3b5d63);
+  box-sizing: border-box;
+  /* overflow-x: auto; */
 }
 
 @media only screen and (min-width: 768px) {
   .exchange {
     height: 310px;
     width: 336px;
-    margin: 32px;
-    gap: 9px;
+    margin: 0;
   }
 }
- @media only screen and (min-width: 1280px) {
-    .exchange {
+@media only screen and (min-width: 1280px) {
+  .exchange {
     width: 448px;
-    height: 362px;
-    margin-left: 27px;
-    margin-right: 24px;
-    margin-bottom: 24px;
-    border-radius: 0 0 16px 16px;
+    background: none;
+    padding: 0 24px 41px 24px;
+    border-radius: 0;
   }
-  }
+}
 
 .row {
   display: grid;
@@ -35,7 +30,7 @@
   gap: 10px;
   padding: 16px 12px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background: linear-gradient(to bottom,#294045, #1E2F33);
+  background: linear-gradient(to bottom, #294045, #1e2f33);
   border-radius: 12px;
 }
 
@@ -74,12 +69,11 @@
     height: 135px;
     padding-top: 9px;
     padding-bottom: 16px;
-}
+  }
 }
 
 @media only screen and (min-width: 1280px) {
-    .walletImage {
+  .walletImage {
     height: 166px;
   }
-  }
-
+}

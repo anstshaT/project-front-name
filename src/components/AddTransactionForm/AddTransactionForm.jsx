@@ -12,6 +12,9 @@ import { fetchCategories } from "../../redux/categories/categoriesOperation";
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { SelectStyles } from "../../utils/SelectStyles";
+import { data } from "react-router-dom";
+import toast from "react-hot-toast";
+import { createTransaction } from "../../redux/transactions/transactionsOperations";
 
 const AddTransactionForm = ({ onCancel }) => {
   const [transactionType, setTransactionType] = useState("expense");
@@ -23,20 +26,27 @@ const AddTransactionForm = ({ onCancel }) => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
-  const options = (categories.expenses || []).map((expense) => ({
+  /* const options = (categories.expenses || []).map((expense) => ({
     value: expense,
     label: expense,
-  }));
+  })); */
+
+  const options =
+    categories.expenses?.map((cat) => ({
+      value: cat._id,
+      label: cat.name,
+    })) || [];
 
   const initialValues = {
     transactionType: "expense",
     category: "",
     summ: "",
-    date: null,
+    date: new Date(),
     comment: "",
   };
 
   const FeedbackSchema = Yup.object().shape({
+    transactionType: Yup.string().required("Choose transaction type"),
     category: Yup.mixed()
       .required("Category is required")
       .oneOf(
@@ -57,8 +67,35 @@ const AddTransactionForm = ({ onCancel }) => {
     comment: Yup.string().min(2, "Too short").max(192, "Too long"),
   });
 
-  const handleSubmit = (values, actions) => {
+  const isValidObjectId = (id) => /^[0-9a-fA-F]{24}$/.test(id);
+
+  const handleSubmit = async (values, actions) => {
     console.log(values);
+
+    const newTransaction = {
+      transactionType:
+        values.transactionType === "income" ? "Income" : "Expense",
+      categoryId:
+        values.transactionType === "income" ? "Income" : values.category,
+      summ: parseFloat(values.summ),
+      date: values.date.toISOString().split("T")[0],
+      comment: values.comment.trim(),
+    };
+
+    if (!isValidObjectId(values.categoryId)) {
+      toast.error("Невірний формат categoryId");
+      return;
+    }
+
+    try {
+      await dispatch(createTransaction(newTransaction)).unwrap();
+      actions.resetForm();
+      toast.success("Transaction successfully added");
+      onCancel();
+    } catch (error) {
+      console.log("Error in addTransaction", error.message);
+      toast.error("Something went wrong. Try again");
+    }
   };
 
   return (
@@ -106,8 +143,8 @@ const AddTransactionForm = ({ onCancel }) => {
                 options={options}
                 styles={SelectStyles}
                 placeholder="Category"
-                value={values.categories}
-                onChange={(option) => setFieldValue("category", option)}
+                value={values.category}
+                onChange={(option) => setFieldValue("categoryId", option.value)}
               />
             )}
             <div className={s.infoFormDiv}>
