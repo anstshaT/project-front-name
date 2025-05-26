@@ -96,5 +96,13 @@
       fill="currentColor" />
    </symbol>
 
+   <symbol id="icon-minus" viewBox="0 0 320 32">
+    <path fill="none" stroke="#fcfcfc" style="stroke: var(--color1, #fcfcfc)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="32" d="M0 16l320-0"></path>
+  </symbol>
+  <symbol id="icon-plus2" viewBox="0 0 32 32">
+      <path fill="none" stroke="#fcfcfc" style="stroke: var(--color1, #fcfcfc)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="3.2" d="M16 0v32"></path>
+      <path fill="none" stroke="#fcfcfc" style="stroke: var(--color1, #fcfcfc)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="3.2" d="M0 16h32"></path>
+</symbol>
+
   </defs>
 </svg> 
