@@ -56,10 +56,11 @@ export const loginThunk = createAsyncThunk(
       const { accessToken } = response.data.data;
 
       setAuthHeader(accessToken);
+      const userRes = await api.get("/users/me");
 
       return {
         token: accessToken,
-        user: {},
+        user: userRes.data.data,
       };
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);

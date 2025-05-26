@@ -14,11 +14,9 @@ const StatisticsPage = () => {
 
   const [transactionType, setTransactionType] = useState("expense");
 
-  // Додай ці два стейти
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 
-  // Тригер на фетч
   useEffect(() => {
     dispatch(fetchStatistics({ month: selectedMonth, year: selectedYear }));
   }, [dispatch, selectedMonth, selectedYear]);
