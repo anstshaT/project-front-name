@@ -1,28 +1,27 @@
+.transactionTypeWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 44px;
+  position: relative;
+}
+
+.radio {
+  display: none;
+}
+
+.iconWrapper {
+  cursor: pointer;
+  width: 84px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .sliderIcon {
   width: 84px;
   height: 44px;
-}
-
-.transactionTypeWrapper {
-  background: transparent;
-  display: flex;
-  height: 44px;
-  max-width: 248px;
-  gap: 20px;
-  align-items: center;
-}
-
-.typeToggle {
-  display: flex;
-  padding-top: 5px;
-  position: absolute;
-}
-
-.radioButton {
-  opacity: 0;
-}
-
-.input {
-  width: 44px;
-  height: 44px;
+  pointer-events: none;
 }

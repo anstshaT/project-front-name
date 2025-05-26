@@ -4,48 +4,46 @@ import s from "./TransactionType.module.css";
 import IconIncome from "../../images/income.svg";
 import IconExpense from "../../images/expense.svg";
 
-const TransactionType = ({ transactionType, setTransactionType }) => {
-  const handleTypeChange = (evt) => {
-    setTransactionType(evt.target.value);
-    console.log(evt.target.value);
+const TransactionType = ({ transactionType, setTransactionType, disabled }) => {
+  const handleChange = (type) => {
+    if (disabled || transactionType === type) return;
+    setTransactionType(type);
   };
+
+  const isIncome = transactionType === "income";
+  const currentIcon = isIncome ? IconIncome : IconExpense;
+  const nextType = isIncome ? "expense" : "income";
 
   return (
     <div className={s.transactionTypeWrapper}>
-      <div className={s.typeToggle}>
-        <div className={s.radioButton}>
-          <input
-            type="radio"
-            name="transactionType"
-            value="expense"
-            checked={transactionType === "expense"}
-            onChange={handleTypeChange}
-            className={s.input}
-          />
-        </div>
-        <div className={s.radioButton}>
-          <input
-            type="radio"
-            name="transactionType"
-            value="income"
-            checked={transactionType === "income"}
-            onChange={handleTypeChange}
-            className={s.input}
-          />
-        </div>
-      </div>
+      <input
+        type="radio"
+        name="transactionType"
+        value="income"
+        checked={isIncome}
+        onChange={() => handleChange("income")}
+        className={s.radio}
+        disabled={disabled}
+      />
+      <input
+        type="radio"
+        name="transactionType"
+        value="expense"
+        checked={!isIncome}
+        onChange={() => handleChange("expense")}
+        className={s.radio}
+        disabled={disabled}
+      />
 
       <div
-        className={clsx(s.slider, {
-          income: transactionType === "income",
-          expense: transactionType === "expense",
-        })}
+        className={clsx(s.iconWrapper)}
+        onClick={() => handleChange(nextType)}
       >
-        {transactionType === "income" ? (
-          <img src={IconIncome} alt="Income" className={s.sliderIcon} />
-        ) : (
-          <img src={IconExpense} alt="Expense" className={s.sliderIcon} />
-        )}
+        <img
+          src={currentIcon}
+          alt={isIncome ? "Income" : "Expense"}
+          className={s.sliderIcon}
+        />
       </div>
     </div>
   );

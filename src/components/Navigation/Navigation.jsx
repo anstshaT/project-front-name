@@ -24,7 +24,7 @@ const Navigation = () => {
         </NavLink>
 
         <NavLink
-          to="/statistics"
+          to="/statistic"
           className={({ isActive }) => isActive ? `${css.link} ${css.linkActive}` : css.link}
         >
           <span className={css.iconWrapper}>
