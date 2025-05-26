@@ -2,23 +2,52 @@ import { useEffect, useState } from "react";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import css from "./TransactionsList.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { selectTransactions } from "../../redux/transactions/transactionsSlice";
+import {
+  selectError,
+  selectLoading,
+  selectTransactions,
+} from "../../redux/transactions/transactionsSlice";
 import { fetchTransactions } from "../../redux/transactions/transactionsOps";
+import ClipLoader from "react-spinners/ClipLoader";
+import toast from "react-hot-toast";
 
 const TransactionsList = () => {
-  const transactionsStore = useSelector(selectTransactions);
+  const transactions = useSelector(selectTransactions);
   const dispatch = useDispatch();
   const [hasScroll, setHasScroll] = useState(false);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
 
   useEffect(() => {
     dispatch(fetchTransactions());
   }, [dispatch]);
 
-  const transactions = Array.isArray() ? transactionsStore : [];
+  useEffect(() => {
+    if (Array.isArray(transactions)) {
+      setHasScroll(transactions.length > 5);
+    }
+  }, [transactions]);
 
   useEffect(() => {
-    setHasScroll(transactions.length > 5);
-  }, [transactions.length]);
+    if (error) {
+      toast.error(`Error: ${error}`);
+    }
+  }, [error]);
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "20px",
+          height: "200px",
+        }}
+      >
+        <ClipLoader size={50} color="#36d7b7" />
+      </div>
+    );
+  }
 
   return (
     <div className={css.listContainer}>
@@ -32,11 +61,15 @@ const TransactionsList = () => {
         </div>
 
         <div className={css.scrollContainer}>
-          <ul className={css.listBody}>
-            {transactions.map((item) => (
-              <TransactionsItem key={item.id} transaction={item} />
-            ))}
-          </ul>
+          {Array.isArray(transactions) && transactions.length > 0 ? (
+            <ul className={css.listBody}>
+              {transactions.map((item) => (
+                <TransactionsItem key={item.id} transaction={item} />
+              ))}
+            </ul>
+          ) : (
+            <div className={css.emptyMessage}>No transactions yet.</div>
+          )}
         </div>
       </div>
     </div>
