@@ -11,7 +11,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { SelectStyles } from "../../utils/SelectStyles";
 import toast from "react-hot-toast";
-import { createTransaction } from "../../redux/transactions/transactionsOperations";
+import { createTransaction } from "../../redux/transactions/transactionsOps";
 
 const AddTransactionForm = ({ onCancel }) => {
   const [transactionType, setTransactionType] = useState("expense");
@@ -61,9 +61,9 @@ const AddTransactionForm = ({ onCancel }) => {
 
     const newTransaction = {
       transactionType:
-        values.transactionType === "incomes" ? "income" : "expenses",
+        values.transactionType === "incomes" ? "income" : "expense",
       categoryId:
-        values.transactionType === "income"
+        values.transactionType === "incomes"
           ? incomesOption.value
           : values.categoryId,
       summ: parseFloat(values.summ),

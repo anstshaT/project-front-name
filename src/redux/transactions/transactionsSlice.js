@@ -3,16 +3,16 @@ import {
   deleteTransaction,
   editeTransaction,
   fetchTransactions,
+  createTransaction,
 } from "./transactionsOps";
-import { createTransaction } from "./transactionsOperations";
 
 const initialState = {
   items: [],
-  isLoading: false,
+  loading: false,
   error: null,
 };
 
-const slice = createSlice({
+const transactionsSlice = createSlice({
   name: "transactions",
   initialState,
   extraReducers: (builder) => {
@@ -55,15 +55,18 @@ const slice = createSlice({
         state.error = action.payload;
       })
       .addCase(createTransaction.pending, (state) => {
-        state.isLoading = true;
+        state.loading = true;
         state.error = null;
       })
       .addCase(createTransaction.fulfilled, (state, action) => {
-        state.isLoading = false;
+        if (!Array.isArray(state.items)) {
+          state.items = [];
+        }
+        state.loading = false;
         state.items.push(action.payload);
       })
       .addCase(createTransaction.rejected, (state, action) => {
-        state.isLoading = false;
+        state.loading = false;
         state.error = action.payload;
       });
   },
@@ -73,4 +76,4 @@ export const selectTransactions = (state) => state.transactions.items;
 export const selectLoading = (state) => state.transactions.loading;
 export const selectError = (state) => state.transactions.error;
 
-export const transactionsReducer = slice.reducer;
+export default transactionsSlice.reducer;
