@@ -48,6 +48,7 @@ const TransactionsList = () => {
       </div>
     );
   }
+  console.log("Transactions from Redux:", transactions);
 
   return (
     <div className={css.listContainer}>
@@ -64,7 +65,7 @@ const TransactionsList = () => {
           {Array.isArray(transactions) && transactions.length > 0 ? (
             <ul className={css.listBody}>
               {transactions.map((item) => (
-                <TransactionsItem key={item.id} transaction={item} />
+                <TransactionsItem key={item._id} transaction={item} />
               ))}
             </ul>
           ) : (
@@ -77,3 +78,4 @@ const TransactionsList = () => {
 };
 
 export default TransactionsList;
+
