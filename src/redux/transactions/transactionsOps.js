@@ -27,19 +27,33 @@ export const deleteTransaction = createAsyncThunk(
   "transactions/deleteTransaction",
   async (id, thunkAPI) => {
     try {
-      const { data } = await api.delete(`/transactions/${id}`);
-      return data.id;
+      const token = thunkAPI.getState().auth.token;
+      await api.delete(`/transactions/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
+
 export const editeTransaction = createAsyncThunk(
   "transactions/editTransactions",
   async (body, thunkAPI) => {
     try {
-      const { data } = await api.put(`/transactions/${body.id}`, body);
+      const token = thunkAPI.getState().auth.token;
+
+      const { data } = await api.put(`/transactions/${body.id}`, body, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -71,4 +85,5 @@ export const createTransaction = createAsyncThunk(
     }
   }
 );
+
 
