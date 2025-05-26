@@ -15,7 +15,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { transactionsReducer } from "./transactions/transactionsSlice";
+import transactionsReducer from "./transactions/transactionsSlice";
 
 const authPersistConfig = {
   key: "auth",
