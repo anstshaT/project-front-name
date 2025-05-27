@@ -45,14 +45,20 @@
     display: flex;
     gap: 60px;
   }
+
+  .dashboardAndList {
+  }
 }
 
 /* Desktop */
 
 @media (min-width: 1280px) {
   .statisticDiv {
-    padding: 16px 28px;
     width: 757px;
     min-height: 597px;
+    gap: 16px;
+  }
+  .dashboardAndList {
+    width: 395px;
   }
 }

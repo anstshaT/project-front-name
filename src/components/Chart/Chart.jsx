@@ -2,8 +2,12 @@ import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import s from "./Chart.module.css";
 import { useSelector } from "react-redux";
 import { selectTransactions } from "../../redux/transactions/transactionsSelector";
+import {
+  balanceSelector,
+  totalIncomeSelector,
+} from "../../redux/statistics/statisticsSelectors";
 
-const incomeColors = ["#24CCA7", "#DFAD3F", "#FFD8D0"];
+const incomeColors = ["#DFAD3F"];
 const expenseColors = [
   "#DFAD3F",
   "#FFD8D0",
@@ -18,19 +22,14 @@ const expenseColors = [
 
 const Chart = ({ transactionType }) => {
   const transactions = useSelector(selectTransactions);
-  const statistics = useSelector((state) => state.statistics.data);
 
-  console.log("Chart", statistics.income);
+  const totalIncome = useSelector(totalIncomeSelector) || 0;
+  const balance = useSelector(balanceSelector) || 0;
 
-  const totalIncome = statistics.totalIncome || 0;
-  const balance = statistics.balance || 0;
-
-  // Перевіримо в консоль
   console.log("All transactions:", transactions);
 
-  // Обробка згідно структури
   const groupedData = transactions
-    .filter((tx) => tx.transactionType === transactionType) // 👈 фільтрація по transactionType
+    .filter((tx) => tx.transactionType === transactionType)
     .reduce((acc, tx) => {
       const category = tx.categories;
       const amount = Number(tx.summ);
