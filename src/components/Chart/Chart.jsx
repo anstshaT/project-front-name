@@ -3,7 +3,7 @@ import s from "./Chart.module.css";
 import { useSelector } from "react-redux";
 import { selectTransactions } from "../../redux/transactions/transactionsSelector";
 
-const incomeColors = ["#24CCA7", "#DFAD3F", "#FFD8D0"];
+const incomeColors = ["#DFAD3F"];
 const expenseColors = [
   "#DFAD3F",
   "#FFD8D0",
@@ -25,12 +25,10 @@ const Chart = ({ transactionType }) => {
   const totalIncome = statistics.totalIncome || 0;
   const balance = statistics.balance || 0;
 
-  // Перевіримо в консоль
   console.log("All transactions:", transactions);
 
-  // Обробка згідно структури
   const groupedData = transactions
-    .filter((tx) => tx.transactionType === transactionType) // 👈 фільтрація по transactionType
+    .filter((tx) => tx.transactionType === transactionType)
     .reduce((acc, tx) => {
       const category = tx.categories;
       const amount = Number(tx.summ);
