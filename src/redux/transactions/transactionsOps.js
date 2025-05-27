@@ -41,7 +41,6 @@ export const deleteTransaction = createAsyncThunk(
   }
 );
 
-
 export const editeTransaction = createAsyncThunk(
   "transactions/editTransactions",
   async (body, thunkAPI) => {
@@ -88,4 +87,3 @@ export const createTransaction = createAsyncThunk(
     }
   }
 );
-
