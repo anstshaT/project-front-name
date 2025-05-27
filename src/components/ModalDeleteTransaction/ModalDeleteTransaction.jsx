@@ -46,8 +46,14 @@ const ModalDeleteTransaction = ({ id, closeModal }) => {
         <button
           className={clsx(s.btn, s.delete)}
           onClick={() => {
-            dispatch(deleteTransaction(id));
-            dispatch(userInfo());
+            dispatch(deleteTransaction(id))
+              .then(() => {
+                dispatch(userInfo());
+                closeModal();
+              })
+              .catch((error) => {
+                console.error("Error deleting transaction:", error);
+              });
           }}
         >
           Delete
