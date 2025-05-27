@@ -17,12 +17,12 @@ import { store } from "./redux/store";
 import UserLayout from "./pages/UserLayout/UserLayout";
 import RestrictedRoute from "./RectrictedRoute";
 import { userInfo } from "./redux/user/userOperations";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 function App() {
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.loader);
   const isRefreshing = useSelector(selectIsRefreshing);
-  
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -44,11 +44,11 @@ function App() {
   }, [dispatch]);
 
   // Виклик userInfo після оновлення користувача
-useEffect(() => {
-  if (store.getState().auth.token) {
-    dispatch(userInfo());
-  }
-}, [dispatch]);
+  useEffect(() => {
+    if (store.getState().auth.token) {
+      dispatch(userInfo());
+    }
+  }, [dispatch]);
 
   return isRefreshing ? null : (
     <>
@@ -82,7 +82,7 @@ useEffect(() => {
             <Route path="/statistic" element={<StatisticsPage />} />
             <Route path="/currency" element={<CurrencyPage />} />
           </Route>
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
       <Toaster position="top-center" reverseOrder={false} />
