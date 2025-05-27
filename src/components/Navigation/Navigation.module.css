@@ -37,18 +37,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 24px;
+  height: 24px;
   border-radius: 2px;
-  background: linear-gradient(180deg, #294045 0%, #1e2f33 100%);
   flex-shrink: 0;
 }
 
 .icon {
+  display: block;
   width: 38px;
   height: 38px;
   fill: currentColor;
-  display: block;
+  color: #3b5d63;
+}
+
+.link[href="/"] .iconWrapper {
+  background: linear-gradient(#294045, #1e2f33);
+  color: #fcfcfc50;
+}
+
+.linkActive[href="/"] .iconWrapper {
+  background: #3b5d63; 
 }
 
 .label {
@@ -59,6 +68,28 @@
   line-height: 1;
   margin: 0;
   display: block;
+}
+
+/* НЕактивна іконка */
+.link .icon {
+  color: #fcfcfc50;
+}
+
+/* Активна іконка */
+.linkActive .icon {
+  background: linear-gradient(#294045, #1e2f33);
+  color: #fcfcfc;
+}
+
+/* НЕактивний текст */
+.link .label {
+  color: #fcfcfc50;
+}
+
+/* Активний текст */
+.linkActive .label {
+  color: #fcfcfc;
+  font-weight: 700;
 }
 
 /* ========== MOBILE (max-width: 767px) ========== */
@@ -72,7 +103,6 @@
     gap: 32px;
     width: fit-content;
     margin: 24px 64px;
-    /* width: 196px; */
     height: 44px;
     background: none;
     padding: 0;
@@ -85,11 +115,20 @@
     justify-content: center;
     gap: 32px;
     width: fit-content;
-    /* width: 196px; */
     height: 44px;
   }
 
-  .iconWrapper {
+  .link {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+    border-radius: 6px;
+  }
+
+  .link .iconWrapper {
     width: 44px;
     height: 44px;
     border-radius: 6px;
@@ -98,30 +137,40 @@
     justify-content: center;
     background: #fcfcfc50;
   }
+  /* .iconWrapper {
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fcfcfc50;
+  } */
   
-  .active .iconWrapper {
+  .linkActive .iconWrapper {
     background: #3b5d63;
-    /* background: var(--background-color-gradient-button); */
   }
 
-  .icon {
+  .link .icon {
     width: 38px;
     height: 38px;
     fill: currentColor;
+    color: #3b5d63;
+  }
+
+  .linkActive .icon {
     color: #fcfcfc;
   }
 
   .currencyIcon {
-    width: 30px;
-    height: 22px;
-    /* width: 23px; */
-    /* height: 13px; */
-    color: #3b5d63;
+    width: 28px;
+    height: 20px;
+    color: #1e2f33;
   }
 
   .active .currencyIcon {
-    background: #fcfcfc;
-    /* background: var(--background-color-gradient-button); */
+    color: #fcfcfc;
+    opacity: 1;
   }
 
   .label {
@@ -151,6 +200,7 @@
     gap: 24px;
     display: flex;
     width: 100%;
+    justify-content: center;
   }
 
   .link {
@@ -162,6 +212,22 @@
     text-decoration: none;
     margin-left: 16px;
   }
+
+  .icon {
+    width: 18px;
+    height: 19px;
+    fill: currentColor;
+    display: block;
+  }
+
+  .statistic {
+    width: 26px;
+    height: 26px;
+  }
+
+  .linkActive .iconWrapper .statistic {
+    background: none;
+  }
 }
 
 /* ========== DESKTOP (min-width: 1280px) ========== */
@@ -169,8 +235,6 @@
 @media (min-width: 1280px) {
   .container {
     width: 451px;
-    /* height: 92px; */
-    /* padding: 16px 32px; */
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
@@ -181,4 +245,20 @@
     flex-direction: column;
     gap: 12px;
   }
-}
+
+  .icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    display: block;
+  }
+
+  .statistic {
+    width: 26px;
+    height: 26px;
+  }
+
+  .linkActive .iconWrapper .statistic {
+    background: none;
+  }
+} 
