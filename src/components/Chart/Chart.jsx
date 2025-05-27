@@ -3,7 +3,6 @@ import s from "./Chart.module.css";
 import { useSelector } from "react-redux";
 import { selectTransactions } from "../../redux/transactions/transactionsSelector";
 import {
-  balanceSelector,
   totalExpenseSelector,
   totalIncomeSelector,
 } from "../../redux/statistics/statisticsSelectors";
