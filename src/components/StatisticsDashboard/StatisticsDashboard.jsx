@@ -23,6 +23,9 @@ const StatisticsDashboard = ({
   const currentYearLabel =
     years.find((y) => y.value === selectedYear)?.label || "Year";
 
+  console.log("Month", selectedMonth);
+  console.log("Year", selectedYear);
+
   return (
     <div className={css.wrapper}>
       {/* Month Selector */}

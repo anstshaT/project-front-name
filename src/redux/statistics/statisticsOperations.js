@@ -7,14 +7,11 @@ export const fetchStatistics = createAsyncThunk(
     try {
       const token = getState().auth.token;
 
-      const response = await axios.get(
-        `/statistics?month=${month}&year=${year}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.get(`/statistics/${year}-${month}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       return response.data;
     } catch (error) {

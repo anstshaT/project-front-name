@@ -4,7 +4,11 @@ import { fetchStatistics } from "./statisticsOperations";
 const statisticsSlice = createSlice({
   name: "statistics",
   initialState: {
-    data: null,
+    income: [],
+    expense: [],
+    totalIncome: 0,
+    totalExpense: 0,
+    balance: 0,
     isLoading: false,
     error: null,
   },
@@ -17,7 +21,11 @@ const statisticsSlice = createSlice({
       })
       .addCase(fetchStatistics.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.data = action.payload;
+        state.income = action.payload.income;
+        state.expense = action.payload.expense;
+        state.totalIncome = action.payload.totalIncome;
+        state.totalExpense = action.payload.totalExpense;
+        state.balance = action.payload.balance;
       })
       .addCase(fetchStatistics.rejected, (state, action) => {
         state.isLoading = false;
