@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import css from "./Navigation.module.css";
 import { useMediaQuery } from "react-responsive";
@@ -29,6 +28,7 @@ const Navigation = () => {
 
         <NavLink
           to="/statistic"
+
           className={({ isActive }) =>
             isActive ? `${css.link} ${css.linkActive}` : css.link
           }
