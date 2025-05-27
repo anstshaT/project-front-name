@@ -10,10 +10,14 @@ import { toast } from "react-hot-toast";
 
 import s from "./EditTransactionForm.module.css";
 import { fetchCategories } from "../../redux/categories/categoriesOperation";
-import { editeTransaction } from "../../redux/transactions/transactionsOps";
+import {
+  editeTransaction,
+  fetchTransactions,
+} from "../../redux/transactions/transactionsOps";
 // import { updateBalance } from "../../redux/balance/balanceSlice";
 import { SelectStyles } from "../../utils/SelectStyles";
 import TransactionType from "../TransactionType/TransactionType";
+import { userInfo } from "../../redux/user/userOperations";
 
 const getValidationSchema = (values) => {
   return Yup.object({
@@ -135,6 +139,9 @@ const EditTransactionForm = ({ transaction, onCancel }) => {
       await dispatch(editeTransaction(patchData)).unwrap();
       console.log("🚀 PATCH payload:", patchData);
       // dispatch(updateBalance());
+      dispatch(fetchTransactions());
+      dispatch(userInfo());
+
       toast.success("Transaction updated!");
       onCancel();
     } catch (error) {
