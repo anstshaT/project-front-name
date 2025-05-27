@@ -14,26 +14,21 @@ const StatisticsPage = () => {
 
   const [transactionType, setTransactionType] = useState("expense");
 
-  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
+  const [selectedMonth, setSelectedMonth] = useState(
+    String(new Date().getMonth() + 1).padStart(2, "0")
+  );
+
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 
   const incomeData = useSelector((state) => state.statistics.income) || [];
   const expenseData = useSelector((state) => state.statistics.expense) || [];
 
-  const handleMonthChange = (month) => {
-    setSelectedMonth(month);
-    dispatch(fetchStatistics({ month, year: selectedYear })); // Виклик API
-  };
-
-  // Викликаємо dispatch при зміні року
-  const handleYearChange = (year) => {
-    setSelectedYear(year);
-    dispatch(fetchStatistics({ month: selectedMonth, year })); // Виклик API
-  };
+  const handleMonthChange = (month) => setSelectedMonth(month);
+  const handleYearChange = (year) => setSelectedYear(year);
 
   useEffect(() => {
     dispatch(fetchStatistics({ month: selectedMonth, year: selectedYear }));
-  }, [dispatch]);
+  }, [dispatch, selectedMonth, selectedYear]);
 
   return (
     <div className={s.statisticDiv}>
