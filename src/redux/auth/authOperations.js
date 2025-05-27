@@ -97,3 +97,32 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+export const setupAuthInterceptor = (dispatch, getState) => {
+  api.interceptors.response.use(
+    (response) => response,
+    async (error) => {
+      const originalRequest = error.config;
+      if (
+        error.response &&
+        error.response.status === 401 &&
+        originalRequest &&
+        !originalRequest._retry &&
+        !originalRequest.url.includes("/auth/login") &&
+        !originalRequest.url.includes("/auth/register") &&
+        !originalRequest.url.includes("/auth/logout")
+      ) {
+        console.warn(
+          "Interceptor: Отримано 401 помилку. Виконується вихід користувача. Запит на:",
+          originalRequest.url
+        );
+
+        const currentAuthState = getState().auth;
+        if (currentAuthState.isLoggedIn) {
+          await dispatch(logoutThunk());
+        }
+      }
+      return Promise.reject(error);
+    }
+  );
+};
