@@ -1,6 +1,6 @@
 import s from "./StatisticsTable.module.css";
 
-const incomeColors = ["#24CCA7", "#DFAD3F", "#FFD8D0"];
+const incomeColors = ["#DFAD3F"];
 const expenseColors = [
   "#DFAD3F",
   "#FFD8D0",
@@ -20,14 +20,12 @@ const formatSum = (sum) =>
   });
 
 const StatisticsTable = ({ isIncome, data = [] }) => {
-  // Використовуємо data з пропсів, а не з редаксу
   const colors = isIncome ? incomeColors : expenseColors;
 
   if (!data.length) {
     return <p className={s.noData}>No statistics available</p>;
   }
 
-  // Підрахунок загальної суми по цій категорії
   const total = data.reduce((acc, item) => acc + item.total, 0);
 
   return (
