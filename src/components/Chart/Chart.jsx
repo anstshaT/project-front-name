@@ -1,20 +1,36 @@
-import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
-import s from './Chart.module.css';
-import { useSelector } from 'react-redux';
-import { selectTransactions } from '../../redux/transactions/transactionsSelector';
+import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import s from "./Chart.module.css";
+import { useSelector } from "react-redux";
+import { selectTransactions } from "../../redux/transactions/transactionsSelector";
 
-const incomeColors = ['#24CCA7', '#DFAD3F', '#FFD8D0'];
-const expenseColors = ['#DFAD3F', '#FFD8D0', '#FD9498', '#C5BAFF', '#6E78E8', '#4A56E2', '#81E1FF', '#24CCA7', '#00AD84'];
+const incomeColors = ["#24CCA7", "#DFAD3F", "#FFD8D0"];
+const expenseColors = [
+  "#DFAD3F",
+  "#FFD8D0",
+  "#FD9498",
+  "#C5BAFF",
+  "#6E78E8",
+  "#4A56E2",
+  "#81E1FF",
+  "#24CCA7",
+  "#00AD84",
+];
 
 const Chart = ({ transactionType }) => {
   const transactions = useSelector(selectTransactions);
+  const statistics = useSelector((state) => state.statistics.data);
+
+  console.log("Chart", statistics.income);
+
+  const totalIncome = statistics.totalIncome || 0;
+  const balance = statistics.balance || 0;
 
   // Перевіримо в консоль
   console.log("All transactions:", transactions);
 
   // Обробка згідно структури
   const groupedData = transactions
-    .filter(tx => tx.transactionType === transactionType) // 👈 фільтрація по transactionType
+    .filter((tx) => tx.transactionType === transactionType) // 👈 фільтрація по transactionType
     .reduce((acc, tx) => {
       const category = tx.categories;
       const amount = Number(tx.summ);
@@ -32,7 +48,7 @@ const Chart = ({ transactionType }) => {
     value,
   }));
 
-  const COLORS = transactionType === 'income' ? incomeColors : expenseColors;
+  const COLORS = transactionType === "income" ? incomeColors : expenseColors;
 
   if (chartData.length === 0) {
     return <p className={s.noData}>Немає даних для відображення</p>;
@@ -42,6 +58,20 @@ const Chart = ({ transactionType }) => {
     <div className={s.pieContainer}>
       <ResponsiveContainer width="100%" aspect={1}>
         <PieChart>
+          <text
+            x="50%"
+            y="50%"
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fontSize="20"
+            fontWeight="bold"
+            fill="#fcfcfc"
+          >
+            {"₴ " +
+              (transactionType === "expense"
+                ? balance.toLocaleString()
+                : totalIncome.toLocaleString())}
+          </text>
           <Pie
             data={chartData}
             innerRadius="70%"
@@ -52,7 +82,10 @@ const Chart = ({ transactionType }) => {
             stroke="none"
           >
             {chartData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
             ))}
           </Pie>
         </PieChart>
