@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import TransactionType from "../../components/TransactionType/TransactionType";
 import Chart from "../../components/Chart/Chart";
@@ -16,6 +16,9 @@ const StatisticsPage = () => {
 
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+
+  const incomeData = useSelector((state) => state.statistics.income) || [];
+  const expenseData = useSelector((state) => state.statistics.expense) || [];
 
   const handleMonthChange = (month) => {
     setSelectedMonth(month);
@@ -64,7 +67,10 @@ const StatisticsPage = () => {
           onYearChange={handleYearChange}
         />
         <div className={s.table}>
-          <StatisticsTable />
+          <StatisticsTable
+            isIncome={transactionType === "income"}
+            data={transactionType === "income" ? incomeData : expenseData}
+          />
         </div>
       </div>
     </div>
