@@ -17,9 +17,20 @@ const StatisticsPage = () => {
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 
+  const handleMonthChange = (month) => {
+    setSelectedMonth(month);
+    dispatch(fetchStatistics({ month, year: selectedYear })); // Виклик API
+  };
+
+  // Викликаємо dispatch при зміні року
+  const handleYearChange = (year) => {
+    setSelectedYear(year);
+    dispatch(fetchStatistics({ month: selectedMonth, year })); // Виклик API
+  };
+
   useEffect(() => {
     dispatch(fetchStatistics({ month: selectedMonth, year: selectedYear }));
-  }, [dispatch, selectedMonth, selectedYear]);
+  }, [dispatch]);
 
   return (
     <div className={s.statisticDiv}>
@@ -49,8 +60,8 @@ const StatisticsPage = () => {
         <StatisticsDashboard
           selectedMonth={selectedMonth}
           selectedYear={selectedYear}
-          onMonthChange={setSelectedMonth}
-          onYearChange={setSelectedYear}
+          onMonthChange={handleMonthChange}
+          onYearChange={handleYearChange}
         />
         <div className={s.table}>
           <StatisticsTable />
