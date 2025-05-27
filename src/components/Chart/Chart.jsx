@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { selectTransactions } from "../../redux/transactions/transactionsSelector";
 import {
   balanceSelector,
+  totalExpenseSelector,
   totalIncomeSelector,
 } from "../../redux/statistics/statisticsSelectors";
 
@@ -24,7 +25,7 @@ const Chart = ({ transactionType }) => {
   const transactions = useSelector(selectTransactions);
 
   const totalIncome = useSelector(totalIncomeSelector) || 0;
-  const balance = useSelector(balanceSelector) || 0;
+  const totalExpense = useSelector(totalExpenseSelector) || 0;
 
   console.log("All transactions:", transactions);
 
@@ -68,7 +69,7 @@ const Chart = ({ transactionType }) => {
           >
             {"₴ " +
               (transactionType === "expense"
-                ? balance.toLocaleString()
+                ? totalExpense.toLocaleString()
                 : totalIncome.toLocaleString())}
           </text>
           <Pie
