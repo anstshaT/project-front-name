@@ -211,16 +211,22 @@ const AddTransactionForm = ({ onCancel }) => {
                 <ErrorMessage name="summ" component="p" className={s.error} />
               </div>
               <div className={s.dateDiv}>
-                <DatePicker
-                  selected={startDate}
-                  onChange={(date) => {
-                    setStartDate(date);
-                    setFieldValue("date", date);
-                  }}
-                  className={s.input}
-                  calendarClassName={s.calendar}
-                  name="date"
-                />
+                <div className={s.datePickerWrapper}>
+                  <DatePicker
+                    selected={startDate}
+                    onChange={(date) => {
+                      setStartDate(date);
+                      setFieldValue("date", date);
+                    }}
+                    className={s.input}
+                    calendarClassName={s.calendar}
+                    name="date"
+                    dateFormat="dd.MM.yyyy"
+                  />
+                  <svg width="24" height="24" className={s.iconCalendar}>
+                    <use href="/icons.svg#icon-date-range"></use>
+                  </svg>
+                </div>
                 <ErrorMessage name="date" component="p" className={s.error} />
               </div>
             </div>
