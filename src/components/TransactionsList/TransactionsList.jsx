@@ -48,7 +48,10 @@ const TransactionsList = () => {
       </div>
     );
   }
-  console.log("Transactions from Redux:", transactions);
+  console.log(
+    "Transactions IDs:",
+    transactions.map((item) => item._id)
+  );
 
   return (
     <div className={css.listContainer}>
@@ -78,4 +81,3 @@ const TransactionsList = () => {
 };
 
 export default TransactionsList;
-

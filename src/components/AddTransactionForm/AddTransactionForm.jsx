@@ -11,7 +11,11 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { SelectStyles } from "../../utils/SelectStyles";
 import toast from "react-hot-toast";
-import { createTransaction } from "../../redux/transactions/transactionsOps";
+import {
+  createTransaction,
+  fetchTransactions,
+} from "../../redux/transactions/transactionsOps";
+import { userInfo } from "../../redux/user/userOperations";
 
 const AddTransactionForm = ({ onCancel }) => {
   const [transactionType, setTransactionType] = useState("expense");
@@ -77,8 +81,11 @@ const AddTransactionForm = ({ onCancel }) => {
       await dispatch(createTransaction(newTransaction)).unwrap();
       console.log("New Transaction", newTransaction);
 
-      actions.resetForm();
+      dispatch(fetchTransactions());
+      dispatch(userInfo());
+
       toast.success("Transaction successfully added");
+      actions.resetForm();
       onCancel();
     } catch (error) {
       console.log("Income", incomesOption);
@@ -130,7 +137,7 @@ const AddTransactionForm = ({ onCancel }) => {
                     }}
                   />
                   <svg className={s.icon} width={20} height={20}>
-                    <use href="../../../public/icons.svg#icon-plus"></use>
+                    <use href="../../../icons.svg#icon-plus"></use>
                   </svg>
                 </label>
                 <label
@@ -149,7 +156,7 @@ const AddTransactionForm = ({ onCancel }) => {
                     }}
                   />
                   <svg className={s.icon} width={20} height={20}>
-                    <use href="../../../public/icons.svg#icon-minus"></use>
+                    <use href="../../../icons.svg#icon-minus"></use>
                   </svg>
                 </label>
               </div>

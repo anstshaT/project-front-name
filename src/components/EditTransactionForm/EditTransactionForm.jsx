@@ -10,32 +10,38 @@ import { toast } from "react-hot-toast";
 
 import s from "./EditTransactionForm.module.css";
 import { fetchCategories } from "../../redux/categories/categoriesOperation";
-import { editeTransaction } from "../../redux/transactions/transactionsOps";
-//import { updateBalance } from "../../redux/balance/balanceSlice";
+import {
+  editeTransaction,
+  fetchTransactions,
+} from "../../redux/transactions/transactionsOps";
+// import { updateBalance } from "../../redux/balance/balanceSlice";
 import { SelectStyles } from "../../utils/SelectStyles";
 import TransactionType from "../TransactionType/TransactionType";
+import { userInfo } from "../../redux/user/userOperations";
 
-const validationSchema = Yup.object({
-  category: Yup.object().when("type", {
-    is: "expense",
-    then: Yup.object().required("Category is required"),
-    otherwise: Yup.mixed().notRequired(),
-  }),
-  summ: Yup.number()
-    .typeError("Must be a number")
-    .positive("Amount must be greater than 0")
-    .required("Amount is required")
-    .test(
-      "max-decimals",
-      "Use up to 2 decimals (e.g., 650.00)",
-      (value) =>
-        value === undefined || /^\d+(\.\d{1,2})?$/.test(value.toString())
-    ),
-  date: Yup.date()
-    .required("Date is required")
-    .max(new Date(), "Cannot be in the future"),
-  comment: Yup.string().max(100, "Max 100 characters"),
-});
+const getValidationSchema = (values) => {
+  return Yup.object({
+    transactionType: Yup.string().required(),
+    category:
+      values.transactionType === "expense"
+        ? Yup.object({
+            value: Yup.string().required("Category is required"),
+            label: Yup.string().required("Category label is required"),
+          }).required("Category is required")
+        : Yup.mixed().notRequired(),
+    summ: Yup.number()
+      .typeError("Must be a number")
+      .positive("Amount must be greater than 0")
+      .required("Amount is required")
+      .test("max-decimals", "Use up to 2 decimals", (value) =>
+        /^\d+(\.\d{1,2})?$/.test(value?.toString() ?? "")
+      ),
+    date: Yup.date()
+      .required("Date is required")
+      .max(new Date(), "Cannot be in the future"),
+    comment: Yup.string().max(100, "Max 100 characters"),
+  });
+};
 
 const EditTransactionForm = ({ transaction, onCancel }) => {
   const dispatch = useDispatch();
@@ -43,66 +49,104 @@ const EditTransactionForm = ({ transaction, onCancel }) => {
   const [startDate, setStartDate] = useState(new Date(transaction.date));
 
   useEffect(() => {
-    dispatch(fetchCategories(transaction.type));
-  }, [dispatch, transaction.type]);
+    dispatch(fetchCategories());
+  }, [dispatch]);
+
+  if (!categories || !categories.expenses) {
+    return <p>Loading...</p>;
+  }
 
   const categoryOptions =
-    categories[transaction.type]?.map((cat) => ({
-      value: cat._id,
+    categories.expenses?.map((cat) => ({
+      value: cat.id,
       label: cat.name,
     })) || [];
 
-  const categoryObj = categories[transaction.type]?.find(
-    (cat) => cat.name === transaction.category
-  );
+  const categoryObj =
+    transaction.transactionType === "expense"
+      ? categories.expenses?.find(
+          (cat) => cat.id === transaction.categoryId._id
+        )
+      : null;
+
+  /* console.log("categoryObj", categoryObj); */
+  /*  console.log("Transaction type", transaction.transactionType);
+  console.log("Categories expenses:", categories.expenses);
+  console.log("Transaction categoryId:", transaction.categoryId); */
 
   const initialValues = {
-    type: transaction.type,
+    transactionType: transaction.transactionType,
     category: categoryObj
-      ? { value: categoryObj._id, label: categoryObj.name }
+      ? { value: categoryObj.id, label: categoryObj.name }
       : null,
     summ: transaction.summ,
     date: new Date(transaction.date),
     comment: transaction.comment || "",
   };
 
+  console.log("Initial values", initialValues);
+
   const handleSubmit = async (values, { setSubmitting }) => {
-    const updatedData = {
-      id: transaction._id,
-      transactionType: transaction.type,
-      categoryId: values.category?.value || null,
-      summ: values.summ,
-      date: values.date.toISOString(),
-      comment: values.comment,
+    const changedFields = {
+      transactionType: values.transactionType,
     };
 
-    const changedFields = {};
-    if (updatedData.categoryId !== transaction.categoryId)
-      changedFields.categoryId = updatedData.categoryId;
-    if (updatedData.summ !== transaction.summ)
-      changedFields.summ = updatedData.summ;
-    if (updatedData.comment !== transaction.comment)
-      changedFields.comment = updatedData.comment;
-    if (
-      new Date(updatedData.date).toISOString() !==
-      new Date(transaction.date).toISOString()
-    )
-      changedFields.date = updatedData.date;
+    const currentCategoryId =
+      transaction.transactionType === "expense"
+        ? categories.expenses?.find((cat) => cat.name === transaction.category)
+            ?.id
+        : null;
 
-    if (Object.keys(changedFields).length === 0) {
+    if (
+      values.transactionType === "expense" &&
+      values.category?.value &&
+      values.category.value !== currentCategoryId
+    ) {
+      changedFields.categoryId = values.category.value;
+    }
+
+    if (values.summ !== transaction.summ) {
+      changedFields.summ = Number(values.summ); // ensure it's a number
+    }
+
+    if (values.comment !== transaction.comment) {
+      changedFields.comment = values.comment;
+    }
+
+    const newDateISO = values.date.toISOString();
+    const oldDateISO = new Date(transaction.date).toISOString();
+    if (newDateISO !== oldDateISO) {
+      changedFields.date = newDateISO;
+    }
+
+    if (Object.keys(changedFields).length === 1) {
+      // only transactionType was added
       toast("Nothing changed");
       setSubmitting(false);
       return;
     }
 
+    console.log("Transaction ID:", transaction._id);
+
+    const patchData = {
+      _id: transaction._id,
+      ...changedFields,
+    };
+
+    console.log("Patch Data:", patchData);
+
     try {
-      await dispatch(
-        editeTransaction({ id: transaction._id, ...changedFields })
-      ).unwrap();
+      await dispatch(editeTransaction(patchData)).unwrap();
+      console.log("🚀 PATCH payload:", patchData);
       // dispatch(updateBalance());
+      dispatch(fetchTransactions());
+      dispatch(userInfo());
+
       toast.success("Transaction updated!");
       onCancel();
     } catch (error) {
+      /* console.log(error.response?.data); */
+      console.log("🚀 PATCH payload:", patchData);
       console.error("Update error:", error);
       toast.error("Failed to update transaction");
     } finally {
@@ -115,25 +159,26 @@ const EditTransactionForm = ({ transaction, onCancel }) => {
       <h1 className={s.title}>Edit transaction</h1>
       <Formik
         initialValues={initialValues}
-        validationSchema={validationSchema}
+        validateOnChange={true}
+        validateOnBlur={true}
+        validationSchema={(values) => getValidationSchema(values || {})}
         onSubmit={handleSubmit}
       >
         {({ setFieldValue, values, errors, touched, isSubmitting }) => (
           <Form className={s.form}>
             <div className={s.toggle}>
               <p className={s.toggleText}>Income</p>
-
               <TransactionType
-                transactionType={transaction.type}
+                transactionType={values.transactionType}
                 disabled={true}
               />
-
               <p className={s.toggleText}>Expense</p>
             </div>
 
-            {transaction.type === "expense" && (
+            {values.transactionType === "expense" && (
               <div className={s.selectDiv}>
                 <Select
+                  className={s.select}
                   name="category"
                   options={categoryOptions}
                   styles={SelectStyles}

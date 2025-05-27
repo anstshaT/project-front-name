@@ -1,15 +1,24 @@
-import { useDispatch } from "react-redux";
+/* import { useDispatch } from "react-redux"; */
 import css from "./TransactionsItem.module.css";
 import { MdOutlineEdit } from "react-icons/md";
-import { deleteTransaction } from "../../redux/transactions/transactionsOps";
+/* import { deleteTransaction } from "../../redux/transactions/transactionsOps"; */
 import ModalEditTransaction from "../ModalEditTransaction/ModalEditTransaction";
 import { useState } from "react";
+import ModalDeleteTransaction from "../ModalDeleteTransaction/ModalDeleteTransaction";
 
 const TransactionsItem = ({ transaction }) => {
-  const { _id: id, date, transactionType: type, categoryId, comment, summ } = transaction;
-  const dispatch = useDispatch();
+  const {
+    _id: id,
+    date,
+    transactionType: type,
+    categoryId,
+    comment,
+    summ,
+  } = transaction;
+  /*   const dispatch = useDispatch(); */
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   return (
     <>
@@ -20,7 +29,10 @@ const TransactionsItem = ({ transaction }) => {
       >
         <div className={css.field}>
           <span className={css.label}>Date</span>
-          <span className={css.value}>{new Date(date).toISOString().split("T")[0]}</span>
+
+          <span className={css.value}>
+            {date ? new Date(date).toISOString().split("T")[0] : "N/A"}
+          </span>
         </div>
 
         <div className={css.field}>
@@ -41,14 +53,21 @@ const TransactionsItem = ({ transaction }) => {
         <div className={css.field}>
           <span className={css.label}>Sum</span>
           <span
-            className={`${css.value} ${type === "income" ? css.income : css.expense}`}>
+            className={`${css.value} ${
+              type === "income" ? css.income : css.expense
+            }`}
+          >
             {summ}
           </span>
         </div>
         <div className={css.actions}>
           <button
             className={css.deleteBtn}
-            onClick={() => dispatch(deleteTransaction(id))}
+            onClick={() => {
+              console.log("Deleting transaction id:", id);
+              /* dispatch(deleteTransaction(id)); */
+              setIsDeleteModalOpen(true);
+            }}
           >
             Delete
           </button>
@@ -62,8 +81,15 @@ const TransactionsItem = ({ transaction }) => {
 
       {isModalOpen && (
         <ModalEditTransaction
-          transaction={transaction}
-          onClose={() => setIsModalOpen(false)}
+          selectedTransaction={transaction}
+          closeModal={() => setIsModalOpen(false)}
+        />
+      )}
+
+      {isDeleteModalOpen && (
+        <ModalDeleteTransaction
+          closeModal={() => setIsDeleteModalOpen(false)}
+          id={id}
         />
       )}
     </>

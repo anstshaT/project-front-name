@@ -10,7 +10,7 @@ export const fetchTransactions = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.token;
-      const { data } = await api.get("/transactions",{
+      const { data } = await api.get("/transactions", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -27,8 +27,14 @@ export const deleteTransaction = createAsyncThunk(
   "transactions/deleteTransaction",
   async (id, thunkAPI) => {
     try {
-      const { data } = await api.delete(`/transactions/${id}`);
-      return data.id;
+      const token = thunkAPI.getState().auth.token;
+      await api.delete(`/transactions/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -39,7 +45,19 @@ export const editeTransaction = createAsyncThunk(
   "transactions/editTransactions",
   async (body, thunkAPI) => {
     try {
-      const { data } = await api.put(`/transactions/${body.id}`, body);
+      const token = thunkAPI.getState().auth.token;
+
+      const { _id, ...bodyWithoutId } = body;
+
+      console.log("Body id", _id);
+      console.log("Body withot id", bodyWithoutId);
+
+      const { data } = await api.patch(`/transactions/${_id}`, bodyWithoutId, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -61,8 +79,6 @@ export const createTransaction = createAsyncThunk(
         },
       });
 
-     
-
       return response.data;
     } catch (error) {
       return rejectWithValue(
@@ -71,4 +87,3 @@ export const createTransaction = createAsyncThunk(
     }
   }
 );
-
