@@ -195,6 +195,22 @@
   outline: none;
 }
 
+.iconCalendar {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  fill: #081222;
+  pointer-events: none;
+}
+
+.datePickerWrapper {
+  position: relative;
+  width: 271px;
+}
+
 @media (min-width: 768px) {
   .form {
     /* margin-top: 32px; */
@@ -223,5 +239,9 @@
 
   .cancelBtn {
     width: 410px;
+  }
+
+  .datePickerWrapper {
+    width: 193px;
   }
 }

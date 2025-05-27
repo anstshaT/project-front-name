@@ -14,7 +14,6 @@ import {
   editeTransaction,
   fetchTransactions,
 } from "../../redux/transactions/transactionsOps";
-// import { updateBalance } from "../../redux/balance/balanceSlice";
 import { SelectStyles } from "../../utils/SelectStyles";
 import TransactionType from "../TransactionType/TransactionType";
 import { userInfo } from "../../redux/user/userOperations";
@@ -138,7 +137,6 @@ const EditTransactionForm = ({ transaction, onCancel }) => {
     try {
       await dispatch(editeTransaction(patchData)).unwrap();
       console.log("🚀 PATCH payload:", patchData);
-      // dispatch(updateBalance());
       dispatch(fetchTransactions());
       dispatch(userInfo());
 
@@ -208,6 +206,7 @@ const EditTransactionForm = ({ transaction, onCancel }) => {
               </div>
 
               <div className={s.dateDiv}>
+                <div className={s.datePickerWrapper}>
                 <DatePicker
                   selected={startDate}
                   onChange={(date) => {
@@ -217,7 +216,12 @@ const EditTransactionForm = ({ transaction, onCancel }) => {
                   maxDate={new Date()}
                   className={s.input}
                   calendarClassName={s.calendar}
+                  dateFormat="dd.MM.yyyy"
                 />
+                <svg width="24" height="24" className={s.icon}>
+                  <use href="/icons.svg#icon-date-range"></use>
+                </svg>
+                </div>
                 <ErrorMessage name="date" component="p" className={s.error} />
               </div>
             </div>
