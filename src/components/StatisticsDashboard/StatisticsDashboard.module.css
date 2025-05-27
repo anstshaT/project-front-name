@@ -96,7 +96,7 @@
 
 /* Tablet */
 
-@media only screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .dropdownButton {
     width: 148px;
   }
@@ -116,12 +116,26 @@
 
 /* Mobile */
 
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .dropdownButton {
     width: 122px;
   }
 
   .dropdownList {
     width: 122px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .dropdownButton {
+    width: 188px;
+  }
+
+  .dropdownList {
+    width: 188px;
+  }
+
+  .dropdownWrapper {
+    width: 188px;
   }
 }

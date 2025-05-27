@@ -2,6 +2,10 @@ import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import s from "./Chart.module.css";
 import { useSelector } from "react-redux";
 import { selectTransactions } from "../../redux/transactions/transactionsSelector";
+import {
+  balanceSelector,
+  totalIncomeSelector,
+} from "../../redux/statistics/statisticsSelectors";
 
 const incomeColors = ["#DFAD3F"];
 const expenseColors = [
@@ -18,12 +22,9 @@ const expenseColors = [
 
 const Chart = ({ transactionType }) => {
   const transactions = useSelector(selectTransactions);
-  const statistics = useSelector((state) => state.statistics.data);
 
-  console.log("Chart", statistics.income);
-
-  const totalIncome = statistics.totalIncome || 0;
-  const balance = statistics.balance || 0;
+  const totalIncome = useSelector(totalIncomeSelector) || 0;
+  const balance = useSelector(balanceSelector) || 0;
 
   console.log("All transactions:", transactions);
 
