@@ -16,6 +16,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { setupAuthInterceptor } from "./auth/authOperations";
 
 const authPersistConfig = {
   key: "auth",
@@ -40,5 +41,7 @@ export const store = configureStore({
       },
     }),
 });
+
+setupAuthInterceptor(store.dispatch, store.getState);
 
 export const persistor = persistStore(store);
