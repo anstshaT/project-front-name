@@ -2,6 +2,11 @@
   width: 100%;
   max-width: 264px;
   margin: 32px 16px;
+  pointer-events: none;
+}
+
+.text {
+  margin-top: 20px;
 }
 
 @media screen and (min-width: 768px) {
