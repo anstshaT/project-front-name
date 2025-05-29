@@ -5,7 +5,7 @@
   border-radius: 16px;
   padding-right: 21px;
   padding-bottom: 14px;
-  
+
   color: var(--white);
   list-style: none;
   height: auto;
@@ -18,7 +18,7 @@
 }
 
 .transactionItem::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 1px;
@@ -46,7 +46,7 @@
 }
 
 .field::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -72,7 +72,7 @@
 }
 
 .income {
-  color: #24CCA7;
+  color: #24cca7;
 }
 
 .expense {
@@ -99,7 +99,6 @@
   font-weight: 400;
   font-size: 14px;
   text-align: center;
-  
 }
 
 .editBtn {
@@ -158,7 +157,7 @@
   }
 
   .value {
-    text-align: left;
+    text-align: center;
     font-size: 16px;
     font-weight: 400;
     color: var(--white);
@@ -184,11 +183,10 @@
     padding: 0 8px;
     flex-direction: row-reverse;
   }
-  
+
   .editText {
     display: none;
   }
-  
 }
 
 @media only screen and (min-width: 1280px) {

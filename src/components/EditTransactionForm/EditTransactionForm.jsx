@@ -83,8 +83,6 @@ const EditTransactionForm = ({ transaction, onCancel }) => {
     comment: transaction.comment || "",
   };
 
-  console.log("Initial values", initialValues);
-
   const handleSubmit = async (values, { setSubmitting }) => {
     const changedFields = {
       transactionType: values.transactionType,
@@ -125,26 +123,20 @@ const EditTransactionForm = ({ transaction, onCancel }) => {
       return;
     }
 
-    console.log("Transaction ID:", transaction._id);
-
     const patchData = {
       _id: transaction._id,
       ...changedFields,
     };
 
-    console.log("Patch Data:", patchData);
-
     try {
       await dispatch(editeTransaction(patchData)).unwrap();
-      console.log("🚀 PATCH payload:", patchData);
+
       dispatch(fetchTransactions());
       dispatch(userInfo());
 
       toast.success("Transaction updated!");
       onCancel();
     } catch (error) {
-      /* console.log(error.response?.data); */
-      console.log("🚀 PATCH payload:", patchData);
       console.error("Update error:", error);
       toast.error("Failed to update transaction");
     } finally {
@@ -207,20 +199,20 @@ const EditTransactionForm = ({ transaction, onCancel }) => {
 
               <div className={s.dateDiv}>
                 <div className={s.datePickerWrapper}>
-                <DatePicker
-                  selected={startDate}
-                  onChange={(date) => {
-                    setStartDate(date);
-                    setFieldValue("date", date);
-                  }}
-                  maxDate={new Date()}
-                  className={s.input}
-                  calendarClassName={s.calendar}
-                  dateFormat="dd.MM.yyyy"
-                />
-                <svg width="24" height="24" className={s.icon}>
-                  <use href="/icons.svg#icon-date-range"></use>
-                </svg>
+                  <DatePicker
+                    selected={startDate}
+                    onChange={(date) => {
+                      setStartDate(date);
+                      setFieldValue("date", date);
+                    }}
+                    maxDate={new Date()}
+                    className={s.input}
+                    calendarClassName={s.calendar}
+                    dateFormat="dd.MM.yyyy"
+                  />
+                  <svg width="24" height="24" className={s.icon}>
+                    <use href="/icons.svg#icon-date-range"></use>
+                  </svg>
                 </div>
                 <ErrorMessage name="date" component="p" className={s.error} />
               </div>

@@ -25,7 +25,6 @@ const AddTransactionForm = ({ onCancel }) => {
 
   useEffect(() => {
     dispatch(fetchCategories());
-    console.log("Categories", categories);
   }, [dispatch]);
 
   const options =
@@ -63,8 +62,6 @@ const AddTransactionForm = ({ onCancel }) => {
   });
 
   const handleSubmit = async (values, actions) => {
-    console.log("Transaction Type", values);
-
     const newTransaction = {
       transactionType:
         values.transactionType === "income" ? "income" : "expense",
@@ -79,7 +76,6 @@ const AddTransactionForm = ({ onCancel }) => {
 
     try {
       await dispatch(createTransaction(newTransaction)).unwrap();
-      console.log("New Transaction", newTransaction);
 
       dispatch(fetchTransactions());
       dispatch(userInfo());
@@ -88,11 +84,8 @@ const AddTransactionForm = ({ onCancel }) => {
       actions.resetForm();
       onCancel();
     } catch (error) {
-      console.log("Income", incomesOption);
+      console.log(error.message);
 
-      console.log(newTransaction);
-
-      console.log("Error in addTransaction", error);
       toast.error("Something went wrong. Try again");
     }
   };
@@ -186,8 +179,6 @@ const AddTransactionForm = ({ onCancel }) => {
                   placeholder="Category"
                   value={values.categories}
                   onChange={(option) => {
-                    console.log(option);
-
                     setFieldValue("categoryId", option.value);
                   }}
                 />

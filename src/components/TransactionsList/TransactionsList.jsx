@@ -48,10 +48,6 @@ const TransactionsList = () => {
       </div>
     );
   }
-  console.log(
-    "Transactions IDs:",
-    transactions.map((item) => item._id)
-  );
 
   return (
     <div className={css.listContainer}>

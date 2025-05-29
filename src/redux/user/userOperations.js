@@ -20,8 +20,6 @@ export const userInfo = createAsyncThunk(
         },
       });
 
-      console.log("User info", user.data.data);
-
       return user.data.data;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);

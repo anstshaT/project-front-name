@@ -64,7 +64,6 @@ const TransactionsItem = ({ transaction }) => {
           <button
             className={css.deleteBtn}
             onClick={() => {
-              console.log("Deleting transaction id:", id);
               /* dispatch(deleteTransaction(id)); */
               setIsDeleteModalOpen(true);
             }}

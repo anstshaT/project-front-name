@@ -17,10 +17,6 @@ export const fetchStatistics = createAsyncThunk(
         },
       });
 
-      console.log("Month", month);
-
-      console.log("Statistic redux", response.data);
-
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);

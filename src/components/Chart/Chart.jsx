@@ -26,8 +26,6 @@ const Chart = ({ transactionType, data = [] }) => {
   const totalIncome = useSelector(totalIncomeSelector) || 0;
   const totalExpense = useSelector(totalExpenseSelector) || 0;
 
-  console.log("All transactions:", transactions);
-
   const groupedData = transactions
     .filter((tx) => tx.transactionType === transactionType)
     .reduce((acc, tx) => {

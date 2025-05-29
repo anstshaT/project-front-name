@@ -1,12 +1,12 @@
-import { Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
-import HomePage from "./pages/HomePage/HomePage";
-import { Register } from "./pages/RegisterPage/Register";
-import LoginPage from "./pages/LoginPage/LoginPage";
+/* import HomePage from "./pages/HomePage/HomePage"; */
+/* import { Register } from "./pages/RegisterPage/Register"; */
+/* import LoginPage from "./pages/LoginPage/LoginPage"; */
 import { Toaster } from "react-hot-toast";
-import StatisticsPage from "./pages/StatisticsPage/StatisticsPage";
-import CurrencyPage from "./pages/CurrencyPage/CurrencyPage";
+/* import StatisticsPage from "./pages/StatisticsPage/StatisticsPage"; */
+/* import CurrencyPage from "./pages/CurrencyPage/CurrencyPage"; */
 import PrivateRoute from "./PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsRefreshing } from "./redux/auth/selectors";
@@ -17,7 +17,16 @@ import { store } from "./redux/store";
 import UserLayout from "./pages/UserLayout/UserLayout";
 import RestrictedRoute from "./RectrictedRoute";
 import { userInfo } from "./redux/user/userOperations";
-import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+/* import NotFoundPage from "./pages/NotFoundPage/NotFoundPage"; */
+
+const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage/Register"));
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const StatisticsPage = lazy(() =>
+  import("./pages/StatisticsPage/StatisticsPage")
+);
+const CurrencyPage = lazy(() => import("./pages/CurrencyPage/CurrencyPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
 
 function App() {
   const dispatch = useDispatch();
@@ -28,11 +37,9 @@ function App() {
     dispatch(refreshUser());
     const foo = async () => {
       dispatch(setIsLoading(true));
-      console.log(store.getState().loader);
 
       try {
         await Promise.resolve("RESULT");
-        console.log("isLoading state:", isLoading);
       } catch (error) {
         console.log(error.message);
       } finally {
@@ -66,7 +73,7 @@ function App() {
             path="/register"
             element={
               <RestrictedRoute>
-                <Register />
+                <RegisterPage />
               </RestrictedRoute>
             }
           />

@@ -49,9 +49,6 @@ export const editeTransaction = createAsyncThunk(
 
       const { _id, ...bodyWithoutId } = body;
 
-      console.log("Body id", _id);
-      console.log("Body withot id", bodyWithoutId);
-
       const { data } = await api.patch(`/transactions/${_id}`, bodyWithoutId, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -70,8 +67,6 @@ export const createTransaction = createAsyncThunk(
   async (transactionData, { rejectWithValue, getState }) => {
     try {
       const token = getState().auth.token;
-
-      console.log("Sending transactionData:", transactionData);
 
       const response = await api.post("/transactions", transactionData, {
         headers: {
