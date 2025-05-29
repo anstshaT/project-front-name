@@ -20,7 +20,7 @@ const expenseColors = [
   "#00AD84",
 ];
 
-const Chart = ({ transactionType }) => {
+const Chart = ({ transactionType, data = [] }) => {
   const transactions = useSelector(selectTransactions);
 
   const totalIncome = useSelector(totalIncomeSelector) || 0;
@@ -49,8 +49,8 @@ const Chart = ({ transactionType }) => {
 
   const COLORS = transactionType === "income" ? incomeColors : expenseColors;
 
-  if (chartData.length === 0) {
-    return <p className={s.noData}>Немає даних для відображення</p>;
+  if (chartData.length === 0 || !data.length) {
+    return <p className={s.text}>No data to display</p>;
   }
 
   return (

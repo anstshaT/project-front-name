@@ -51,7 +51,9 @@ const StatisticsPage = () => {
             Expense
           </p>
         </div>
-        <Chart transactionType={transactionType} />
+        <Chart 
+          transactionType={transactionType} 
+          data={transactionType === "income" ? incomeData : expenseData} />
       </div>
 
       <div className={s.dashboardAndList}>
