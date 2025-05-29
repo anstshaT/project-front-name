@@ -59,7 +59,13 @@ function App() {
 
   return isRefreshing ? null : (
     <>
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense
+        fallback={
+          <div className="loaderWrap">
+            <HashLoader color="#24CCA7" size={60} />
+          </div>
+        }
+      >
         <Routes>
           <Route
             path="/login"
