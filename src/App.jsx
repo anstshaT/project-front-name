@@ -1,12 +1,12 @@
 import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
-/* import HomePage from "./pages/HomePage/HomePage"; */
-/* import { Register } from "./pages/RegisterPage/Register"; */
-/* import LoginPage from "./pages/LoginPage/LoginPage"; */
+/* import HomePage from "./pages/HomePage/HomePage";
+import { Register } from "./pages/RegisterPage/Register";
+import LoginPage from "./pages/LoginPage/LoginPage"; */
 import { Toaster } from "react-hot-toast";
-/* import StatisticsPage from "./pages/StatisticsPage/StatisticsPage"; */
-/* import CurrencyPage from "./pages/CurrencyPage/CurrencyPage"; */
+/* import StatisticsPage from "./pages/StatisticsPage/StatisticsPage";
+import CurrencyPage from "./pages/CurrencyPage/CurrencyPage"; */
 import PrivateRoute from "./PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsRefreshing } from "./redux/auth/selectors";
