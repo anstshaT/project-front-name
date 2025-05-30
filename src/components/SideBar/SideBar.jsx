@@ -5,6 +5,7 @@ import s from "./SideBar.module.css";
 import { useMediaQuery } from "react-responsive";
 import Balance from "../Balance/Balance";
 import { useLocation } from "react-router-dom";
+import Currency from "../Currency/Currency";
 
 const SideBar = () => {
   const location = useLocation();
@@ -30,7 +31,7 @@ const SideBar = () => {
             <Balance />
           </div>
           <div className={s.right}>
-            <CurrencyPage />
+            <Currency />
           </div>
         </>
       )}
@@ -41,7 +42,7 @@ const SideBar = () => {
             <Navigation />
             <div className={s.desc_bal_cur}>
               <Balance />
-              <CurrencyPage />
+              <Currency />
             </div>
           </div>
         </>
