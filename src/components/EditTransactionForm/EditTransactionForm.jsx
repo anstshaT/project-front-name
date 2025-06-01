@@ -38,7 +38,7 @@ const getValidationSchema = (values) => {
     date: Yup.date()
       .required("Date is required")
       .max(new Date(), "Cannot be in the future"),
-    comment: Yup.string().max(100, "Max 100 characters"),
+    comment: Yup.string().max(27, "Max 27 characters"),
   });
 };
 
@@ -187,7 +187,7 @@ const EditTransactionForm = ({ transaction, onCancel }) => {
             <div className={s.infoFormDiv}>
               <div className={s.summDiv}>
                 <Field
-                  type="text"
+                  type="number"
                   name="summ"
                   className={clsx(s.input, {
                     [s.inputError]: errors.summ && touched.summ,
