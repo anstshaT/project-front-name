@@ -7,11 +7,20 @@ import s from "./LoginForm.module.css";
 import { loginThunk } from "../../redux/auth/authOperations";
 import { userInfo } from "../../redux/user/userOperations";
 
+const domains = [".com", ".net", ".org"];
+
 const validationSchema = Yup.object().shape({
   email: Yup.string()
     .max(64, "Max 64 characters")
     .email("Invalid email")
-    .required("Email is required"),
+    .required("Email is required")
+    .test(
+      "domain-check",
+      `Domain must be one of: ${domains.join(", ")}`,
+      (value) => {
+        return value && domains.some((domain) => value.endsWith(domain));
+      }
+    ),
   password: Yup.string()
     .min(8, "Min 8 characters")
     .max(64, "Max 64 characters")

@@ -8,7 +8,7 @@ import clsx from "clsx";
 import { useEffect } from "react";
 import {
   selectError,
-  selectIsLoading,
+  /* selectIsLoading, */
   selectIsLoggin,
 } from "../../redux/auth/selectors";
 import { toast } from "react-hot-toast";
@@ -17,7 +17,7 @@ export const RegistrationForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const error = useSelector(selectError);
-  const isLoading = useSelector(selectIsLoading);
+  /* const isLoading = useSelector(selectIsLoading); */
   const isLoggedIn = useSelector(selectIsLoggin);
 
   useEffect(() => {
@@ -41,6 +41,7 @@ export const RegistrationForm = () => {
   };
 
   const onlyLetters = /^[A-Za-z0-9]*$/;
+  const domains = [".com", ".net", ".org"];
 
   const RegistrationSchema = Yup.object().shape({
     name: Yup.string()
@@ -52,7 +53,14 @@ export const RegistrationForm = () => {
     email: Yup.string()
       .required("Required field")
       .max(64, "Max 64 characters")
-      .email("Invalid email"),
+      .email("Invalid email")
+      .test(
+        "domain-check",
+        `Domain must be one of: ${domains.join(", ")}`,
+        (value) => {
+          return value && domains.some((domain) => value.endsWith(domain));
+        }
+      ),
     password: Yup.string()
       .required("Required field")
       .min(8, "Min 8 characters")
@@ -63,14 +71,13 @@ export const RegistrationForm = () => {
       .oneOf([Yup.ref("password")]),
   });
 
-  const handleSubmit = async (values, options) => {
+  const handleSubmit = async (values) => {
     const userData = {
       name: values.name,
       email: values.email,
       password: values.password,
     };
     dispatch(registerThunk(userData));
-    options.resetForm();
   };
 
   return (

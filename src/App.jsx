@@ -1,12 +1,12 @@
 import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
-/* import HomePage from "./pages/HomePage/HomePage";
-import { Register } from "./pages/RegisterPage/Register";
-import LoginPage from "./pages/LoginPage/LoginPage"; */
+import HomePage from "./pages/HomePage/HomePage";
+/* import { Register } from "./pages/RegisterPage/Register"; */
+/* import LoginPage from "./pages/LoginPage/LoginPage"; */
 import { Toaster } from "react-hot-toast";
-/* import StatisticsPage from "./pages/StatisticsPage/StatisticsPage";
-import CurrencyPage from "./pages/CurrencyPage/CurrencyPage"; */
+import StatisticsPage from "./pages/StatisticsPage/StatisticsPage";
+import CurrencyPage from "./pages/CurrencyPage/CurrencyPage";
 import PrivateRoute from "./PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsRefreshing } from "./redux/auth/selectors";
@@ -21,11 +21,11 @@ import { userInfo } from "./redux/user/userOperations";
 
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage/Register"));
-const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
-const StatisticsPage = lazy(() =>
+/* const HomePage = lazy(() => import("./pages/HomePage/HomePage")); */
+/* const StatisticsPage = lazy(() =>
   import("./pages/StatisticsPage/StatisticsPage")
-);
-const CurrencyPage = lazy(() => import("./pages/CurrencyPage/CurrencyPage"));
+); */
+/* const CurrencyPage = lazy(() => import("./pages/CurrencyPage/CurrencyPage")); */
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
 
 function App() {

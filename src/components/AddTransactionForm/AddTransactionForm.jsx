@@ -58,7 +58,7 @@ const AddTransactionForm = ({ onCancel }) => {
     date: Yup.date()
       .required("Date is required")
       .max(new Date(), "Date cannot be in the future"),
-    comment: Yup.string().min(2, "Too short").max(192, "Too long"),
+    comment: Yup.string().min(2, "Too short").max(27, "Max 27 charecters"),
   });
 
   const handleSubmit = async (values, actions) => {
@@ -192,7 +192,7 @@ const AddTransactionForm = ({ onCancel }) => {
             <div className={s.infoFormDiv}>
               <div className={s.summDiv}>
                 <Field
-                  type="text"
+                  type="number"
                   name="summ"
                   className={`${s.input} ${
                     errors.summ && touched.summ ? s.inputError : ""
